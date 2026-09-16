@@ -32,6 +32,21 @@ CANDIDATE_URLS = {
         # data points. See conversation notes, 2026-09-15.
     ],
 
+    # ING-only: adult/general equivalents of the youth pages above, added to
+    # compare how ING communicates to young people vs. general/adult
+    # customers on the SAME product types (savings account, automatic
+    # savings, credit card, comparison page, savings hub). Not present for
+    # other banks — this is a within-ING comparison, separate from the
+    # cross-bank youth comparison. turning18_forparents has no adult
+    # equivalent by nature (life-stage specific).
+    "ing_adult": [
+        ("https://www.ing.be/fr/particuliers/epargner/compte-epargne-classique", "general savings account (mirrors compte-epargne-jeune)"),
+        ("https://www.ing.be/fr/particuliers/epargner/compte-epargne-automatique", "general automatic savings (mirrors compte-epargne-automatique-jeune)"),
+        ("https://www.ing.be/fr/particuliers/cartes-de-credit/carte-de-credit-visa", "general Visa credit card (mirrors carte-de-credit-jeunes)"),
+        ("https://www.ing.be/fr/particuliers/cartes-de-credit/comparatif-cartes-de-credit", "general credit card comparison (closest match to comparatif-compte-epargne-jeune)"),
+        ("https://www.ing.be/fr/particuliers/epargner", "general savings hub (mirrors jeunes hub)"),
+    ],
+
     "bnp_fortis": [
         ("https://www.bnpparibasfortis.be/fr/public/particuliers/banque-au-quotidien/banque-pour-les-jeunes", "youth hub page"),
         ("https://www.bnpparibasfortis.be/fr/public/particuliers/banque-au-quotidien/comptes-bancaires/compte-a-vue/compte-jeune", "youth current account"),

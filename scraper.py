@@ -27,6 +27,8 @@ CHECKERS = build_checkers(ROBOTS_TXT)
 
 BANK_DOMAINS = {
     "ing": "ing.be",
+    "ing_adult": "ing.be",  # ING's general/adult equivalents, for the
+                             # within-ING youth-vs-adult comparison
     # bnp_fortis intentionally excluded — blocked by Akamai Bot Manager
     # (confirmed via AK-Ref-Id in the served "maintenance" page). Collected
     # manually instead, see manual_collection_template.py.
@@ -121,7 +123,9 @@ class BrowserSession:
         parsed = urlparse(url)
         if parsed.scheme not in ("http", "https") or self.allowed_domain not in parsed.netloc:
             return {"ok": False, "reason": f"URL rejected (scheme/domain check): {url}"}
-        if not is_allowed(CHECKERS, self.bank, url):
+        # ing_adult shares ing.be's robots.txt — no separate entry needed.
+        robots_bank = "ing" if self.bank == "ing_adult" else self.bank
+        if not is_allowed(CHECKERS, robots_bank, url):
             return {"ok": False, "reason": f"Disallowed by robots.txt: {url}"}
 
         try:
