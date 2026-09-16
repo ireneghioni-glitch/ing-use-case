@@ -14,6 +14,7 @@ re-run later without re-scraping.
 
 import json
 import logging
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urlparse
@@ -22,6 +23,18 @@ from playwright.sync_api import sync_playwright
 
 from robots_checker import ROBOTS_TXT, build_checkers, is_allowed
 from candidate_urls import CANDIDATE_URLS
+
+# import centralized Paths from src/config.py
+PROJ_ROOT = Path(__file__).resolve().parent.parent
+if str(PROJ_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJ_ROOT))
+
+from src.config import (
+    RAW_DIR,
+    SCREENSHOTS_DIR,
+    ASSETS_PATH,
+    LOG_DIR,
+)
 
 CHECKERS = build_checkers(ROBOTS_TXT)
 
@@ -37,13 +50,14 @@ BANK_DOMAINS = {
     "revolut": "revolut.com",
 }
 
-SCREENSHOT_DIR = Path("screenshots")
-SCREENSHOT_DIR.mkdir(exist_ok=True)
+# create dirs if they don't exist
+SCREENSHOTS_DIR.mkdir(parents=True, exist_ok=True)
+LOG_DIR.mkdir(parents=True, exist_ok=True)
+RAW_DIR.mkdir(parents=True, exist_ok=True)
 
-ASSETS_PATH = Path("campaign_asset.jsonl")
+# Aliasing to keep the rest of the code unchanged
+SCREENSHOT_DIR = SCREENSHOTS_DIR
 
-LOG_DIR = Path("logs")
-LOG_DIR.mkdir(exist_ok=True)
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s | %(levelname)s | %(message)s",
