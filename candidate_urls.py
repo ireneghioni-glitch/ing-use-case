@@ -16,6 +16,21 @@ The original entries were checked against each bank's robots.txt as of
 2026-09-15 (see robots_checker.py). Newly added URLs should be re-checked
 against robots.txt before running the scraper. Entries marked [CHECK]
 were not treated as fully verified Belgian/localised pages.
+
+UPDATE 2026-09-18: ING's robots.txt (https://www.ing.be/robots.txt) only
+disallows "/video" — every ING/ing_adult URL below is allowed. Cross-checked
+all "ing" URLs against https://www.ing.be/sitemap-cms.xml: 15 of 16 matched
+verbatim. The one exception, ing-plus-deals, is NOT in the sitemap but is
+live with a self-referencing canonical (fetched directly to confirm) — kept,
+flagged as live-but-unlisted rather than treated as a scraper bug. Added 5
+new ING entries below to close a real gap: ING previously had no under-18
+current/youth account (compte-jeune / ING Go To 18), which every other bank
+in the "10-24 free account" comparison set (KBC, CBC, Crelan, vdk, Beobank,
+Belfius) already has. Also note: sitemap lastmod on
+comparatif-compte-epargne-jeune, compte-epargne-automatique-jeune and
+compte-epargne-classique shows 2026-09-16, i.e. AFTER the 2026-09-15
+verification pass — content on those three pages should be re-scraped
+before being treated as current, even though the URLs themselves are stable.
 """
 
 
@@ -37,20 +52,27 @@ were not treated as fully verified Belgian/localised pages.
 CANDIDATE_URLS = {
     "ing": [
         ("https://www.ing.be/fr/particuliers/epargner/compte-epargne-jeune", "youth savings account (FR)"),
-        ("https://www.ing.be/fr/particuliers/epargner/comparatif-compte-epargne-jeune", "youth savings comparison (FR)"),
+        ("https://www.ing.be/fr/particuliers/epargner/comparatif-compte-epargne-jeune", "youth savings comparison (FR) — [RE-VERIFY] sitemap lastmod 2026-09-16, after original 09-15 check"),
         ("https://www.ing.be/fr/particuliers/jeunes", "youth hub page (FR)"),
         ("https://www.ing.be/fr/particuliers/cartes-de-credit/carte-de-credit-jeunes", "youth credit card (FR)"),
         ("https://www.ing.be/fr/particuliers/gerer-le-quotidien/turning18_forparents", "turning 18 — for parents (FR)"),
-        ("https://www.ing.be/fr/particuliers/epargner/compte-epargne-automatique-jeune", "automatic youth savings (FR)"),
+        ("https://www.ing.be/fr/particuliers/epargner/compte-epargne-automatique-jeune", "automatic youth savings (FR) — [RE-VERIFY] sitemap lastmod 2026-09-16, after original 09-15 check"),
         # --- 20-25 Subsidized Track ---
         ("https://www.ing.be/fr/particuliers/comptes-bancaire-packs/pack-go", "ING Go 18-25 — completely free daily banking entry-level tier"),
         ("https://www.ing.be/fr/particuliers/comptes-bancaire-packs/pack-more-jeunes", "ING More 18-25 — subsidized life-stage tier (includes Visa Classic + lifestyle perks like Amazon Prime)"),
-        
+
         # --- 25-29 Transitional Track (The "Young Workers" Pivot) ---
         ("https://www.ing.be/fr/particuliers/comptes-bancaire-packs/comparez-packs", "Packs comparison engine — mapping the pricing cliff when youth eligibility expires at age 26"),
         ("https://www.ing.be/fr/particuliers/comptes-bancaire-packs/pack-more", "ING More (Standard Adult) — tracking conditional waiver requirements (e.g., lower monthly fee if €700+ is deposited monthly)"),
-        ("https://www.ing.be/fr/particuliers/gerer-le-quotidien/ing-plus-deals", "ING+ Deals cashback engine — key positioning element used to retain price-sensitive young workers"),
-    
+        ("https://www.ing.be/fr/particuliers/gerer-le-quotidien/ing-plus-deals", "ING+ Deals cashback engine — key positioning element used to retain price-sensitive young workers — [NOT IN SITEMAP but confirmed live 2026-09-18, self-referencing canonical; live-but-unlisted, not a scraper bug"),
+
+        # --- Added 2026-09-18: closing the under-18 gap ---
+        ("https://www.ing.be/fr/particuliers/comptes-bancaire-packs/compte-jeune", "ING Go To 18 — free youth current account + debit card, ages 8-17, €50 welcome offer (the under-18 entry product; direct comparator to KBC/CBC compte-jeunes). In sitemap, lastmod 2026-09-15."),
+        ("https://www.ing.be/fr/particuliers/gerer-le-quotidien/carte-de-debit", "debit card — no ING page previously covered DEBIT_CARD. In sitemap, lastmod 2026-09-11."),
+        ("https://www.ing.be/fr/particuliers/comptes-bancaire-packs/ouvrir-un-compte-bancaire-en-ligne", "digital onboarding — comparator to CBC ouvrir-compte-en-ligne. In sitemap, lastmod 2026-09-07."),
+        ("https://www.ing.be/fr/particuliers/gerer-le-quotidien/mgm-inviter-ao", "member-get-member referral — REFERRAL tag otherwise only covered by Revolut. In sitemap, lastmod 2026-09-07."),
+        ("https://www.ing.be/fr/particuliers/epargner/epargne-vers-propriete", "saving towards first home — comparator to BNP jeune-travailleur/premier-logement. In sitemap, lastmod 2026-09-07."),
+
         # NOTE: the 4 EN equivalents (youth, youth-savings-account,
         # compare-savings-accounts-youth, credit-card-youth) were dropped —
         # same content as the FR pages above, just translated. Keeping both
@@ -67,11 +89,13 @@ CANDIDATE_URLS = {
     # cross-bank youth comparison. turning18_forparents has no adult
     # equivalent by nature (life-stage specific).
     "ing_adult": [
-        ("https://www.ing.be/fr/particuliers/epargner/compte-epargne-classique", "general savings account (mirrors compte-epargne-jeune)"),
+        ("https://www.ing.be/fr/particuliers/epargner/compte-epargne-classique", "general savings account (mirrors compte-epargne-jeune) — [RE-VERIFY] sitemap lastmod 2026-09-16, after original 09-15 check"),
         ("https://www.ing.be/fr/particuliers/epargner/compte-epargne-automatique", "general automatic savings (mirrors compte-epargne-automatique-jeune)"),
         ("https://www.ing.be/fr/particuliers/cartes-de-credit/carte-de-credit-visa", "general Visa credit card (mirrors carte-de-credit-jeunes)"),
         ("https://www.ing.be/fr/particuliers/cartes-de-credit/comparatif-cartes-de-credit", "general credit card comparison (closest match to comparatif-compte-epargne-jeune)"),
         ("https://www.ing.be/fr/particuliers/epargner", "general savings hub (mirrors jeunes hub)"),
+        # --- Added 2026-09-18 ---
+        ("https://www.ing.be/fr/particuliers/investir/commencer-a-investir", "start investing — ING previously had no 'start investing' page vs. KBC/Hello bank! which both have one. In sitemap, lastmod 2026-09-10."),
     ],
 
     "bnp_fortis": [
@@ -173,7 +197,7 @@ CANDIDATE_URLS = {
        ("https://www.argenta.be/fr/payer/banque-par-internet.html", "Argenta online/mobile web onboarding entry point"),
        ("https://www.argenta.be/nl/thema/jongeren.html", "Argenta core youth hub positioning page (Flemish baseline root)"),
    ],
- 
+
    # --- Fintech / neo-banks --------------------------------------------
    "n26": [
        ("https://n26.com/fr-be/moins-de-18-ans", "[OK] N26 under-18s — card for 7-17, parent-managed (the youth page)"),
@@ -188,29 +212,8 @@ CANDIDATE_URLS = {
        ("https://n26.com/en-eu/iban-number", "N26 local/EU IBAN consumer education page"),
        ("https://n26.com/en-fr/blog/guide-to-eu-banking-acronyms", "N26 functional onboarding/literacy messaging guidelines"),
    ],
- 
-   # bunq runs on Framer with a {lang}-{country} prefix; fr-BE and nl-BE are
-   # supported locales, but only the fr-fr paths below were confirmed live.
-   # Verify each fr-be URL resolves without a locale redirect before scraping;
-   # if it 302s to fr-fr, document bunq as an EU-wide (non-localised) player.
-   "bunq": [
-       ("https://www.bunq.com/fr-be/personal/use-cases/students", "[CHECK] students — bunq Pro free for BE students <=25 (confirmed on fr-fr)"),
-       ("https://www.bunq.com/fr-be/personal/use-cases/parents", "[CHECK] parents — Child Accounts, up to 4"),
-       ("https://www.bunq.com/fr-be/personal/use-cases", "[CHECK] life-stage hub incl. students/parents/expats"),
-       ("https://www.bunq.com/fr-be/personal/plans", "[CHECK] plan comparison (Free/Core/Pro/Elite)"),
-       ("https://help.bunq.com/articles/free-for-students", "[OK] student discount terms — names Belgium explicitly, age <=25"),
-       ("https://www.bunq.com/en-nl/blog/is-your-child-ready-for-a-bank-account", "[OK] EN blog — child-account framing, no FR equivalent found"),
-   ],
 
-   "cbc": [
-       ("https://www.cbc.be/particuliers/fr/produits/paiements/comptes-a-vue/compte-jeunes.html", "[OK] youth account, free 10-24"),
-       ("https://www.cbc.be/particuliers/fr/jeunes/18-ans.html", "[OK] turning 18"),
-       ("https://www.cbc.be/particuliers/fr/jeunes/job-d-etudiant-compte-a-vue.html", "[OK] student job — needs a current account"),
-       ("https://www.cbc.be/particuliers/fr/jeunes/prendre-les-renes.html", "[OK] 18-25 'taking the reins' hub"),
-       ("https://www.cbc.be/particuliers/fr/paiements/ouvrir-compte-en-ligne.html", "[OK] open an account online — youth account is one of two options shown"),
-       ("https://www.cbc.be/particuliers/fr/paiements/compte-pour-votre-enfant.html", "CBC pocket money / child current account (ages 10-18)"),
-       ("https://www.cbc.be/particuliers/fr/paiements/comptes-a-vue.html", "[OK] account comparison incl. youth account (adult-vs-youth framing)"),
-   ],
+  
    "beobank": [
         ("https://www.beobank.be/fr/payer/comptes-courants/compte-jeunes.html", "Beobank youth current account — direct youth banking comparator"),
         ("https://www.beobank.be/fr/payer/cartes-de-credit/young-mastercard.html", "Young Mastercard — student/young adult credit proposition"),
@@ -220,80 +223,7 @@ CANDIDATE_URLS = {
         ("https://www.beobank.be/fr/investir.html", "Beobank investing hub — useful for young investor proposition"),
         ("https://www.beobank.be/fr/actualites.html", "Beobank campaigns/news — acquisition and promotional messaging"),
     ],
-     "santander_openbank": [
-        ("https://www.openbank.be/",  "Openbank Belgium — digital retail banking proposition"),
-        ("https://www.openbank.be/en-be/accounts",  "Openbank current-account proposition"),
-        ("https://www.openbank.be/en-be/savings",  "Openbank savings proposition"),
-        ("https://www.openbank.be/en-be/investments",  "Openbank investing"),
-        ("https://www.openbank.be/en-be/cards",   "Openbank card proposition"),
-    ],
-    "trade_republic": [
-        ("https://traderepublic.com/fr-be",   "Trade Republic Belgium — digital investing/banking proposition"),
-        ("https://traderepublic.com/fr-be/pricing",   "Trade Republic pricing"),
-        ("https://traderepublic.com/fr-be/invest",   "Trade Republic investing"),
-        ("https://traderepublic.com/fr-be/save",   "Trade Republic savings / cash proposition"),
-        ("https://traderepublic.com/fr-be/card",   "Trade Republic card proposition"),
-    ],
-     "nickel": [
-        ("https://nickel.eu/fr-be",  "Nickel Belgium homepage — accessible/digital banking positioning"),
-        ("https://nickel.eu/fr-be/compte-bancaire",   "Nickel current account"),
-        ("https://nickel.eu/fr-be/cartes",   "Nickel card proposition"),
-        ("https://nickel.eu/fr-be/tarifs",  "Nickel pricing"),
-        ("https://nickel.eu/fr-be/carte-bancaire-Nickel",  "Nickel debit card — accessible account proposition from age 18"),
-        ("https://nickel.eu/fr-be/tarifs-et-services", "Nickel pricing and services — relevant to price-sensitive young adults"),
-        ("https://nickel.eu/fr-be/points-de-vente",  "Nickel Belgium distribution network — physical/digital hybrid proposition"),
-    ],
-
-    # --- Additional Belgian youth / young-adult competitors ---------------
-    "crelan": [
-        ("https://www.crelan.be/fr/particuliers/payer/comptes-vue/produit/compte-jeunes",
-         "[OK] youth account — free until age 25"),
-        ("https://www.crelan.be/fr/particuliers/payer/article/votre-enfant-12-ans",
-         "[OK] age-12 journey — own current account, card, app and parental controls"),
-        ("https://www.crelan.be/fr/particuliers/payer/article/18-ans",
-         "[CHECK] turning 18 — French path to verify against current site routing"),
-        ("https://www.crelan.be/nl/particulieren/betalen/artikel/meerderjarig-geworden",
-         "[OK] turning 18 — self-management, app, limits and parent power of attorney"),
-        ("https://www.crelan.be/nl/particulieren/betalen/zichtrekeningen/product/kinderrekening",
-         "[OK] child account — free youth account, app, debit card and parental controls"),
-    ],
-
-    "vdk": [
-        ("https://www.vdk.be/nl/particulieren/dagelijks-bankieren/jovo-girorekening",
-         "[OK] You Count current account — youth proposition, ages 10-30"),
-        ("https://www.vdk.be/fr/compte-vue-you-count",
-         "[OK] You Count current account — French version, ages 10-30"),
-        ("https://www.vdk.be/fr/particuliers/epargner-et-investir/epargne-pour-jeunes",
-         "[OK] You Count youth savings — under 30"),
-        ("https://www.vdk.be/nl/veelgestelde-vragen/waarom-zie-ik-rekeningen-van-mijn-minderjarig-kind-in-mobilevdk-of-onlinevdk",
-         "[OK] minor digital access / parent visibility — useful for youth UX and parental control"),
-    ],
-
-    "keytrade": [
-        ("https://www.keytradebank.be/en/support/how-to-open-an-account-for-a-minor",
-         "[OK] minors — Keypack includes current, savings and trading account; debit card from 12"),
-        ("https://www.keytradebank.be/nl/hulp/hoe-een-rekening-openen-voor-een-minderjarige",
-         "[OK] minors — Dutch version of the youth account workflow"),
-        ("https://www.keytradebank.be/fr/aide/comment-ouvrir-un-compte-pour-un-mineur",
-         "[OK] minors — French version of the youth account workflow"),
-        ("https://www.keytradebank.be/en/",
-         "[NAV] Keytrade Bank digital banking / investing proposition"),
-    ],
-
-    "medirect": [
-        ("https://www.medirect.be/",
-         "[NAV] MeDirect Belgium — digital savings and investing proposition"),
-        ("https://www.medirect.be/fr/",
-         "[NAV] MeDirect Belgium — French retail entry point"),
-    ],
-
-     "europabank": [
-        ("https://www.europabank.be/fr/compte-a-vue","Europabank current account"),
-        ("https://www.europabank.be/fr/cartes",   "Europabank cards"),
-        ("https://www.europabank.be/fr/epargne",   "Europabank savings"),
-        ("https://www.europabank.be/fr/credit",  "Europabank consumer credit"),
-    ],
-
+     
 }
 
 
