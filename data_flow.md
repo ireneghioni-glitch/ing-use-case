@@ -26,6 +26,9 @@ Contains lists of financial terms in English, Dutch, and French, used to compute
 ### `config.py`
 Defines the "contract" of the team: how assets must be defined.
 
+### `audit_jsonl.py`
+
+
 ### `extract_deterministic.py` (src/)
 
 
@@ -37,11 +40,14 @@ flowchart TD
         urls_to_scrape --> bnp_auto_scraper[scraper_bnp.py]
         auto_scraper --> dirty_data[campaign_asset.jsonl]
         bnp_auto_scraper --> dirty_data
+    end
     
     subgraph preprocessing [Assets Preprocessing]
         subgraph audit [Audit]
             dirty_data --> audit_jsonl[audit_jsonl.py]
+        end
+    end
     
     subgraph features_extraction [Features Extraction]
-         
+    end
 ```
