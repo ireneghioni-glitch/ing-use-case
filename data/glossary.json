@@ -1,0 +1,11 @@
+{
+  "en": [
+    "interest", "rate", "fee", "commission", "IBAN", "debit card", "credit card", "overdraft", "mortgage", "loan", "savings", "current account", "transaction", "balance", "statement", "withdrawal", "deposit", "transfer", "standing order", "direct debit", "PIN", "ATM", "online banking", "mobile banking", "app", "authentication", "two-factor", "encryption", "GDPR", "terms and conditions", "eligibility", "minimum age", "student", "bonus", "promotion", "welcome offer", "cashback", "interest rate", "variable rate", "fixed rate", "APR", "EAR", "compound interest"
+  ],
+  "nl": [
+    "rente", "tarief", "kosten", "commissie", "IBAN", "debetaart", "kredietkaart", "roodstand", "hypotheek", "lening", "spaargeld", "betaalrekening", "transactie", "saldo", "afschrift", "opname", "storting", "overschrijving", "doorlopende opdracht", "domiciliëring", "pincode", "geldautomaat", "online bankieren", "mobiel bankieren", "app", "authenticatie", "twee-factor", "encryptie", "GDPR", "algemene voorwaarden", "geschiktheid", "minimumleeftijd", "student", "bonus", "promotie", "welkomstvoordeel", "cashback", "rentevoet", "variabele rente", "vaste rente", "JKP", "effectieve rente", "samengestelde interest"
+  ],
+  "fr": [
+    "intérêt", "taux", "frais", "commission", "IBAN", "carte de débit", "carte de crédit", "découvert", "hypothèque", "prêt", "épargne", "compte courant", "transaction", "solde", "relevé", "retrait", "dépôt", "virement", "ordre permanent", "domiciliation", "code PIN", "distributeur", "banque en ligne", "banque mobile", "application", "authentification", "deux facteurs", "chiffrement", "RGPD", "conditions générales", "éligibilité", "âge minimum", "étudiant", "bonus", "promotion", "offre de bienvenue", "cashback", "taux d'intérêt", "taux variable", "taux fixe", "TAEG", "taux effectif", "intérêt composé"
+  ]
+}
