@@ -1,19 +1,28 @@
 """
-Marketing Spy — Classic scraper (no LLM)
-==========================================
-Deterministic Playwright scraping of every URL in candidate_urls.py.
-For each page: navigate (robots.txt enforced), dismiss cookie banner,
-wait for real content to render, extract text (main doc + iframes),
-save a full-page screenshot.
+Marketing Spy — Classic scraper (no LLM) — BNP Paribas Fortis only
+===================================================================
+Same contract as scraper.py, restricted to BNP Paribas Fortis, which the
+main scraper skips (Akamai Bot Manager blocks the Chromium run). The only
+deliberate divergence is the browser engine: Firefox instead of Chromium,
+which is what got past the bot wall here. Everything else — robots.txt
+gating, cookie dismissal, raw-HTML capture, AssetMetadata emission — is
+identical, so the records this produces are interchangeable with the ones
+scraper.py writes to the same campaign_asset.jsonl.
 
-Output: campaign_asset.jsonl — one JSON record per page, raw/unstructured.
-This is the "campaign_asset" table from the original architecture —
-kept separate from feature extraction so extraction prompts can be
-re-run later without re-scraping.
+For each page: navigate (robots.txt enforced), dismiss cookie banner,
+wait for real content to render, save the raw HTML and a full-page
+screenshot, and emit one AssetMetadata-conformant record.
+
+Output: campaign_asset.jsonl — one JSON record per page (validated against
+AssetMetadata). Raw HTML/screenshots live under RAW_DIR/SCREENSHOTS_DIR;
+this file stores only the metadata + paths, per AssetMetadata's design —
+text CLEANING/extraction from raw_html_path is a separate downstream step
+(the "Data Cleaning" stage), not done here.
 """
 
-import json
 import logging
+import re
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urlparse
@@ -23,43 +32,97 @@ from playwright.sync_api import sync_playwright
 from robots_checker import ROBOTS_TXT, build_checkers, is_allowed
 from candidate_urls import CANDIDATE_URLS
 
+# import centralized Paths from src/config.py
+PROJ_ROOT = Path(__file__).resolve().parent.parent
+if str(PROJ_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJ_ROOT))
+
+from src.config import (
+    RAW_DIR,
+    SCREENSHOTS_DIR,
+    ASSETS_PATH,
+    LOG_DIR,
+)
+
+from src.schema import AssetMetadata
+
 CHECKERS = build_checkers(ROBOTS_TXT)
 
-BANK_DOMAINS = {
-    "ing": "ing.be",
-    "bnp_fortis": "bnpparibasfortis.be",
-    "kbc": "kbcbrussels.be",
-    "belfius": "belfius.be",
-    "revolut": "revolut.com",
+# ---------------------------------------------------------------------------
+# Bank metadata — same shape as scraper.py's BANK_INFO, trimmed to the banks
+# this file handles. Kept as a dict (rather than flat constants) so a record
+# produced here is byte-for-byte comparable with one from scraper.py.
+# ---------------------------------------------------------------------------
+
+BANK_INFO = {
+    "bnp_fortis": {"display": "BNP Paribas Fortis", "bank_type": "traditional", "domains": ["bnpparibasfortis.be"]},
 }
 
-SCREENSHOT_DIR = Path("screenshots")
-SCREENSHOT_DIR.mkdir(exist_ok=True)
+# Default audience_label per bank. NOTE: BNP's candidate list may mix
+# youth-specific AND general/adult comparator pages under one key — this
+# per-bank default is an approximation, not per-URL ground truth.
+DEFAULT_AUDIENCE_LABEL = {}
 
-ASSETS_PATH = Path("campaign_asset.jsonl")
+# Maps a URL's actual domain to the robots-checker key that has that
+# domain's robots.txt loaded. Domains not listed here have NO robots.txt
+# loaded — scraping them is refused rather than guessed at.
+DOMAIN_TO_ROBOTS_KEY = {
+    "bnpparibasfortis.be": "bnp_fortis",
+}
 
-LOG_DIR = Path("logs")
-LOG_DIR.mkdir(exist_ok=True)
+BANK_DOMAINS = {bank: info["domains"] for bank, info in BANK_INFO.items()}
+
+# create dirs if they don't exist
+SCREENSHOTS_DIR.mkdir(parents=True, exist_ok=True)
+LOG_DIR.mkdir(parents=True, exist_ok=True)
+RAW_DIR.mkdir(parents=True, exist_ok=True)
+
+# Aliasing to keep the rest of the code unchanged
+SCREENSHOT_DIR = SCREENSHOTS_DIR
+
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s | %(levelname)s | %(message)s",
     handlers=[
-        logging.FileHandler(LOG_DIR / f"scraper_{datetime.now(timezone.utc):%Y%m%d_%H%M%S}.log"),
+        logging.FileHandler(LOG_DIR / f"scraper_bnp_{datetime.now(timezone.utc):%Y%m%d_%H%M%S}.log"),
         logging.StreamHandler(),
     ],
 )
-logger = logging.getLogger("scraper")
+logger = logging.getLogger("scraper_bnp")
+
+
+def slugify(text: str) -> str:
+    text = re.sub(r"[^a-zA-Z0-9]+", "-", text.strip().lower())
+    return text.strip("-")[:80]
+
+
+def detect_language(url: str) -> str:
+    lower = url.lower()
+    for code in ("fr-be", "en-be", "nl-be"):
+        if code in lower:
+            return code.split("-")[0]
+    for seg, lang in (("/fr/", "fr"), ("/nl/", "nl"), ("/en/", "en")):
+        if seg in lower:
+            return lang
+    return "fr"  # default — most of this corpus is French
 
 
 class BrowserSession:
-    def __init__(self, bank: str, allowed_domain: str):
+    def __init__(self, bank: str, allowed_domains: list[str]):
         self.bank = bank
-        self.allowed_domain = allowed_domain
+        self.allowed_domains = allowed_domains
         self._pw = sync_playwright().start()
+        # Firefox rather than Chromium: BNP's Akamai Bot Manager blocks the
+        # Chromium run that scraper.py uses. This is the one intentional
+        # difference between the two files.
         self._browser = self._pw.firefox.launch(headless=True)
         self._context = self._browser.new_context(
-            viewport={"width": 1920, "height": 1080},
-            locale="en-US",
+            user_agent=(
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:128.0) "
+                "Gecko/20100101 Firefox/128.0"
+            ),
+            viewport={"width": 1366, "height": 900},
+            locale="fr-BE",
         )
         self._context.add_init_script(
             "Object.defineProperty(navigator, 'webdriver', {get: () => undefined})"
@@ -72,12 +135,11 @@ class BrowserSession:
 
     def _wait_for_real_content(self, url: str):
         """
-        Wait for substantial text, not just the nav bar. Uses the same
-        shadow-DOM-aware deep text collector as get_text() (see there for
-        why) rather than native innerText, which this site's shadow DOM
-        structure prevents from reflecting real content — using innerText
-        here just wasted ~20s per page always timing out despite content
-        being present and readable via the JS walker.
+        Wait for substantial text, not just the nav bar. Uses a shadow-DOM-aware
+        deep text collector rather than native innerText, which this site's
+        shadow DOM structure prevents from reflecting real content — using
+        innerText here just wasted ~20s per page always timing out despite
+        content being present and readable via the JS walker.
         """
         js_condition = """
             () => {
@@ -110,9 +172,28 @@ class BrowserSession:
 
     def navigate(self, url: str) -> dict:
         parsed = urlparse(url)
-        if parsed.scheme not in ("http", "https") or self.allowed_domain not in parsed.netloc:
-            return {"ok": False, "reason": f"URL rejected (scheme/domain check): {url}"}
-        if not is_allowed(CHECKERS, self.bank, url):
+        if parsed.scheme not in ("http", "https"):
+            return {"ok": False, "reason": f"URL rejected (scheme check): {url}"}
+        if not any(d in parsed.netloc for d in self.allowed_domains):
+            return {"ok": False, "reason": f"URL rejected (domain not in {self.allowed_domains}): {url}"}
+
+        robots_key = DOMAIN_TO_ROBOTS_KEY.get(parsed.netloc.lstrip("www."))
+        if robots_key is None:
+            # also try with a plain netloc match (covers "www." prefix cases)
+            for domain, key in DOMAIN_TO_ROBOTS_KEY.items():
+                if domain in parsed.netloc:
+                    robots_key = key
+                    break
+        if robots_key is None:
+            return {
+                "ok": False,
+                "reason": (
+                    f"No robots.txt loaded for domain '{parsed.netloc}' — "
+                    "refusing to scrape rather than guessing. Add its "
+                    "robots.txt to robots_checker.py + DOMAIN_TO_ROBOTS_KEY first."
+                ),
+            }
+        if not is_allowed(CHECKERS, robots_key, url):
             return {"ok": False, "reason": f"Disallowed by robots.txt: {url}"}
 
         try:
@@ -182,9 +263,8 @@ class BrowserSession:
         # Try accessibility-tree based matching FIRST — it uses a different
         # code path than :has-text()/innerText and tends to work correctly
         # across shadow DOM even when text-content matching doesn't.
-        import re as _re
         try:
-            btn = self._page.get_by_role("button", name=_re.compile("accepter", _re.I)).first
+            btn = self._page.get_by_role("button", name=re.compile("accepter", re.I)).first
             if btn.is_visible(timeout=2000):
                 btn.click(timeout=1000)
                 logger.info(f"Dismissed cookie banner via get_by_role(accepter) on {url}")
@@ -208,55 +288,20 @@ class BrowserSession:
         logger.info(f"No cookie banner matched/dismissed for {url} (may not have one, or uses an unlisted selector)")
         return False
 
-    def get_text(self) -> str:
-        """
-        Deep text extraction that manually walks the DOM + open shadow
-        roots via JS and concatenates raw textContent. Needed because
-        Playwright's inner_text()/native innerText do not reliably surface
-        text rendered inside open shadow roots on this site (confirmed via
-        diagnostic — shadow roots are open and JS-walkable, but innerText
-        still returns empty).
-        """
-        chunks = []
-        for frame in [self._page.main_frame] + [
-            f for f in self._page.frames if f != self._page.main_frame
-        ]:
-            try:
-                t = frame.evaluate("""
-                    () => {
-                        function collect(node) {
-                            let out = '';
-                            if (node.nodeType === Node.TEXT_NODE) {
-                                return node.textContent + ' ';
-                            }
-                            if (node.shadowRoot) {
-                                for (const child of node.shadowRoot.childNodes) {
-                                    out += collect(child);
-                                }
-                            }
-                            if (node.childNodes) {
-                                for (const child of node.childNodes) {
-                                    out += collect(child);
-                                }
-                            }
-                            return out;
-                        }
-                        return collect(document.body).replace(/\\s+/g, ' ').trim();
-                    }
-                """)
-                if t and t.strip():
-                    chunks.append(t)
-            except Exception:
-                continue
-        return "\n".join(chunks)
+    def get_html(self) -> str:
+        """Raw HTML of the current page, saved to disk so it can be cleaned
+        / re-extracted later without re-scraping (the AssetMetadata design:
+        raw_html_path is the artifact, not inline text)."""
+        return self._page.content()
 
     def screenshot(self, out_path: Path):
         self._page.screenshot(path=str(out_path), full_page=True)
 
 
-def scrape_bank(bank: str, domain: str, entries: list[tuple[str, str]]):
-    logger.info(f"=== Scraping {bank} — {len(entries)} pages ===")
-    session = BrowserSession(bank=bank, allowed_domain=domain)
+def scrape_bank(bank: str, entries: list[tuple[str, str]]):
+    info = BANK_INFO[bank]
+    logger.info(f"=== Scraping {bank} ({info['display']}) — {len(entries)} pages ===")
+    session = BrowserSession(bank=bank, allowed_domains=info["domains"])
     try:
         with ASSETS_PATH.open("a", encoding="utf-8") as out:
             for i, (url, note) in enumerate(entries, start=1):
@@ -266,39 +311,41 @@ def scrape_bank(bank: str, domain: str, entries: list[tuple[str, str]]):
                     logger.warning(f"Skipped: {result['reason']}")
                     continue
 
-                text = session.get_text()
-                safe_name = url.rstrip("/").split("/")[-1][:60] or "page"
+                safe_name = slugify(url.rstrip("/").split("/")[-1] or "page")
+                asset_id = f"{bank}__{safe_name}"
+
+                html = session.get_html()
+                raw_html_path = RAW_DIR / f"{bank}_{safe_name}.html"
+                raw_html_path.write_text(html, encoding="utf-8")
+
                 screenshot_path = SCREENSHOT_DIR / f"{bank}_{safe_name}.png"
                 session.screenshot(screenshot_path)
 
-                record = {
-                    "bank": bank,
-                    "url": url,
-                    "note": note,
-                    "text": text,
-                    "screenshot_path": str(screenshot_path),
-                    "scraped_at": datetime.now(timezone.utc).isoformat(),
-                }
-                out.write(json.dumps(record, ensure_ascii=False) + "\n")
-                logger.info(f"Saved ({len(text)} chars text, screenshot: {screenshot_path.name})")
+                asset = AssetMetadata(
+                    asset_id=asset_id,
+                    bank=info["display"],
+                    bank_type=info["bank_type"],
+                    channel="website",
+                    audience_label=DEFAULT_AUDIENCE_LABEL.get(bank, "youth_18_25"),
+                    url=url,
+                    language=detect_language(url),
+                    collected_at=datetime.now(timezone.utc).isoformat(),
+                    raw_html_path=str(raw_html_path),
+                    screenshot_path=str(screenshot_path),
+                )
+
+                out.write(asset.model_dump_json() + "\n")
+                logger.info(f"Saved {asset_id} (html: {raw_html_path.name}, screenshot: {screenshot_path.name})")
     finally:
         session.close()
 
 
-def scrape_bnp():
-    """Scrape uniquement les URLs BNP Paribas Fortis."""
-    bank = "bnp_fortis"
-    domain = BANK_DOMAINS[bank]
-    entries = CANDIDATE_URLS.get(bank, [])
-
-    if not entries:
-        logger.info("Skipping BNP Fortis — no URLs configured")
-        return
-
-    scrape_bank(bank, domain, entries)
-
-
 if __name__ == "__main__":
-    scrape_bnp()
+    bank = "bnp_fortis"
+    entries = CANDIDATE_URLS.get(bank, [])
+    if not entries:
+        logger.info(f"Skipping {bank} — no URLs configured")
+    else:
+        scrape_bank(bank, entries)
 
-    print(f"\nDone. Assets: {ASSETS_PATH}  Screenshots: {SCREENSHOT_DIR}/  Logs: {LOG_DIR}/")
+    print(f"\nDone. Assets: {ASSETS_PATH}  Raw HTML: {RAW_DIR}/  Screenshots: {SCREENSHOT_DIR}/  Logs: {LOG_DIR}/")
