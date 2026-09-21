@@ -86,6 +86,7 @@ DOMAIN_TO_ROBOTS_KEY = {
     "kbcbrussels.be": "kbc",
     "belfius.be": "belfius",
     "revolut.com": "revolut",
+    "n26.com": "n26",
     # NOT YET AVAILABLE — robots.txt content needed before these can be
     # scraped: kbc.be, hellobank.be, argenta.be, n26.com, beobank.be.
     # Paste each site's robots.txt (same as done for the first 5 banks)
