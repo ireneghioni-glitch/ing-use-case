@@ -199,19 +199,21 @@ CANDIDATE_URLS = {
    ],
 
    # --- Fintech / neo-banks --------------------------------------------
-   "n26": [
-       ("https://n26.com/fr-be/moins-de-18-ans", "[OK] N26 under-18s — card for 7-17, parent-managed (the youth page)"),
-       ("https://n26.com/fr-be/compte-bancaire-gratuit", "[NAV] Standard — free account, the entry tier young adults land on"),
-       ("https://n26.com/fr-be/compte-bancaire", "[NAV] Smart"),
-       ("https://n26.com/fr-be/tarifs", "[NAV] plan comparison"),
-       ("https://n26.com/fr-be/compte-epargne", "[NAV] savings"),
-       ("https://n26.com/fr-be/actions-et-etfs", "[NAV] stocks & ETFs — youth-skewing investing pitch"),
-       ("https://n26.com/fr-be/sitemap", "[NAV] sitemap — use this to confirm the full fr-be inventory"),
-       ("https://n26.com/fr-be/compte-bancaire-etudiant", "[CHECK] student account — confirmed to exist on fr-fr, unverified on fr-be"),
-       ("https://n26.com/en-fr/blog/how-to-open-a-bank-account-in-luxembourg", "N26 Cross-border / Expat student onboarding strategy reference"),
-       ("https://n26.com/en-eu/iban-number", "N26 local/EU IBAN consumer education page"),
-       ("https://n26.com/en-fr/blog/guide-to-eu-banking-acronyms", "N26 functional onboarding/literacy messaging guidelines"),
-   ],
+"n26": [
+        ("https://n26.com/fr-be/moins-de-18-ans", "[OK] N26 under-18s — card for 7-17, parent-managed (the youth page) — verified live on fr-be"),
+        ("https://n26.com/fr-be/compte-bancaire-gratuit", "[NAV] Standard — free account, the entry tier young adults land on"),
+        ("https://n26.com/fr-be/compte-bancaire", "[NAV] Smart"),
+        ("https://n26.com/fr-be/tarifs", "[NAV] plan comparison"),
+        ("https://n26.com/fr-be/compte-epargne", "[NAV] savings"),
+        ("https://n26.com/fr-be/actions-et-etfs", "[NAV] stocks & ETFs — youth-skewing investing pitch"),
+        ("https://n26.com/fr-be/sitemap", "[NAV] sitemap — use this to confirm the full fr-be inventory"),
+        ("https://n26.com/fr-fr/compte-bancaire-etudiant", "[OK-OTHER-MARKET] student account — live on fr-fr, no fr-be equivalent — reference only"),
+        ("https://n26.com/fr-fr/indice-du-cout-des-etudes", "[OK-OTHER-MARKET] Education Price Index — youth/student cost-of-study content, no fr-be equivalent found in sitemap"),
+        ("https://n26.com/de-de/taschengeld-und-finanzielle-bildung", "[OK-OTHER-MARKET] pocket money & financial education — youth-targeted content, DE only, no fr-be equivalent found in sitemap"),
+        ("https://n26.com/en-fr/blog/how-to-open-a-bank-account-in-luxembourg", "[UNVERIFIED] N26 Cross-border / Expat student onboarding strategy reference"),
+        ("https://n26.com/en-eu/iban-number", "[UNVERIFIED] N26 local/EU IBAN consumer education page"),
+        ("https://n26.com/en-fr/blog/guide-to-eu-banking-acronyms", "[UNVERIFIED] N26 functional onboarding/literacy messaging guidelines"),
+    ],
 
   
    "beobank": [
