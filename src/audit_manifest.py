@@ -215,14 +215,23 @@ def markdown_table(counter: Counter[str], label: str) -> list[str]:
     return lines
 
 
-def audience_by_bank_table(records: list[dict[str, Any]]) -> list[str]:
-    """Render bank-level youth/adult coverage for comparison readiness."""
+def audience_by_bank_counts(
+    records: list[dict[str, Any]],
+) -> dict[str, Counter[str]]:
+    """Count audience labels within each bank."""
     coverage: dict[str, Counter[str]] = defaultdict(Counter)
 
     for record in records:
         bank = str(record.get("bank") or "MISSING")
         audience = str(record.get("audience_label") or "MISSING")
         coverage[bank][audience] += 1
+
+    return coverage
+
+
+def audience_by_bank_table(records: list[dict[str, Any]]) -> list[str]:
+    """Render bank-level youth/adult coverage for the Markdown report."""
+    coverage = audience_by_bank_counts(records)
 
     lines = [
         "| Bank | Youth 18-25 | General adult | Other/missing |",
@@ -236,6 +245,32 @@ def audience_by_bank_table(records: list[dict[str, Any]]) -> list[str]:
         lines.append(f"| {bank} | {youth} | {adult} | {other} |")
 
     return lines
+
+
+def print_audience_by_bank(records: list[dict[str, Any]]) -> None:
+    """Print bank-level youth/adult coverage to the terminal."""
+    coverage = audience_by_bank_counts(records)
+
+    print("\n=== Audience coverage by bank ===")
+    print(
+        f"{'Bank':<24}"
+        f"{'Youth 18-25':>13}"
+        f"{'General adult':>16}"
+        f"{'Other/missing':>16}"
+    )
+    print("-" * 69)
+
+    for bank, audiences in sorted(coverage.items()):
+        youth = audiences.get("youth_18_25", 0)
+        adult = audiences.get("general_adult", 0)
+        other = sum(audiences.values()) - youth - adult
+
+        print(
+            f"{bank:<24}"
+            f"{youth:>13}"
+            f"{adult:>16}"
+            f"{other:>16}"
+        )
 
 
 def append_findings(
@@ -396,6 +431,7 @@ def main() -> None:
     total_critical = len(parse_errors) + len(schema_errors) + len(critical)
 
     print(f"Records audited: {len(records)}")
+    print_audience_by_bank(records)
     print(f"Critical findings: {total_critical}")
     print(f"Warnings: {len(warnings)}")
     print(f"Report written to: {REPORT_PATH}")
