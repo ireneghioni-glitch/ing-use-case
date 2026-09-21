@@ -1,10 +1,12 @@
 # Processed Asset Manifest Audit
 
+**Scope:** youth-only MVP, 5 banks, backups configured (2026-09-21).
+
 **Input:** `data/processed/asset_manifest.jsonl`  
-**Records:** 54  
+**Records:** 66  
 **Status:** **PASS WITH WARNINGS**  
 **Critical findings:** 0  
-**Warnings:** 4
+**Warnings:** 3
 
 ## Coverage by bank
 
@@ -14,6 +16,7 @@
 | Belfius | 3 |
 | ING | 22 |
 | KBC | 7 |
+| N26 | 12 |
 | Revolut | 13 |
 
 ## Coverage by language
@@ -21,31 +24,34 @@
 | Language | Records |
 |---|---:|
 | en | 2 |
-| fr | 52 |
+| fr | 64 |
 
 ## Coverage by audience
 
 | Audience | Records |
 |---|---:|
 | general_adult | 6 |
-| youth_18_25 | 48 |
+| youth_18_25 | 60 |
 
-## Audience coverage by bank
+## Coverage by bank and audience
 
-| Bank | Youth 18-25 | General adult | Other/missing |
-|---|---:|---:|---:|
-| BNP Paribas Fortis | 9 | 0 | 0 |
-| Belfius | 3 | 0 | 0 |
-| ING | 16 | 6 | 0 |
-| KBC | 7 | 0 | 0 |
-| Revolut | 13 | 0 | 0 |
+| Bank | Youth 18-25 | General adult | Other/missing | MVP? |
+|---|---:|---:|---:|:---:|
+| BNP Paribas Fortis | 9 | 0 | 0 | backup |
+| Belfius | 3 | 0 | 0 | yes |
+| ING | 16 | 6 | 0 | yes |
+| KBC | 7 | 0 | 0 | yes |
+| N26 | 12 | 0 | 0 | yes |
+| Revolut | 13 | 0 | 0 | yes |
 
-## Recommended MVP scope
+## Records per MVP bank
 
 | Bank | Records |
 |---|---:|
+| Belfius | 3 |
 | ING | 22 |
 | KBC | 7 |
+| N26 | 12 |
 | Revolut | 13 |
 
 ## JSON parsing
@@ -69,5 +75,4 @@ No critical artifact problems.
 
 - Shared HTML paths: 1 group(s)
 - Identical HTML content: 1 group(s)
-- MVP bank KBC has no general_adult assets; within-bank youth/adult comparison is incomplete
-- MVP bank Revolut has no general_adult assets; within-bank youth/adult comparison is incomplete
+- MVP bank Belfius has only 3 youth records (need 5); consider activating a backup bank (BNP Paribas Fortis for traditional, bunq for neo).
