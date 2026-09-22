@@ -40,12 +40,8 @@ from src.schema import AssetMetadata
 MANIFEST_PATH = PROCESSED_DIR / "asset_manifest.jsonl"
 REPORT_PATH = DOCS_DIR / "asset_manifest_audit.md"
 
-MVP_BANKS = {"ING", "KBC", "Belfius", "Revolut", "N26"}
-BACKUP_TRAD = {"BNP Paribas Fortis"}
-BACKUP_NEO = {"bunq"}
+from src.scope import MVP_BANKS, BACKUP_TRAD, BACKUP_NEO
 EXPECTED_LANGUAGES = {"en", "fr", "nl"}
-
-MIN_YOUTH_PER_BANK = 5
 
 
 # --- Functions ---
