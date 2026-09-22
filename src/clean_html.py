@@ -302,13 +302,36 @@ def clean_document(raw_html: str) -> dict[str, Any]:
     }
 
 def clean_record(record: dict[str, Any]) -> dict[str, Any]:
-    """Clean the HTML connected to one manifest record."""
+    """Clean the HTML connected to one manifest record.
 
-    html_path = resolve_project_file(record["raw_html_path"])
+    If the manifest already carries a substantial `text` field (extracted
+    at scrape time from the live DOM, including shadow roots), use it
+    directly. Otherwise fall back to parsing the saved HTM, which is
+    insufficient for shadow-DOM pages like ING.
+    """
+
+    raw_html_path = record["raw_html_path"]
+    html_path = resolve_project_file(raw_html_path)
     raw_bytes = html_path.read_bytes()
     raw_html = raw_bytes.decode("utf-8")
 
-    extracted = clean_document(raw_html)
+    # --- Prefer manifest text when substantial -------------------------
+    manifest_text = (record.get("text") or "").strip()
+    manifest_word_count = len(manifest_text.split())
+
+    if manifest_word_count >= MINIMUM_WORDS:
+        soup = BeautifulSoup(raw_html, "html.parser")
+        extracted = {
+            "title": extract_title(soup),
+            "meta_description": extract_meta_description(soup),
+            "headings": [],
+            "text": manifest_text,
+            "cleaned_word_count": manifest_word_count,
+            "cleaned_char_count": len(manifest_text),
+            "cleaning_status": "ok",
+        }
+    else:
+        extracted = clean_document(raw_html)
 
     text_hash = hashlib.sha256(
         extracted["text"].encode("utf-8")

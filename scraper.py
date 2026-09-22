@@ -7,13 +7,12 @@ wait for real content to render, save the raw HTML and a full-page
 screenshot, and emit one AssetMetadata-conformant record.
 
 Output: campaign_asset.jsonl — one JSON record per page (validated against
-AssetMetadata). Raw HTML/screenshots live under RAW_DIR/SCREENSHOTS_DIR;
-this file stores only the metadata + paths, per AssetMetadata's design —
-text CLEANING/extraction from raw_html_path is a separate downstream step
-(the "Data Cleaning" stage), not done here anymore.
+AssetMetadata). Raw HTML/screenshots live under RAW_DIR/SCREENSHOTS_DIR.
 
-ASSUMPTION: AssetMetadata is imported from src.models — adjust the import
-below if it actually lives elsewhere (e.g. src.schemas) in your project.
+The record now ALSO carries `text`, extracted directly from the live DOM
+(including open shadow roots) at scrape time. This is necessary for ING,
+whose content does not appear in the saved HTML because page.content()
+does not serialize shadow DOM.
 """
 
 import json
@@ -316,12 +315,60 @@ class BrowserSession:
     def get_html(self) -> str:
         """Raw HTML of the current page, saved to disk so it can be cleaned
         / re-extracted later without re-scraping (the AssetMetadata design:
-        raw_html_path is the artifact, not inline text)."""
+        raw_html_path is the artifact, not inline text).
+
+        WARNING: page.content() does NOT serialize shadow DOM. For sites
+        that render content inside shadow roots (e.g. ING), the saved HTML
+        will be incomplete. Use get_text() as the shadow-DOM-aware
+        companion extractor."""
         return self._page.content()
+
+    def get_text(self) -> str:
+        """
+        Deep text extraction that walks the DOM including open shadow roots.
+
+        Needed for sites like ING that render content inside shadow DOM:
+        neither page.content() nor native innerText surface that text, so
+        the HTML saved to disk is missing the real content. This method
+        mirrors the JS walker already used in _wait_for_real_content() and
+        returns the concatenated text of all frames.
+        """
+        chunks = []
+        frames = [self._page.main_frame] + [
+            f for f in self._page.frames if f != self._page.main_frame
+        ]
+        for frame in frames:
+            try:
+                t = frame.evaluate("""
+                    () => {
+                        function collect(node) {
+                            let out = '';
+                            if (node.nodeType === Node.TEXT_NODE) {
+                                return node.textContent + ' ';
+                            }
+                            if (node.shadowRoot) {
+                                for (const child of node.shadowRoot.childNodes) {
+                                    out += collect(child);
+                                }
+                            }
+                            if (node.childNodes) {
+                                for (const child of node.childNodes) {
+                                    out += collect(child);
+                                }
+                            }
+                            return out;
+                        }
+                        return collect(document.body).replace(/\\s+/g, ' ').trim();
+                    }
+                """)
+                if t and t.strip():
+                    chunks.append(t)
+            except Exception:
+                continue
+        return "\n".join(chunks)
 
     def screenshot(self, out_path: Path):
         self._page.screenshot(path=str(out_path), full_page=True)
-
 
 def scrape_bank(bank: str, entries: list[tuple[str, str]]):
     info = BANK_INFO[bank]
@@ -343,6 +390,11 @@ def scrape_bank(bank: str, entries: list[tuple[str, str]]):
                 raw_html_path = RAW_DIR / f"{bank}_{safe_name}.html"
                 raw_html_path.write_text(html, encoding="utf-8")
 
+                # Deep text extraction (shadow-DOM aware). Needed for ING,
+                # whose content lives inside open shadow roots that
+                # page.content() does not serialize.
+                text = session.get_text()
+
                 screenshot_path = SCREENSHOT_DIR / f"{bank}_{safe_name}.png"
                 session.screenshot(screenshot_path)
 
@@ -357,6 +409,7 @@ def scrape_bank(bank: str, entries: list[tuple[str, str]]):
                     collected_at=datetime.now(timezone.utc).isoformat(),
                     raw_html_path=str(raw_html_path),
                     screenshot_path=str(screenshot_path),
+                    text=text,
                 )
 
                 out.write(asset.model_dump_json() + "\n")

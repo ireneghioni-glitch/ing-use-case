@@ -47,6 +47,7 @@ class AssetMetadata(BaseModel):
     collected_at: str
     raw_html_path: str
     screenshot_path: Optional[str] = None
+    text: Optional[str] = None
 
 
 class FeatureRecord(BaseModel):
