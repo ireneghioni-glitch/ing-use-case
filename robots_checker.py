@@ -1,12 +1,22 @@
 """
 Robots.txt compliance checker — Marketing Spy / Belgian Banking Campaign Feature Tracker
-Centralizes robots.txt content for all 5 target banks and exposes a single
-`is_allowed(checkers, bank, url)` function to gate the scraping agent.
+Centralizes robots.txt content for the 9 banks in candidate_urls.py
+(belfius, bnp_fortis, kbc, revolut, ing, n26, argenta, beobank, bunq) and
+exposes a single `is_allowed(checkers, bank, url)` function to gate the
+scraping agent.
 """
 
 from urllib.robotparser import RobotFileParser
 
 ROBOTS_TXT = {
+    "argenta": """User-Agent: * 
+
+Disallow: /fr/argenta-configuration-editor.html
+Disallow: /nl/argenta-configuration-editor.html
+
+Sitemap: https://www.argenta.be/fr.sitemap.xml
+Sitemap: https://www.argenta.be/nl.sitemap.xml""",
+
     "belfius": """User-agent: *
 Disallow: /Avanti
 Disallow: /Contest
@@ -91,6 +101,166 @@ Allow: /www.dexia.be/fr/Professional/corporate
 Allow: /www.dexia.be/nl/Professional/publicsocial
 Allow: /www.dexia.be/fr/Professional/publicsocial
 Sitemap: https://www.belfius.be/sitemap.xml""",
+
+    "beobank": """# SiteAuditBot
+User-agent: SiteAuditBot
+Disallow: /
+
+# ExabotEI
+User-agent: ExabotEI
+Disallow: /*?*mnemonique=*
+Disallow: /*?*amcpage=*
+Allow: /
+
+# Other bots
+User-agent: *
+
+# Search pages
+Disallow: /fr/search_engine.html?*
+Disallow: /nl/search_engine.html?*
+
+# .aspx files
+Disallow: /*.aspx$
+
+# Contact pages
+Disallow: /nl/contact/kantoor.html
+Disallow: /fr/contact/agence.html
+
+# Form pages
+Disallow: /fr/form/
+Disallow: /nl/form/
+
+# Search result
+Disallow: /fr/resultat-agences.html
+Disallow: /nl/resultaat-kantoren.html
+
+# RDV page
+Disallow: /fr/business/rendez-vous.html?*
+Disallow: /nl/business/afspraak.html?*
+
+# Beobank Online help
+Disallow: /fr/identification/MotDePasseOublie.html?*
+Disallow: /fr/identification/AccesBloque.html?*
+Disallow: /fr/identification/IdentifiantOublie.html?*
+Disallow: /en/identification/accessblocked.html?*
+Disallow: /en/identification/forgottenlogin.html?*
+Disallow: /en/identification/passwordforgotten.html?*
+Disallow: /nl/identification/klantidvergeten.html?*
+Disallow: /nl/identification/wachtwoordvergeten.html?*
+Disallow: /nl/identification/toeganggeblokkeerd.html?*
+Disallow: /fr/identification/authentification.html?*
+Disallow: /nl/identification/authentification.html?*
+
+# Authent pages
+Disallow: /fr/identification/*
+Disallow: /en/identification/*
+Disallow: /nl/identification/*
+
+
+# Pages POS
+Disallow: /fr/agences/localites.html?regionId=*
+Disallow: /nl/kantoren/locaties.html?regionId=*
+Disallow: /fr/agences/ResultatsRechercheGeographique.aspx?inseeCode=*
+Disallow: /nl/kantoren/GeographicalSearchResults.aspx?inseeCode=*
+
+# Sitemap
+Sitemap: https://www.beobank.be/fr/sitemap.xml""",
+
+    "bunq": """User-agent: *
+Allow: /
+
+# 1. Block Affiliate, Ad, and Campaign Tracking
+Disallow: /*?*transaction_id=
+Disallow: /*&transaction_id=
+Disallow: /*?*utm_
+Disallow: /*&utm_
+Disallow: /*?*f=
+Disallow: /*&f=
+Disallow: /*?*gclid=
+Disallow: /*&gclid=
+Disallow: /*?*gad_source=
+Disallow: /*&gad_source=
+Disallow: /*?*fbclid=
+Disallow: /*&fbclid=
+Disallow: /*?*subid=
+Disallow: /*&subid=
+Disallow: /*?*sub1=
+Disallow: /*&sub1=
+Disallow: /*?*trk=
+Disallow: /*&trk=
+Disallow: /*?*frm=
+Disallow: /*&frm=
+Disallow: /*?*from=
+Disallow: /*&from=
+Disallow: /*?*src=
+Disallow: /*&src=
+Disallow: /*?*dc=
+Disallow: /*&dc=
+Disallow: /*?*m=
+Disallow: /*&m=
+Disallow: /*?*pp=
+Disallow: /*&pp=
+Disallow: /*?*hsa_
+Disallow: /*&hsa_
+Disallow: /*?*tap_a=
+Disallow: /*&tap_a=
+
+# 2. Block User Profiles and Referral Tracking
+Disallow: /*?*profile=
+Disallow: /*&profile=
+Disallow: /*?*ref=
+Disallow: /*&ref=
+Disallow: /*?*uid=
+Disallow: /*&uid=
+Disallow: /*?*token=
+Disallow: /*&token=
+Disallow: /*?*code=
+Disallow: /*&code=
+
+# 3. Block Dynamic Session Hashes and Security IDs
+Disallow: /*?*hashid=
+Disallow: /*&hashid=
+
+# 4. Block HubSpot Tracking Parameters
+Disallow: /*?*__hs*
+Disallow: /*&__hs*
+
+# 5. Block Category, Tag, and Date Archive Filters
+Disallow: /*?*category=
+Disallow: /*&category=
+Disallow: /*?*tag=
+Disallow: /*&tag=
+Disallow: /*?*tags=
+Disallow: /*&tags=
+Disallow: /*?*month=
+Disallow: /*&month=
+Disallow: /*?*year=
+Disallow: /*&year=
+Disallow: /*_page=
+Disallow: /*?*replytocom=
+Disallow: /*&replytocom=
+Disallow: /*?*no_redirect=
+Disallow: /*&no_redirect=
+Disallow: /*?*newsid=
+Disallow: /*&newsid=
+Disallow: /*?*lid=
+Disallow: /*&lid=
+
+# 6. Block Widget, Locale, and Spam Filter Parameters
+Disallow: /*?*department=
+Disallow: /*&department=
+Disallow: /*?*lang=
+Disallow: /*&lang=
+Disallow: /*?*type=
+Disallow: /*&type=
+Disallow: /*?*location=
+Disallow: /*&location=
+Disallow: /*?*regionId=
+Disallow: /*&regionId=
+Disallow: /*?*cq_
+Disallow: /*&cq_
+
+Sitemap: https://www.bunq.com/sitemap.xml""",
 
     "bnp_fortis": """User-agent: *
 Allow: /images/favicons/
@@ -688,6 +858,10 @@ SITEMAPS = {
     "kbc": "https://www.kbcbrussels.be/particuliers/fr.sitemap.xml",  # ajuster selon la langue ciblée
     "revolut": "https://www.revolut.com/sitemap-index.xml",
     "ing": "https://www.ing.be/sitemap-cms.xml",
+    "n26": "https://n26.com/sitemap-index.xml",
+    "argenta": "https://www.argenta.be/fr.sitemap.xml",  # ajuster selon la langue ciblée
+    "beobank": "https://www.beobank.be/fr/sitemap.xml",
+    "bunq": "https://www.bunq.com/sitemap.xml",
 }
 
 
@@ -711,13 +885,17 @@ def is_allowed(checkers: dict, bank: str, url: str, user_agent: str = "*") -> bo
 if __name__ == "__main__":
     checkers = build_checkers(ROBOTS_TXT)
 
-    # Quick sanity check across all banks
+    # Quick sanity check across all banks with a loaded robots.txt
     test_urls = {
         "belfius": "https://www.belfius.be/retail/fr/produits/epargner/index.aspx",
         "bnp_fortis": "https://www.bnpparibasfortis.be/promo/jeunes",
-        "kbc": "https://www.kbcbrussels.be/campaigns/jeunes/fr",
+        "kbc": "https://www.kbc.be/particuliers/fr/jeunes/premier-emploi.html",
         "revolut": "https://www.revolut.com/en-BE/",
         "ing": "https://www.ing.be/fr/particuliers/comptes/jeunes",
+        "n26": "https://n26.com/en-be",
+        "argenta": "https://www.argenta.be/fr/thema/les-jeunes.html",
+        "beobank": "https://www.beobank.be/fr/payer/comptes-courants/compte-jeunes.html",
+        "bunq": "https://www.bunq.com/personal/use-cases/students",
     }
 
     print("Compliance check results:\n")

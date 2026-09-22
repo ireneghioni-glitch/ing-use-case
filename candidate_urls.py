@@ -1,234 +1,333 @@
+"""AUTO-GENERATED FILE.
+Do not manually edit this file.
+Generated from bank sitemaps.
 """
-Marketing Spy — Manually curated candidate URLs, per bank.
-
-Why manual: reproducibility. A fixed, human-reviewed list is easier to
-justify to the business ("this is what we considered, and why") than an
-agent freely exploring a sitemap — it also removes a source of
-non-determinism (no risk of the agent wandering off-scope or hallucinating
-a URL) and cuts LLM calls per page since the agent no longer needs to
-decide "should I even look at this page?".
-
-Each entry: (url, short_note). The note is just for your own reference
-when reviewing this file later — it is not sent to the LLM.
-
-All URLs below were part of the manually curated research inventory.
-The original entries were checked against each bank's robots.txt as of
-2026-09-15 (see robots_checker.py). Newly added URLs should be re-checked
-against robots.txt before running the scraper. Entries marked [CHECK]
-were not treated as fully verified Belgian/localised pages.
-
-UPDATE 2026-09-18: ING's robots.txt (https://www.ing.be/robots.txt) only
-disallows "/video" — every ING/ing_adult URL below is allowed. Cross-checked
-all "ing" URLs against https://www.ing.be/sitemap-cms.xml: 15 of 16 matched
-verbatim. The one exception, ing-plus-deals, is NOT in the sitemap but is
-live with a self-referencing canonical (fetched directly to confirm) — kept,
-flagged as live-but-unlisted rather than treated as a scraper bug. Added 5
-new ING entries below to close a real gap: ING previously had no under-18
-current/youth account (compte-jeune / ING Go To 18), which every other bank
-in the "10-24 free account" comparison set (KBC, CBC, Crelan, vdk, Beobank,
-Belfius) already has. Also note: sitemap lastmod on
-comparatif-compte-epargne-jeune, compte-epargne-automatique-jeune and
-compte-epargne-classique shows 2026-09-16, i.e. AFTER the 2026-09-15
-verification pass — content on those three pages should be re-scraped
-before being treated as current, even though the URLs themselves are stable.
-"""
-
-
-# Suggested downstream tags (not sent to the LLM):
-# YOUTH_ACCOUNT, STUDENT_ACCOUNT, FREE_ACCOUNT, CURRENT_ACCOUNT,
-# DEBIT_CARD, CREDIT_CARD, SAVINGS, INVESTING, ETF_STOCKS,
-# CASHBACK_REWARDS, REFERRAL, STUDENT_PROMOTION, WELCOME_BONUS,
-# TRAVEL, ERASMUS, STUDENT_JOB, FIRST_SALARY, FIRST_HOME,
-# PERSONAL_LOAN, MOBILE_APP, DIGITAL_ONBOARDING, FINANCIAL_EDUCATION,
-# YOUTH_CONTENT, AGE_LIMIT, YOUTH_TO_ADULT_TRANSITION
-#
-# Research universe:
-# Traditional/universal: ING, BNP Paribas Fortis, KBC, CBC, Belfius,
-# Argenta, Beobank, Crelan, vdk, Europabank.
-# Digital/challenger: Hello bank!, Revolut, N26, bunq, Nickel, Openbank,
-# Trade Republic, Keytrade.
-# Digital wealth/investing: MeDirect.
 
 CANDIDATE_URLS = {
+     # --- ING (61 URLs) ---
     "ing": [
-        ("https://www.ing.be/fr/particuliers/epargner/compte-epargne-jeune", "youth savings account (FR)"),
-        ("https://www.ing.be/fr/particuliers/epargner/comparatif-compte-epargne-jeune", "youth savings comparison (FR) — [RE-VERIFY] sitemap lastmod 2026-09-16, after original 09-15 check"),
-        ("https://www.ing.be/fr/particuliers/jeunes", "youth hub page (FR)"),
-        ("https://www.ing.be/fr/particuliers/cartes-de-credit/carte-de-credit-jeunes", "youth credit card (FR)"),
-        ("https://www.ing.be/fr/particuliers/gerer-le-quotidien/turning18_forparents", "turning 18 — for parents (FR)"),
-        ("https://www.ing.be/fr/particuliers/epargner/compte-epargne-automatique-jeune", "automatic youth savings (FR) — [RE-VERIFY] sitemap lastmod 2026-09-16, after original 09-15 check"),
-        # --- 20-25 Subsidized Track ---
-        ("https://www.ing.be/fr/particuliers/comptes-bancaire-packs/pack-go", "ING Go 18-25 — completely free daily banking entry-level tier"),
-        ("https://www.ing.be/fr/particuliers/comptes-bancaire-packs/pack-more-jeunes", "ING More 18-25 — subsidized life-stage tier (includes Visa Classic + lifestyle perks like Amazon Prime)"),
-
-        # --- 25-29 Transitional Track (The "Young Workers" Pivot) ---
-        ("https://www.ing.be/fr/particuliers/comptes-bancaire-packs/comparez-packs", "Packs comparison engine — mapping the pricing cliff when youth eligibility expires at age 26"),
-        ("https://www.ing.be/fr/particuliers/comptes-bancaire-packs/pack-more", "ING More (Standard Adult) — tracking conditional waiver requirements (e.g., lower monthly fee if €700+ is deposited monthly)"),
-        ("https://www.ing.be/fr/particuliers/gerer-le-quotidien/ing-plus-deals", "ING+ Deals cashback engine — key positioning element used to retain price-sensitive young workers — [NOT IN SITEMAP but confirmed live 2026-09-18, self-referencing canonical; live-but-unlisted, not a scraper bug"),
-
-        # --- Added 2026-09-18: closing the under-18 gap ---
-        ("https://www.ing.be/fr/particuliers/comptes-bancaire-packs/compte-jeune", "ING Go To 18 — free youth current account + debit card, ages 8-17, €50 welcome offer (the under-18 entry product; direct comparator to KBC/CBC compte-jeunes). In sitemap, lastmod 2026-09-15."),
-        ("https://www.ing.be/fr/particuliers/gerer-le-quotidien/carte-de-debit", "debit card — no ING page previously covered DEBIT_CARD. In sitemap, lastmod 2026-09-11."),
-        ("https://www.ing.be/fr/particuliers/comptes-bancaire-packs/ouvrir-un-compte-bancaire-en-ligne", "digital onboarding — comparator to CBC ouvrir-compte-en-ligne. In sitemap, lastmod 2026-09-07."),
-        ("https://www.ing.be/fr/particuliers/gerer-le-quotidien/mgm-inviter-ao", "member-get-member referral — REFERRAL tag otherwise only covered by Revolut. In sitemap, lastmod 2026-09-07."),
-        ("https://www.ing.be/fr/particuliers/epargner/epargne-vers-propriete", "saving towards first home — comparator to BNP jeune-travailleur/premier-logement. In sitemap, lastmod 2026-09-07."),
-
-        # NOTE: the 4 EN equivalents (youth, youth-savings-account,
-        # compare-savings-accounts-youth, credit-card-youth) were dropped —
-        # same content as the FR pages above, just translated. Keeping both
-        # would inflate ING's page count vs. the other banks (FR-only) with
-        # near-identical layout/visual features, not genuinely distinct
-        # data points. See conversation notes, 2026-09-15.
+        ('https://www.ing.be/en/business/my-sector/bank-for-student-entrepreneur', 'bank for student entrepreneur'),
+        ('https://www.ing.be/en/business/my-sector/healthcare-student', 'healthcare student'),
+        ('https://www.ing.be/en/individuals/credit-cards/credit-card-youth', 'credit card youth'),
+        ('https://www.ing.be/en/individuals/current-accounts-packs/youth-account', 'youth account'),
+        ('https://www.ing.be/en/individuals/daily-banking/working-in-belgium-as-a-job-student', 'working in belgium as a job student'),
+        ('https://www.ing.be/en/individuals/my-life/budget-tips/start-saving-children-youth', 'start saving children youth'),
+        ('https://www.ing.be/en/individuals/my-life/housing/manage-budget-moving-student', 'manage budget moving student'),
+        ('https://www.ing.be/en/individuals/my-life/studies-and-work/tips-manage-student-budget', 'tips manage student budget'),
+        ('https://www.ing.be/en/individuals/my-life/studies-and-work/working-student-job-common-questions', 'working student job common questions'),
+        ('https://www.ing.be/en/individuals/my-life/studies-and-work/youth-graduates-advice-job-applications', 'youth graduates advice job applications'),
+        ('https://www.ing.be/en/individuals/my-life/studies-and-work/youth-graduates-negotiate-first-salary', 'youth graduates negotiate first salary'),
+        ('https://www.ing.be/en/individuals/my-life/studies-and-work/youth-holidays', 'youth holidays'),
+        ('https://www.ing.be/en/individuals/saving/automatic-savings-account-youth', 'automatic savings account youth'),
+        ('https://www.ing.be/en/individuals/saving/compare-savings-accounts-youth', 'compare savings accounts youth'),
+        ('https://www.ing.be/en/individuals/saving/youth-free-savings-account', 'youth free savings account'),
+        ('https://www.ing.be/en/individuals/saving/youth-savings-account', 'youth savings account'),
+        ('https://www.ing.be/en/individuals/youth', 'youth'),
+        ('https://www.ing.be/en/individuals/youth/youth-turning-18', 'youth turning 18'),
+        ('https://www.ing.be/fr/particuliers/cartes-de-credit/carte-de-credit-jeunes', 'carte de credit jeunes'),
+        ('https://www.ing.be/fr/particuliers/comptes-bancaire-packs/comparez-packs', 'comparez packs'),
+        ('https://www.ing.be/fr/particuliers/comptes-bancaire-packs/compte-jeune', 'compte jeune'),
+        ('https://www.ing.be/fr/particuliers/comptes-bancaire-packs/ouvrir-un-compte-bancaire-en-ligne', 'ouvrir un compte bancaire en ligne'),
+        ('https://www.ing.be/fr/particuliers/comptes-bancaire-packs/pack-go', 'pack go 18 25'),
+        ('https://www.ing.be/fr/particuliers/comptes-bancaire-packs/pack-more-jeunes', 'pack more jeunes'),
+        ('https://www.ing.be/fr/particuliers/epargner/comment-epargner-jeune', 'comment epargner jeune'),
+        ('https://www.ing.be/fr/particuliers/epargner/comparatif-compte-epargne-jeune', 'comparatif compte epargne jeune'),
+        ('https://www.ing.be/fr/particuliers/epargner/compte-epargne-automatique-jeune', 'compte epargne automatique jeune'),
+        ('https://www.ing.be/fr/particuliers/epargner/compte-epargne-jeune', 'compte epargne jeune'),
+        ('https://www.ing.be/fr/particuliers/epargner/compte-epargne-jeune-gratuit', 'compte epargne jeune gratuit'),
+        ('https://www.ing.be/fr/particuliers/epargner/epargne-pour-les-enfants-et-les-jeunes', 'epargne pour les enfants et les jeunes'),
+        ('https://www.ing.be/fr/particuliers/epargner/epargne-vers-propriete', 'epargne vers propriete'),
+        ('https://www.ing.be/fr/particuliers/gerer-le-quotidien/app-ing-banking-jeunes-apprendre-gerer-son-budget', 'app ing banking jeunes apprendre gerer son budget'),
+        ('https://www.ing.be/fr/particuliers/gerer-le-quotidien/avantage-compte-courant-jeune', 'avantage compte courant jeune'),
+        ('https://www.ing.be/fr/particuliers/gerer-le-quotidien/carte-de-debit', 'carte de debit'),
+        ('https://www.ing.be/fr/particuliers/gerer-le-quotidien/choisir-un-compte-jeune', 'choisir un compte jeune'),
+        ('https://www.ing.be/fr/particuliers/gerer-le-quotidien/ing-plus-deals', 'ing plus deals'),
+        ('https://www.ing.be/fr/particuliers/gerer-le-quotidien/mgm-inviter-ao', 'mgm inviter ao'),
+        ('https://www.ing.be/fr/particuliers/gerer-le-quotidien/travail-etudiant-quelles-regles', 'travail etudiant quelles regles'),
+        ('https://www.ing.be/fr/particuliers/gerer-le-quotidien/turning18_forparents', 'turning 18 for parents'),
+        ('https://www.ing.be/fr/particuliers/jeunes', 'jeunes'),
+        ('https://www.ing.be/fr/particuliers/ma-vie/etudier-et-travailler/astuces-pour-gerer-budget-etudiant', 'astuces pour gerer budget etudiant'),
+        ('https://www.ing.be/fr/particuliers/ma-vie/etudier-et-travailler/jeunes-comment-negocier-son-premier-salaire', 'jeunes comment negocier son premier salaire'),
+        ('https://www.ing.be/fr/particuliers/ma-vie/etudier-et-travailler/jeunes-gradues-comment-postuler', 'jeunes gradues comment postuler'),
+        ('https://www.ing.be/fr/particuliers/ma-vie/etudier-et-travailler/job-d-etudiant-questions-reponses', 'job d etudiant questions reponses'),
+        ('https://www.ing.be/fr/particuliers/ma-vie/etudier-et-travailler/vacances-jeunes', 'vacances jeunes'),
+        ('https://www.ing.be/fr/particuliers/ma-vie/habitation/gerer-budget-demenagement-etudiant', 'gerer budget demenagement etudiant'),
+        ('https://www.ing.be/fr/particuliers/services/ing-save-up-pour-les-jeunes', 'ing save up pour les jeunes'),
+        ('https://www.ing.be/fr/particuliers/youth/youth-turning-18', 'youth turning 18'),
+        ('https://www.ing.be/fr/professionnel/mon-secteur/banque-pour-etudiant-entrepreneur', 'banque pour etudiant entrepreneur'),
+        ('https://www.ing.be/fr/professionnel/mon-secteur/etudiant-sante', 'etudiant sante'),
+        ('https://www.ing.be/nl/particulieren/jeugd/youth-turning-18---nl', 'youth turning 18   nl'),
+        ('https://www.ing.be/nl/particulieren/jongeren', 'jongeren'),
+        ('https://www.ing.be/nl/particulieren/kredietkaarten/kredietkaart-jongeren', 'kredietkaart jongeren'),
+        ('https://www.ing.be/nl/particulieren/mijn-leven/budgettips/nooit-te-jong-om-te-beleggen-en-sparen', 'nooit te jong om te beleggen en sparen'),
+        ('https://www.ing.be/nl/particulieren/mijn-leven/studeren-en-werken/afgestudeerd-jongeren-onderhandelen-loon', 'afgestudeerd jongeren onderhandelen loon'),
+        ('https://www.ing.be/nl/particulieren/mijn-leven/studeren-en-werken/afgestudeerd-jongeren-tips-solliciteren', 'afgestudeerd jongeren tips solliciteren'),
+        ('https://www.ing.be/nl/particulieren/mijn-leven/studeren-en-werken/studenten-job-antwoorden-vragen', 'studenten job antwoorden vragen'),
+        ('https://www.ing.be/nl/particulieren/mijn-leven/studeren-en-werken/tips-beheren-budget-student', 'tips beheren budget student'),
+        ('https://www.ing.be/nl/particulieren/mijn-leven/wonen/beheer-budget-verhuis-student', 'beheer budget verhuis student'),
+        ('https://www.ing.be/nl/particulieren/sparen/hoe-sparen-als-jongere', 'hoe sparen als jongere'),
+        ('https://www.ing.be/nl/particulieren/sparen/sparen-voor-kinderen-en-jongeren', 'sparen voor kinderen en jongeren'),
+        ('https://www.ing.be/nl/particulieren/voor-elke-dag/een-jongerenrekening-kiezen', 'een jongerenrekening kiezen'),
+        ('https://www.ing.be/nl/particulieren/voor-elke-dag/ing-banking-app-jongeren', 'ing banking app jongeren'),
+        ('https://www.ing.be/nl/particulieren/voor-elke-dag/studentenjob-welke-regels', 'studentenjob welke regels'),
+        ('https://www.ing.be/nl/particulieren/voor-elke-dag/voordeel-jongerenrekening', 'voordeel jongerenrekening'),
+        ('https://www.ing.be/nl/particulieren/zichtrekeningen-packs/jongerenrekening', 'jongerenrekening'),
+        ('https://www.ing.be/nl/particulieren/zichtrekeningen-packs/pack-more-jongeren', 'pack more jongeren'),
+        ('https://www.ing.be/nl/professioneel/mijn-sector/bank-voor-student-ondernemer', 'bank voor student ondernemer'),
+        ('https://www.ing.be/nl/professioneel/mijn-sector/student-gezondheidszorg', 'student gezondheidszorg'),
     ],
-
-    # ING-only: adult/general equivalents of the youth pages above, added to
-    # compare how ING communicates to young people vs. general/adult
-    # customers on the SAME product types (savings account, automatic
-    # savings, credit card, comparison page, savings hub). Not present for
-    # other banks — this is a within-ING comparison, separate from the
-    # cross-bank youth comparison. turning18_forparents has no adult
-    # equivalent by nature (life-stage specific).
-    "ing_adult": [
-        ("https://www.ing.be/fr/particuliers/epargner/compte-epargne-classique", "general savings account (mirrors compte-epargne-jeune) — [RE-VERIFY] sitemap lastmod 2026-09-16, after original 09-15 check"),
-        ("https://www.ing.be/fr/particuliers/epargner/compte-epargne-automatique", "general automatic savings (mirrors compte-epargne-automatique-jeune)"),
-        ("https://www.ing.be/fr/particuliers/cartes-de-credit/carte-de-credit-visa", "general Visa credit card (mirrors carte-de-credit-jeunes)"),
-        ("https://www.ing.be/fr/particuliers/cartes-de-credit/comparatif-cartes-de-credit", "general credit card comparison (closest match to comparatif-compte-epargne-jeune)"),
-        ("https://www.ing.be/fr/particuliers/epargner", "general savings hub (mirrors jeunes hub)"),
-        # --- Added 2026-09-18 ---
-        ("https://www.ing.be/fr/particuliers/investir/commencer-a-investir", "start investing — ING previously had no 'start investing' page vs. KBC/Hello bank! which both have one. In sitemap, lastmod 2026-09-10."),
-    ],
-
-    "bnp_fortis": [
-        ("https://www.bnpparibasfortis.be/fr/public/particuliers/banque-au-quotidien/banque-pour-les-jeunes", "youth hub page"),
-        ("https://www.bnpparibasfortis.be/fr/public/particuliers/banque-au-quotidien/comptes-bancaires/compte-a-vue/compte-jeune", "youth current account"),
-        ("https://www.bnpparibasfortis.be/fr/public/particuliers/banque-au-quotidien/banque-pour-les-jeunes/jeune-travailleur", "young worker hub"),
-        ("https://www.bnpparibasfortis.be/fr/public/particuliers/banque-au-quotidien/banque-pour-les-jeunes/jeune-travailleur/premier-logement", "young worker — first home"),
-        ("https://www.bnpparibasfortis.be/fr/public/particuliers/banque-au-quotidien/banque-pour-les-jeunes/argent-de-poche", "pocket money"),
-        ("https://www.bnpparibasfortis.be/fr/public/particuliers/banque-au-quotidien/banque-pour-les-jeunes/budget-enfant", "child budget"),
-        ("https://www.bnpparibasfortis.be/fr/public/particuliers/banque-au-quotidien/banque-pour-les-jeunes/etudiant", "student page"),
-        ("https://www.bnpparibasfortis.be/en/public/individuals/save-and-invest/insurance-investments/junior-future-plan", "Junior Future Plan — youth investment product"),
-        ("https://www.bnpparibasfortis.be/fr/public/article/etudier-a-l-etranger-moyen-de-paiement", "studying abroad — payment method"),
-        # NOTE: this bank's WAF served a fake "maintenance" page to every
-        # automated request during testing (2026-09-15) despite robots.txt
-        # allowing these paths and the pages working fine in a normal
-        # browser. If that recurs, document BNP Fortis as manually
-        # collected (screenshots/text captured by hand) rather than via
-        # this pipeline — see conversation notes.
-    ],
-
-    "kbc": [
-        # NOTE: carte-credit-etudiants.html removed — KBC restructured their
-        # site and now redirects it to compte-jeunes.html, where the student
-        # prepaid card content is folded in (confirmed via search + a
-        # Playwright redirect check on 2026-09-15). Was a duplicate, not a
-        # scraper bug.
-        ("https://www.kbcbrussels.be/particuliers/fr/produits/paiements/comptes-a-vue/compte-jeunes.html", "youth current account (includes student prepaid card info)"),
-        ("https://www.kbcbrussels.be/particuliers/fr/jeunes/18-ans.html", "turning 18 hub"),
-        ("https://www.kbcbrussels.be/particuliers/fr/jeunes/18-ans/digitaal.htm", "turning 18 — digital banking"),
-        ("https://www.kbcbrussels.be/particuliers/fr/jeunes/etudier-a-l-etranger.html", "studying abroad"),
-        ("https://www.kbcbrussels.be/particuliers/fr/jeunes/changer-de-compte.html", "switching accounts (youth)"),
-        ("https://www.kbcbrussels.be/particuliers/fr/jeunes/conseils-recevoir-argent-de-poche.html", "pocket money — receiving"),
-        ("https://www.kbcbrussels.be/particuliers/fr/placements/investir-pour-les-jeunes.html", "investing for young people"),
-        ("https://www.kbc.be/particuliers/fr/produits/paiements/comptes-a-vue/compte-jeunes.html", "[OK] youth account, free 10-24"),
-        ("https://www.kbc.be/particuliers/fr/jeunes/18-ans.html", "[OK] turning 18"),
-        ("https://www.kbc.be/particuliers/fr/campagne/compte-jeunes-action.html", "[OK] youth account acquisition campaign (powerbank incentive)"),
-        ("https://www.kbc.be/particuliers/fr/jeunes.html", "[CHECK] youth hub — inferred from the CBC/KBC Brussels pattern"),
-
-    ],
-
-    "belfius": [
-        ("https://www.belfius.be/site/retail/fr/produits/paiement/compte-bancaire-pour-jeunes", "youth current account hub"),
-        ("https://www.belfius.be/site/retail/fr/produits/paiement/compte-bancaire/beats-star", "Beats Star — youth-branded account"),
-        ("https://www.belfius.be/site/retail/fr/produits/paiement/carte-de-credit-et-prepayee/mastercard-star", "Star Mastercard — youth-branded card"),
-        # NOTE: only 3 pages found via the two retail sitemaps
-        # (retail/fr/googlesitemap.xml had none relevant; site/retail/fr/
-        # sitemap.xml had these 3). Belfius's sitemap coverage for youth
-        # content appears thinner than the other banks — document this as
-        # a known scope limitation rather than assuming more pages exist
-        # but weren't found.
-    ],
-
-    "revolut": [
-        ("https://www.revolut.com/revolut-kids-teens/", "Kids & Teens product hub"),
-        ("https://www.revolut.com/revolut-kids-and-teens-parent-and-guardians/", "Kids & Teens — for parents/guardians"),
-        ("https://www.revolut.com/revolut-for-ages-16-17/", "16-17 account"),
-        ("https://www.revolut.com/kids-teens/referrals/", "Kids & Teens referral page"),
-        ("https://www.revolut.com/fr-BE/", "Belgium homepage — general positioning, no dedicated youth segment found (documented scope decision, see brief's 'justify your scope')"),
-        ("https://www.revolut.com/en-BE/revolut-kids-and-teens-benefits/", "[OK] Kids & Teens BENEFITS — distinct page from the hub, kid-facing voice, 6-17 in BE"),
-        ("https://www.revolut.com/fr-BE/revolut-kids-and-teens-benefits/", "[CHECK] FR equivalent of the above (fr-FR version confirmed live)"),
-        ("https://www.revolut.com/fr-BE/kids-and-teens/kids-savings-account/", "[CHECK] Kids & Teens savings account — direct comparator to ING compte-epargne-jeune (fr-FR confirmed)"),
-        ("https://www.revolut.com/fr-BE/u18-activation/", "[CHECK] parent-approval landing page — the 'my teen wants to join' funnel (fr-FR confirmed)"),
-        ("https://www.revolut.com/revolut-under-18-benefits-parents-and-guardians/", "[OK] legacy under-18 parents page — still live, note it predates the Kids & Teens rename"),
-        ("https://www.revolut.com/get-revolut-under-18", "[NAV] the conversion endpoint every youth-page CTA points to"),
-        ("https://www.revolut.com/fr-BE/legal/revolut-under18/", "[CHECK] Kids & Teens T&Cs — the only place age gates, card fees and limits are stated precisely (en-FR/en-US confirmed)"),
-        ("https://www.revolut.com/blog/post/revolut-under-18-the-account-built-for-teens/", "[OK] blog — launch positioning for the teen proposition, useful for tone analysis"),
-
-    ],
-
-    # --- Digital-only / free models -------------------------------------
-   # Hello bank! is BNP Paribas Fortis' mobile brand. Keep it SEPARATE from
-   # "bnp_fortis": different site, different tone, different age framing
-   # (18-27 only, no minors offer on the BE site — unlike hellobank.fr,
-   # which has Hello Origin for 12-17. Do not mix the two domains.)
-   "hello_bank": [
-       ("https://www.hellobank.be/fr/notre-offre/comptes-et-cartes/compte-courant-27y", "[OK] Hello4You — youth payment account, 18-27 (the core youth page)"),
-       ("https://www.hellobank.be/fr/notre-offre/comptes-et-cartes/compte-all-in-gratuit", "[NAV] general all-in free account — adult equivalent of Hello4You"),
-       ("https://www.hellobank.be/fr/notre-offre/comptes-et-cartes/carte-de-credit", "[NAV] Hello Visa credit card"),
-       ("https://www.hellobank.be/fr/notre-offre/comptes-et-cartes/application-hello-bank", "[NAV] the app — main digital-first positioning page"),
-       ("https://www.hellobank.be/fr/notre-offre/epargner-et-placer/compte-epargne-boost", "[NAV] Boost savings account"),
-       ("https://www.hellobank.be/fr/notre-offre/epargner-et-placer/commencer-a-investir", "[NAV] investing for beginners — closest to KBC 'investir pour les jeunes'"),
-       ("https://www.hellobank.be/fr/devenir-hello", "[NAV] onboarding / become a client"),
-       ("https://www.hellobank.be/fr/infos-conseils", "[NAV] advice-article hub (age-neutral, useful for tone comparison)"),
-       # NOTE: no turning-18 or parents page exists on the BE site. Hello4You
-       # simply converts to a standard formula at 28 — that conversion is
-       # described inside compte-courant-27y. Worth flagging in the brief:
-       # Hello bank! BE has no minors proposition at all.
-   ],
-   "argenta": [
-       ("https://www.argenta.be/fr/thema/les-jeunes.html", "[OK] youth hub page"),
-       ("https://www.argenta.be/fr/thema/les-jeunes/les-parents/affaires-bancaires-au-quotidien-pour-votre-ado.html", "[OK] for parents — teen account + debit card from 11"),
-       ("https://www.argenta.be/fr/formules/green.html", "[NAV] Formule Green — the free account used as the youth product"),
-       ("https://www.argenta.be/fr/argenta-vous-informe/j-ai-18-ans-et-maintenant.html", "[NAV] turning 18 (equivalent of ING turning18 / KBC 18-ans)"),
-       ("https://www.argenta.be/fr/argenta-vous-informe/que-devez-vous-savoir-en-tant-qu-etudiant-jobiste.html", "[OK] student jobs"),
-       ("https://www.argenta.be/fr/argenta-vous-informe/10-conseils-destines-aux-jeunes-pour-economiser-de-l-argent.html", "[OK] 10 saving tips for young people"),
-       ("https://www.argenta.be/fr/argenta-vous-informe/une-carte-bancaire-personnelle-pour-votre-enfant-a-partir-de-quel-age.html", "[NAV] at what age a child gets their own card"),
-       ("https://www.argenta.be/fr/argenta-vous-informe/7-conseils-pour-apprendre-a-votre-enfant-a-epargner.html", "[NAV] teaching a child to save"),
-       ("https://www.argenta.be/fr/thema/votre-famille-et-vous/que-devez-vous-regler-lors-d-une-naissance/ouvrir-un-compte-pour-votre-enfant.html", "[NAV] opening an account for your child"),
-       ("https://www.argenta.be/fr/payer/banque-par-internet.html", "Argenta online/mobile web onboarding entry point"),
-       ("https://www.argenta.be/nl/thema/jongeren.html", "Argenta core youth hub positioning page (Flemish baseline root)"),
-   ],
-
-   # --- Fintech / neo-banks --------------------------------------------
-"n26": [
-        ("https://n26.com/fr-be/moins-de-18-ans", "[OK] N26 under-18s — card for 7-17, parent-managed (the youth page) — verified live on fr-be"),
-        ("https://n26.com/fr-be/compte-bancaire-gratuit", "[NAV] Standard — free account, the entry tier young adults land on"),
-        ("https://n26.com/fr-be/compte-bancaire", "[NAV] Smart"),
-        ("https://n26.com/fr-be/tarifs", "[NAV] plan comparison"),
-        ("https://n26.com/fr-be/compte-epargne", "[NAV] savings"),
-        ("https://n26.com/fr-be/actions-et-etfs", "[NAV] stocks & ETFs — youth-skewing investing pitch"),
-        ("https://n26.com/fr-be/sitemap", "[NAV] sitemap — use this to confirm the full fr-be inventory"),
-        ("https://n26.com/fr-fr/compte-bancaire-etudiant", "[OK-OTHER-MARKET] student account — live on fr-fr, no fr-be equivalent — reference only"),
-        ("https://n26.com/fr-fr/indice-du-cout-des-etudes", "[OK-OTHER-MARKET] Education Price Index — youth/student cost-of-study content, no fr-be equivalent found in sitemap"),
-        ("https://n26.com/de-de/taschengeld-und-finanzielle-bildung", "[OK-OTHER-MARKET] pocket money & financial education — youth-targeted content, DE only, no fr-be equivalent found in sitemap"),
-        ("https://n26.com/en-fr/blog/how-to-open-a-bank-account-in-luxembourg", "[UNVERIFIED] N26 Cross-border / Expat student onboarding strategy reference"),
-        ("https://n26.com/en-eu/iban-number", "[UNVERIFIED] N26 local/EU IBAN consumer education page"),
-        ("https://n26.com/en-fr/blog/guide-to-eu-banking-acronyms", "[UNVERIFIED] N26 functional onboarding/literacy messaging guidelines"),
-    ],
-
-  
-   "beobank": [
-        ("https://www.beobank.be/fr/payer/comptes-courants/compte-jeunes.html", "Beobank youth current account — direct youth banking comparator"),
-        ("https://www.beobank.be/fr/payer/cartes-de-credit/young-mastercard.html", "Young Mastercard — student/young adult credit proposition"),
-        ("https://www.beobank.be/fr/payer/comptes-courants.html", "Beobank current accounts — adult equivalent / youth transition"),
-        ("https://www.beobank.be/fr/payer/cartes-de-credit.html", "Beobank credit card portfolio — useful for young-adult credit comparison"),
-        ("https://www.beobank.be/fr/epargner.html", "Beobank savings hub"),
-        ("https://www.beobank.be/fr/investir.html", "Beobank investing hub — useful for young investor proposition"),
-        ("https://www.beobank.be/fr/actualites.html", "Beobank campaigns/news — acquisition and promotional messaging"),
-    ],
-     
+    # --- BNP Paribas Fortis (44 URLs) ---
+        "bnp_fortis": [
+            ('https://www.bnpparibasfortis.be/en/public/article/ai-the-labour-market-why-dont-youth-get-a-job', 'ai the labour market why dont youth get a job'),
+            ('https://www.bnpparibasfortis.be/en/public/article/cfs-sport-expansion-youth', 'cfs sport expansion youth'),
+            ('https://www.bnpparibasfortis.be/en/public/article/find-student-job', 'find student job'),
+            ('https://www.bnpparibasfortis.be/en/public/article/first-student-job', 'first student job'),
+            ('https://www.bnpparibasfortis.be/en/public/faq/is-my-child-s-student-accommodation-covered-by-my-home-insurance', 'is my child s student accommodation covered by my home insurance'),
+            ('https://www.bnpparibasfortis.be/en/public/individuals/daily-banking/accounts/current-account/hello4you', 'hello4you'),
+            ('https://www.bnpparibasfortis.be/en/public/individuals/daily-banking/accounts/current-account/youth-account', 'youth account'),
+            ('https://www.bnpparibasfortis.be/en/public/individuals/daily-banking/banking-for-young-people/student', 'student'),
+            ('https://www.bnpparibasfortis.be/fr/public/article/budgettool-pour-jeunes', 'budgettool pour jeunes'),
+            ('https://www.bnpparibasfortis.be/fr/public/article/cfs-expansion-sport-jeunes', 'cfs expansion sport jeunes'),
+            ('https://www.bnpparibasfortis.be/fr/public/article/chercher-trouver-job-etudiant', 'chercher trouver job etudiant'),
+            ('https://www.bnpparibasfortis.be/fr/public/article/etudier-a-l-etranger-moyen-de-paiement', 'studying abroad — payment method'),
+            ('https://www.bnpparibasfortis.be/fr/public/article/guide-job-etudiant', 'guide job etudiant'),
+            ('https://www.bnpparibasfortis.be/fr/public/article/ia-et-travail-au-boulot-les-jeunes', 'ia et travail au boulot les jeunes'),
+            ('https://www.bnpparibasfortis.be/fr/public/article/jeunes-investir-dans-l-immobilier', 'jeunes investir dans l immobilier'),
+            ('https://www.bnpparibasfortis.be/fr/public/article/ouvrir-un-compte', 'payment-account opening / account selection'),
+            ('https://www.bnpparibasfortis.be/fr/public/article/turquie-jongler-entre-opportunites-complexite', 'turquie jongler entre opportunites complexite'),
+            ('https://www.bnpparibasfortis.be/fr/public/particuliers/banque-au-quotidien/banque-des-jeunes/apprendre-gerer-argent', 'apprendre gerer argent'),
+            ('https://www.bnpparibasfortis.be/fr/public/particuliers/banque-au-quotidien/banque-pour-les-jeunes', 'youth banking hub'),
+            ('https://www.bnpparibasfortis.be/fr/public/particuliers/banque-au-quotidien/banque-pour-les-jeunes/argent-de-poche', 'argent de poche'),
+            ('https://www.bnpparibasfortis.be/fr/public/particuliers/banque-au-quotidien/banque-pour-les-jeunes/budget-enfant', 'budget enfant'),
+            ('https://www.bnpparibasfortis.be/fr/public/particuliers/banque-au-quotidien/banque-pour-les-jeunes/etudiant', 'etudiant'),
+            ('https://www.bnpparibasfortis.be/fr/public/particuliers/banque-au-quotidien/banque-pour-les-jeunes/jeune-travailleur', 'young worker hub'),
+            ('https://www.bnpparibasfortis.be/fr/public/particuliers/banque-au-quotidien/banque-pour-les-jeunes/jeune-travailleur/monde-du-travail', 'entering working life'),
+            ('https://www.bnpparibasfortis.be/fr/public/particuliers/banque-au-quotidien/banque-pour-les-jeunes/jeune-travailleur/premier-logement', 'young worker — first home'),
+            ('https://www.bnpparibasfortis.be/fr/public/particuliers/banque-au-quotidien/banque-pour-les-jeunes/jeune-travailleur/vie-active', 'young adult / active working life'),
+            ('https://www.bnpparibasfortis.be/fr/public/particuliers/banque-au-quotidien/comptes-bancaires/compte-a-vue/compte-jeune', 'youth current account / Hello4You'),
+            ('https://www.bnpparibasfortis.be/fr/public/particuliers/emprunter/mobilite-jeunes', 'mobility offer for young adults 18-28'),
+            ('https://www.bnpparibasfortis.be/nl/public/article/budgettool-voor-jongeren', 'budgettool voor jongeren'),
+            ('https://www.bnpparibasfortis.be/nl/public/article/eerste-studentenjob', 'eerste studentenjob'),
+            ('https://www.bnpparibasfortis.be/nl/public/article/jongeren-en-investeren-in-vastgoed', 'jongeren en investeren in vastgoed'),
+            ('https://www.bnpparibasfortis.be/nl/public/article/studentenjob-zoeken-en-vinden', 'studentenjob zoeken en vinden'),
+            ('https://www.bnpparibasfortis.be/nl/public/particulieren/dagelijks-bankieren/bank-voor-jongeren', 'bank voor jongeren'),
+            ('https://www.bnpparibasfortis.be/nl/public/particulieren/dagelijks-bankieren/bank-voor-jongeren/jonge-werker', 'jonge werker'),
+            ('https://www.bnpparibasfortis.be/nl/public/particulieren/dagelijks-bankieren/bank-voor-jongeren/jonge-werker/eerste-woning', 'eerste woning'),
+            ('https://www.bnpparibasfortis.be/nl/public/particulieren/dagelijks-bankieren/bank-voor-jongeren/jonge-werker/van-student-naar-werknemer', 'van student naar werknemer'),
+            ('https://www.bnpparibasfortis.be/nl/public/particulieren/dagelijks-bankieren/bank-voor-jongeren/jonge-werker/werkleven', 'werkleven'),
+            ('https://www.bnpparibasfortis.be/nl/public/particulieren/dagelijks-bankieren/bank-voor-jongeren/kinder-budget', 'kinder budget'),
+            ('https://www.bnpparibasfortis.be/nl/public/particulieren/dagelijks-bankieren/bank-voor-jongeren/leren-omgaan-met-geld', 'leren omgaan met geld'),
+            ('https://www.bnpparibasfortis.be/nl/public/particulieren/dagelijks-bankieren/bank-voor-jongeren/student', 'student'),
+            ('https://www.bnpparibasfortis.be/nl/public/particulieren/dagelijks-bankieren/bank-voor-jongeren/zakgeld', 'zakgeld'),
+            ('https://www.bnpparibasfortis.be/nl/public/particulieren/dagelijks-bankieren/bankrekeningen/zichtrekening/hello4you', 'hello4you'),
+            ('https://www.bnpparibasfortis.be/nl/public/particulieren/dagelijks-bankieren/bankrekeningen/zichtrekening/jongerenrekening', 'jongerenrekening'),
+            ('https://www.bnpparibasfortis.be/nl/public/particulieren/lenen/mobiliteit-jongeren', 'mobiliteit jongeren'),
+        ],
+        # --- KBC (101 URLs) ---
+        "kbc": [
+            ('https://www.kbc.be/business/en/articles/zelfstandige-worden/eigen-zaak-starten/self-employed-student.html', 'self employed student'),
+            ('https://www.kbc.be/content/particulieren/fr/jeunes/job-d-etudiant-compte-a-vue.html', 'student job / current account'),
+            ('https://www.kbc.be/entreprendre/fr/articles/zelfstandige-worden/eigen-zaak-starten/statut-etudiant-independant.html', 'statut etudiant independant'),
+            ('https://www.kbc.be/jobs/nl/nieuws/kbc--colruyt-en-engie-inspireren-phd-studenten-tijdens-winter-sc.html', 'kbc  colruyt en engie inspireren phd studenten tijdens winter sc'),
+            ('https://www.kbc.be/jobs/nl/waarom-werken-bij-kbc/team-blue/je-bent-bij-jong-kbc-en-je-wilt-wat.html', 'je bent bij jong kbc en je wilt wat'),
+            ('https://www.kbc.be/ondernemen/nl/artikel/zelfstandige-worden/eigen-zaak-starten/statuut-student-zelfstandige.html', 'statuut student zelfstandige'),
+            ('https://www.kbc.be/ondernemen/nl/specifieke-sectoren/landbouw-en-tuinbouw/homepage-Farmcafe/artikels/inspiratie/je-bent-jong-en-je-wil-wat.html', 'je bent jong en je wil wat'),
+            ('https://www.kbc.be/particulieren/fr/betalen/online-rekening-openen.html', 'online account opening'),
+            ('https://www.kbc.be/particulieren/nl/beleggen/beleggen-voor-jongeren.html', 'beleggen voor jongeren'),
+            ('https://www.kbc.be/particulieren/nl/beleggen/maak-mee-het-verschil/jongeren-zijn-de-influencers-van-de-beleggende-generaties.html', 'jongeren zijn de influencers van de beleggende generaties'),
+            ('https://www.kbc.be/particulieren/nl/beleggen/thematisch-beleggen/beweeg-mee-met-de-toekomst/van-kot-tot-kans-beleggen-in-studentenhuisvesting.html', 'van kot tot kans beleggen in studentenhuisvesting'),
+            ('https://www.kbc.be/particulieren/nl/campagne/kbcmobile-jongeren.html', 'kbcmobile jongeren'),
+            ('https://www.kbc.be/particulieren/nl/jongeren.html', 'jongeren'),
+            ('https://www.kbc.be/particulieren/nl/jongeren/18-jaar.html', '18 jaar'),
+            ('https://www.kbc.be/particulieren/nl/jongeren/18-jaar/digitaal.html', 'digitaal'),
+            ('https://www.kbc.be/particulieren/nl/jongeren/een-rekening-openen-bij-kbc.html', 'een rekening openen bij kbc'),
+            ('https://www.kbc.be/particulieren/nl/jongeren/hoedoekda.html', 'hoedoekda'),
+            ('https://www.kbc.be/particulieren/nl/jongeren/hoedoekda/alle-artikels.html', 'alle artikels'),
+            ('https://www.kbc.be/particulieren/nl/jongeren/inkomen-op-rekening.html', 'inkomen op rekening'),
+            ('https://www.kbc.be/particulieren/nl/jongeren/jobstarter.html', 'jobstarter'),
+            ('https://www.kbc.be/particulieren/nl/jongeren/jobstarter/opportuniteiten.html', 'opportuniteiten'),
+            ('https://www.kbc.be/particulieren/nl/jongeren/jongerenaanbod/7-tips-om-beter-te-sparen.html', '7 tips om beter te sparen'),
+            ('https://www.kbc.be/particulieren/nl/jongeren/jongerenaanbod/8-tips-om-goedkoop-te-reizen.html', '8 tips om goedkoop te reizen'),
+            ('https://www.kbc.be/particulieren/nl/jongeren/jongerenaanbod/betaalbaar-kot-vinden.html', 'betaalbaar kot vinden'),
+            ('https://www.kbc.be/particulieren/nl/jongeren/jongerenaanbod/eigen-woning-kopen.html', 'eigen woning kopen'),
+            ('https://www.kbc.be/particulieren/nl/jongeren/jongerenaanbod/rijbewijs.html', 'rijbewijs'),
+            ('https://www.kbc.be/particulieren/nl/jongeren/jongerenaanbod/studentenjob-zichtrekening.html', 'studentenjob zichtrekening'),
+            ('https://www.kbc.be/particulieren/nl/jongeren/jongerenaanbod/tips-eerste-verbouwing.html', 'tips eerste verbouwing'),
+            ('https://www.kbc.be/particulieren/nl/jongeren/jongerenaanbod/tips-phishing-voorkomen.html', 'tips phishing voorkomen'),
+            ('https://www.kbc.be/particulieren/nl/jongeren/jongerenaanbod/tips-woning-kopen.html', 'tips woning kopen'),
+            ('https://www.kbc.be/particulieren/nl/jongeren/jongerenaanbod/waarom-beleggen-als-je-jong-bent.html', 'waarom beleggen als je jong bent'),
+            ('https://www.kbc.be/particulieren/nl/jongeren/jongerenaanbod/wees-geen-geldezel.html', 'wees geen geldezel'),
+            ('https://www.kbc.be/particulieren/nl/jongeren/jongerenaanbod/welke-verzekering-heb-je-nodig-op-reis.html', 'welke verzekering heb je nodig op reis'),
+            ('https://www.kbc.be/particulieren/nl/jongeren/jongerenaanbod/wie-betaalt-jij-of-je-huisbaas.html', 'wie betaalt jij of je huisbaas'),
+            ('https://www.kbc.be/particulieren/nl/jongeren/leerkrachten.html', 'leerkrachten'),
+            ('https://www.kbc.be/particulieren/nl/jongeren/moneymatters.html', 'moneymatters'),
+            ('https://www.kbc.be/particulieren/nl/jongeren/ouders-overzicht/financiele-onafhankelijkheid-voor-je-kind.html', 'financiele onafhankelijkheid voor je kind'),
+            ('https://www.kbc.be/particulieren/nl/jongeren/ouders-overzicht/financiele-onafhankelijkheid-voor-je-kind/Tips%20voor%20zakgeld%20.html', 'Tips%20voor%20zakgeld%20'),
+            ('https://www.kbc.be/particulieren/nl/jongeren/ouders-overzicht/financiele-onafhankelijkheid-voor-je-kind/Tips%20voor%20zakgeld.html', 'Tips%20voor%20zakgeld'),
+            ('https://www.kbc.be/particulieren/nl/jongeren/ouders-overzicht/wanneer-zichtrekening-voor-je-kind-openen.html', 'wanneer zichtrekening voor je kind openen'),
+            ('https://www.kbc.be/particulieren/nl/jongeren/rekening-omschakelen.html', 'rekening omschakelen'),
+            ('https://www.kbc.be/particulieren/nl/jongeren/tips-zakgeld-geven.html', 'tips zakgeld geven'),
+            ('https://www.kbc.be/particulieren/nl/jongeren/tips-zakgeld-krijgen.html', 'tips zakgeld krijgen'),
+            ('https://www.kbc.be/particulieren/nl/jongeren/verantwoordelijkheid-nemen.html', 'verantwoordelijkheid nemen'),
+            ('https://www.kbc.be/particulieren/nl/jongeren/verantwoordelijkheid-nemen/starten-met-werken.html', 'starten met werken'),
+            ('https://www.kbc.be/particulieren/nl/jongeren/vragen-toekomst.html', 'vragen toekomst'),
+            ('https://www.kbc.be/particulieren/nl/jongeren/vragen-toekomst/stel-ons-je-vraag.html', 'stel ons je vraag'),
+            ('https://www.kbc.be/particulieren/nl/jongeren/wat-met-eerste-loon.html', 'wat met eerste loon'),
+            ('https://www.kbc.be/particulieren/nl/jongeren/werken-en-studeren-combineren.html', 'werken en studeren combineren'),
+            ('https://www.kbc.be/particulieren/nl/product/betalen/zichtrekeningen/jongerenrekening.html', 'jongerenrekening'),
+            ('https://www.kbc.be/particulieren/nl/redirects/jongeren.html', 'jongeren'),
+            ('https://www.kbc.be/particulieren/nl/thema/myhome/artikels/jongeren-op-de-huizenmarkt.html', 'jongeren op de huizenmarkt'),
+            ('https://www.kbc.be/particulieren/nl/thema/mymobility/artikels/waarom-zou-je-als-jongere-nog-je-rijbewijs-halen.html', 'waarom zou je als jongere nog je rijbewijs halen'),
+            ('https://www.kbc.be/particulieren/nl/verzekeren/voertuig/eerste-autoverzekering-jongeren.html', 'eerste autoverzekering jongeren'),
+            ('https://www.kbc.be/particuliers/fr/assurer/vehicule/premiere-assurance-auto-pour-les-jeunes.html', 'premiere assurance auto pour les jeunes'),
+            ('https://www.kbc.be/particuliers/fr/jeunes.html', 'youth hub — includes 18-25 young adults'),
+            ('https://www.kbc.be/particuliers/fr/jeunes/18-ans.html', 'turning 18 — transition to independent account management'),
+            ('https://www.kbc.be/particuliers/fr/jeunes/18-ans/digitaal.html', 'turning 18 — digital banking / administrative transition'),
+            ('https://www.kbc.be/particuliers/fr/jeunes/carte-credit-etudiants.html', 'carte credit etudiants'),
+            ('https://www.kbc.be/particuliers/fr/jeunes/changer-de-compte.html', 'changer de compte'),
+            ('https://www.kbc.be/particuliers/fr/jeunes/combiner-travail-et-etudes.html', 'combiner travail et etudes'),
+            ('https://www.kbc.be/particuliers/fr/jeunes/conseils-donner-argent-de-poche.html', 'conseils donner argent de poche'),
+            ('https://www.kbc.be/particuliers/fr/jeunes/conseils-recevoir-argent-de-poche.html', 'conseils recevoir argent de poche'),
+            ('https://www.kbc.be/particuliers/fr/jeunes/ecoles.html', 'ecoles'),
+            ('https://www.kbc.be/particuliers/fr/jeunes/emprunter-pour-etudier.html', 'emprunter pour etudier'),
+            ('https://www.kbc.be/particuliers/fr/jeunes/etudier-a-l-etranger.html', 'studying abroad'),
+            ('https://www.kbc.be/particuliers/fr/jeunes/gerer-operations-bancaires-de-votre-enfant-dans-touch.html', 'gerer operations bancaires de votre enfant dans touch'),
+            ('https://www.kbc.be/particuliers/fr/jeunes/installer-en-kot.html', 'installer en kot'),
+            ('https://www.kbc.be/particuliers/fr/jeunes/job-d-etudiant-compte-a-vue.html', 'job d etudiant compte a vue'),
+            ('https://www.kbc.be/particuliers/fr/jeunes/move.html', 'move'),
+            ('https://www.kbc.be/particuliers/fr/jeunes/ouvrir-un-compte.html', 'ouvrir un compte'),
+            ('https://www.kbc.be/particuliers/fr/jeunes/pour-les-parents/independance-financiere-de-votre-enfant.html', 'independance financiere de votre enfant'),
+            ('https://www.kbc.be/particuliers/fr/jeunes/pour-les-parents/independance-financiere-de-votre-enfant/Conseils%20pour%20l\'argent%20de%20poche.html', 'Conseils%20pour%20l\'argent%20de%20poche'),
+            ('https://www.kbc.be/particuliers/fr/jeunes/pour-les-parents/independance-financiere-de-votre-enfant/financiele-onafhankelijkheid-voor-je-kind-12-jaar.html', 'financiele onafhankelijkheid voor je kind 12 jaar'),
+            ('https://www.kbc.be/particuliers/fr/jeunes/pour-les-parents/quand-ouvrir-compte-a-vue-enfant.html', 'quand ouvrir compte a vue enfant'),
+            ('https://www.kbc.be/particuliers/fr/jeunes/premier-emploi.html', 'premier emploi'),
+            ('https://www.kbc.be/particuliers/fr/jeunes/premier-emploi/opportunites-financieres.html', 'opportunites financieres'),
+            ('https://www.kbc.be/particuliers/fr/jeunes/prendre-les-renes.html', 'prendre les renes'),
+            ('https://www.kbc.be/particuliers/fr/jeunes/que-faire-apres-les-etudes.html', 'que faire apres les etudes'),
+            ('https://www.kbc.be/particuliers/fr/jeunes/que-faire-de-mon-premier-salaire.html', 'que faire de mon premier salaire'),
+            ('https://www.kbc.be/particuliers/fr/jeunes/versement-salaire.html', 'versement salaire'),
+            ('https://www.kbc.be/particuliers/fr/placements/faites-aussi-la-difference/jeunes-influenceurs-generations-investisseurs.html', 'jeunes influenceurs generations investisseurs'),
+            ('https://www.kbc.be/particuliers/fr/placements/investir-pour-les-jeunes.html', 'investing for young people'),
+            ('https://www.kbc.be/particuliers/fr/placements/investissement-thematique/avancez-pour-investir-dans-avenir/du-kot-a-l-opportunite-investir-dans-le-logement-etudiant.html', 'du kot a l opportunite investir dans le logement etudiant'),
+            ('https://www.kbc.be/particuliers/fr/processus/paiements/comptes-a-vue/jongerenrekening-openen.html', 'jongerenrekening openen'),
+            ('https://www.kbc.be/particuliers/fr/produits/paiements/comptes-a-vue/compte-jeunes.html', 'youth current account — free through age 24'),
+            ('https://www.kbc.be/particuliers/fr/produits/paiements/comptes-a-vue/comptes-a-vue-comparer.html', 'current-account comparison — adult/general benchmark'),
+            ('https://www.kbc.be/particuliers/fr/themes/mymobility/artikels/pourquoi-en-tant-que-jeune-encore-passer-le-permis-de-conduire.html', 'pourquoi en tant que jeune encore passer le permis de conduire'),
+            ('https://www.kbc.be/private-banking/fr/actualite/immobilier/een-studentenkamer-voor-uw-kind-investering-of-emotionele-keuze.html', 'een studentenkamer voor uw kind investering of emotionele keuze'),
+            ('https://www.kbc.be/private-banking/fr/actualite/immobilier/investir-dans-une-chambre-d-etudiante.html', 'investir dans une chambre d etudiante'),
+            ('https://www.kbc.be/private-banking/fr/actualite/investir/Du-kot-a-l-opportunite-investir-dans-le-logement-etudiant.html', 'Du kot a l opportunite investir dans le logement etudiant'),
+            ('https://www.kbc.be/private-banking/nl/nieuws/vastgoed/een-studentenkamer-voor-uw-kind-investering-of-emotionele-keuze.html', 'een studentenkamer voor uw kind investering of emotionele keuze'),
+            ('https://www.kbc.be/private-banking/nl/nieuws/vastgoed/investeren-in-een-studentenkamer-meer-dan-een-kwestie-van-vraag-en-aanbod.html', 'investeren in een studentenkamer meer dan een kwestie van vraag en aanbod'),
+            ('https://www.kbc.be/privatkunden/de/aktion/gratis-jongerenrekening.html', 'gratis jongerenrekening'),
+            ('https://www.kbc.be/privatkunden/de/anlegen/etwas-bewirken/jongeren-zijn-de-influencers-van-de-beleggende-generaties.html', 'jongeren zijn de influencers van de beleggende generaties'),
+            ('https://www.kbc.be/privatkunden/de/anlegen/thematische-geldanlagen/als-anleger-mit-der-zukunft-gehen/vom-studentenzimmer-zur-chance-geldanlage-in-studentenwohnungen.html', 'vom studentenzimmer zur chance geldanlage in studentenwohnungen'),
+            ('https://www.kbc.be/privatkunden/de/jugendliche/studentenjob-girokonto.html', 'studentenjob girokonto'),
+            ('https://www.kbc.be/retail/en/investments/thematic-investing/moving-forward-with-the-times-and-your-investments/room-for-opportunities-investing-in-student-accommodation.html', 'room for opportunities investing in student accommodation'),
+            ('https://www.kbc.be/retail/en/processes/payments/current-accounts/open-youth-account.html', 'open youth account'),
+            ('https://www.kbc.be/retail/en/young-people/credit-card-students.html', 'credit card students'),
+            ('https://www.kbc.be/retail/en/young-people/student-job-current-account.html', 'student job current account'),
+        ],
+        # --- Belfius (21 URLs) ---
+        "belfius": [
+            ('https://belfius.be/retail/nl/producten/betalen/zichtrekeningen/blue/index.aspx', 'Blue rekening - gratis voor jongeren tot 25 jaar'),
+            ('https://www.belfius.be/retail/fr/moments-cles/enfants/route-independance/en-kot/index.aspx', 'financer et assurer un kot'),
+            ('https://www.belfius.be/retail/fr/moments-cles/enfants/route-independance/etudes-etranger/financer-etudes-etranger/index.aspx', 'financer des etudes a l\'etranger'),
+            ('https://www.belfius.be/retail/fr/moments-cles/enfants/route-independance/etudes-superieures/financer-etudes-superieures/index.aspx', 'financer les etudes superieures'),
+            ('https://www.belfius.be/retail/fr/moments-cles/enfants/route-independance/index.aspx', 'la voie de l\'independance - etudes, kot, job etudiant'),
+            ('https://www.belfius.be/retail/fr/moments-cles/enfants/route-independance/job-etudiant/index.aspx', 'infos sur les jobs d\'etudiants - assurance et fiscalite'),
+            ('https://www.belfius.be/retail/fr/produits/emprunter/autres-depenses/credit-etudiant-ouverture-de-credit/index.aspx', 'credit etudiant - ouverture de credit'),
+            ('https://www.belfius.be/retail/fr/produits/emprunter/autres-depenses/credit-etudiant-pret-a-temperament/index.aspx', 'credit etudiant - pret a temperament'),
+            ('https://www.belfius.be/retail/nl/producten/betalen/zichtrekeningen/beats-new/index.aspx', 'Beats New rekening - gratis voor -25 jarigen'),
+            ('https://www.belfius.be/retail/nl/producten/lenen/andere-uitgaven/studentenkrediet-lening/index.aspx', 'studentenkrediet - lening op afbetaling'),
+            ('https://www.belfius.be/retail/nl/producten/sparen-beleggen/info-publicaties/publicaties/uw-beleggingen/2023-06/Children/index.aspx', 'beleggen voor minderjarig kind'),
+            ('https://www.belfius.be/retail/nl/sleutelmomenten/jij-en-ik/huwelijk/budget/onkosten/index.aspx', 'gemeenschappelijke rekening gratis voor koppels onder 25'),
+            ('https://www.belfius.be/retail/nl/sleutelmomenten/kinderen/onafhankelijkheid/buitenlandse-studies/bekostigen/index.aspx', 'studeren in het buitenland betalen'),
+            ('https://www.belfius.be/retail/nl/sleutelmomenten/kinderen/onafhankelijkheid/index.aspx', 'op weg naar onafhankelijkheid - studeren, kot, studentenjob, rijbewijs'),
+            ('https://www.belfius.be/retail/nl/sleutelmomenten/kinderen/onafhankelijkheid/studentenjob/index.aspx', 'studentenjob - verzekering en ten laste blijven'),
+            ('https://www.belfius.be/retail/nl/sleutelmomenten/kinderen/onafhankelijkheid/studentenjob/verzekering/index.aspx', 'verzekerd tijdens studentenjob'),
+            ('https://www.belfius.be/retail/nl/sleutelmomenten/kinderen/van-tiener-tot-meerderjarige/vakantiejob/fiscaal-voordeel/index.aspx', 'belastingvoordeel en studentenjob vakantiejob'),
+            ('https://www.belfius.be/retail/nl/sleutelmomenten/kinderen/van-tiener-tot-meerderjarige/vakantiejob/geld-beheren/index.aspx', 'geld leren beheren met vakantiejob loon'),
+            ('https://www.belfius.be/retail/nl/sleutelmomenten/kinderen/van-tiener-tot-meerderjarige/zakgeld/index.aspx', 'tips over zakgeld en gratis betaalrekening voor tieners'),
+            ('https://www.belfius.be/site/retail/fr/produits/paiement/compte-bancaire-pour-jeunes', 'compte bancaire pour jeunes'),
+            ('https://www.belfius.be/site/retail/nl/producten/betalen/betaalrekening-voor-jongeren', 'betaalrekening voor jongeren'),
+        ],
+        # --- Argenta (21 URLs) ---
+        "argenta": [
+            ('https://www.argenta.be/fr/a-propos-d-argenta/presse/la-plupart-des-jeunes-ont-de-l-argent-de-poche-un-compte-a-vue-et-une-carte-de-debit.html', 'la plupart des jeunes ont de l argent de poche un compte a vue et une carte de debit'),
+            ('https://www.argenta.be/fr/agences/de-jongh--gits-bv-3136.html', 'de jongh  gits bv 3136'),
+            ('https://www.argenta.be/fr/agences/de-jongh--gits-bv-3728.html', 'de jongh  gits bv 3728'),
+            ('https://www.argenta.be/fr/argenta-vous-informe/10-conseils-destines-aux-jeunes-pour-economiser-de-l-argent.html', '10 conseils destines aux jeunes pour economiser de l argent'),
+            ('https://www.argenta.be/fr/argenta-vous-informe/que-devez-vous-savoir-en-tant-qu-etudiant-jobiste.html', 'que devez vous savoir en tant qu etudiant jobiste'),
+            ('https://www.argenta.be/fr/thema/les-jeunes.html', 'les jeunes'),
+            ('https://www.argenta.be/fr/thema/les-jeunes/les-parents.html', 'les parents'),
+            ('https://www.argenta.be/fr/thema/les-jeunes/les-parents/affaires-bancaires-au-quotidien-pour-votre-ado.html', 'affaires bancaires au quotidien pour votre ado'),
+            ('https://www.argenta.be/fr/thema/les-jeunes/les-parents/epargner-ou-investir-pour-votre-enfant.html', 'epargner ou investir pour votre enfant'),
+            ('https://www.argenta.be/fr/travailler-chez-argenta/stage-job-etudiant.html', 'stage job etudiant'),
+            ('https://www.argenta.be/nl/argenta-informeert/10-tips-voor-jongeren-om-geld-te-sparen.html', '10 tips voor jongeren om geld te sparen'),
+            ('https://www.argenta.be/nl/argenta-informeert/wat-je-moet-weten-als-jobstudent.html', 'wat je moet weten als jobstudent'),
+            ('https://www.argenta.be/nl/kantoren/de-jongh--gits-bv-3136.html', 'de jongh  gits bv 3136'),
+            ('https://www.argenta.be/nl/kantoren/de-jongh--gits-bv-3728.html', 'de jongh  gits bv 3728'),
+            ('https://www.argenta.be/nl/over-argenta/persberichten/de-meeste-jongeren-beschikken-over-zakgeld-een-eigen-zichtrekening-en-een-debetkaart.html', 'de meeste jongeren beschikken over zakgeld een eigen zichtrekening en een debetkaart'),
+            ('https://www.argenta.be/nl/over-argenta/persberichten/meer-dan-de-helft-van-de-jongeren-bespreekt-geldzaken-met-vrienden.html', 'meer dan de helft van de jongeren bespreekt geldzaken met vrienden'),
+            ('https://www.argenta.be/nl/thema/jongeren.html', 'jongeren'),
+            ('https://www.argenta.be/nl/thema/jongeren/ouders.html', 'ouders'),
+            ('https://www.argenta.be/nl/thema/jongeren/ouders/dagelijks-bankieren-voor-je-tiener.html', 'dagelijks bankieren voor je tiener'),
+            ('https://www.argenta.be/nl/thema/jongeren/ouders/sparen-of-beleggen-voor-je-kind.html', 'sparen of beleggen voor je kind'),
+            ('https://www.argenta.be/nl/werken-bij-argenta/traineeship-stage-studentenjob.html', 'traineeship stage studentenjob'),
+        ],
+        # --- Beobank (13 URLs) ---
+        "beobank": [
+            ('https://www.beobank.be/fr/blog/mon-patrimoine/le-bon-plan-pour-commencer-investir.html', 'starting to invest — novice investor'),
+            ('https://www.beobank.be/fr/blog/mon-quotidien/check-list-pour-vos-futurs-jobs-detudiant.html', 'check list pour vos futurs jobs detudiant'),
+            ('https://www.beobank.be/fr/blog/mon-quotidien/travailler-comme-etudiant-en-2025-ce-que-vous-devez-savoir.html', 'travailler comme etudiant en 2025 ce que vous devez savoir'),
+            ('https://www.beobank.be/fr/epargner.html', 'regulated savings accounts'),
+            ('https://www.beobank.be/fr/payer.html', 'payments / daily banking hub'),
+            ('https://www.beobank.be/fr/payer/comptes-courants.html', 'current-account hub'),
+            ('https://www.beobank.be/fr/payer/comptes-courants/comparer.html', 'current-account comparison'),
+            ('https://www.beobank.be/fr/payer/comptes-courants/compte-jeunes.html', 'compte jeunes'),
+            ('https://www.beobank.be/fr/payer/comptes-courants/comptes-jump-fidelity-plus.html', 'Jump + Fidelity Plus savings — online registration ages 18-26'),
+            ('https://www.beobank.be/nl/betalen/zichtrekeningen/jongeren-zichtrekeningen.html', 'jongeren zichtrekeningen'),
+            ('https://www.beobank.be/nl/blog/mijn-dagelijkse-leven/checklist-voor-toekomstige-jobstudenten.html', 'checklist voor toekomstige jobstudenten'),
+            ('https://www.beobank.be/nl/blog/mijn-dagelijkse-leven/werken-als-student-2025-dit-moet-u-weten.html', 'werken als student 2025 dit moet u weten'),
+            ('https://www.beobank.be/nl/blog/mijn-woning/gaat-uw-kind-op-kot-een-verzekerde-student-er-twee-waard.html', 'gaat uw kind op kot een verzekerde student er twee waard'),
+        ],
+        # --- bunq (8 URLs) ---
+        "bunq": [
+            ('https://www.bunq.com/personal', 'personal banking proposition (pan-European, incl. Belgium)'),
+            ('https://www.bunq.com/personal/cards', 'personal cards (pan-European, incl. Belgium)'),
+            ('https://www.bunq.com/personal/features', 'personal banking features (pan-European, incl. Belgium)'),
+            ('https://www.bunq.com/personal/features/credit-card', 'credit cards / digital cards (pan-European, incl. Belgium)'),
+            ('https://www.bunq.com/personal/features/savings-accounts', 'savings accounts (pan-European, incl. Belgium)'),
+            ('https://www.bunq.com/personal/plans', 'personal banking plans comparison (pan-European, incl. Belgium)'),
+            ('https://www.bunq.com/personal/use-cases', 'personal banking use cases (pan-European, incl. Belgium)'),
+            ('https://www.bunq.com/personal/use-cases/students', 'student banking — Belgium eligibility, students up to 25'),
+        ],
+        # --- N26 (10 URLs) ---
+        "n26": [
+            ('https://n26.com/en-be', 'Belgium personal banking homepage — 18+'),
+            ('https://n26.com/en-be/bank-account', 'personal bank account — 18+'),
+            ('https://n26.com/en-be/cards', 'personal cards'),
+            ('https://n26.com/en-be/instant-savings', 'Instant Savings — Belgium'),
+            ('https://n26.com/en-be/open-bank-account', 'open an N26 bank account'),
+            ('https://n26.com/en-be/plans', 'personal account plans comparison'),
+            ('https://n26.com/en-be/stocks-etfs', 'stocks and ETFs / investing'),
+            ('https://n26.com/en-be/travel', 'travel banking proposition'),
+            ('https://n26.com/en-be/under-18s', 'under 18s'),
+            ('https://n26.com/en-eu/blog/how-to-open-a-bank-account-in-belgium', 'how to open a bank account in belgium'),
+        ],
+        # --- Revolut (5 URLs) ---
+        "revolut": [
+            ('https://help.revolut.com/en-BE/help/app-features/savings-vaults/getting-started-with-instant-access-savings', 'Instant Access Savings - Belgium eligibility'),
+            ('https://help.revolut.com/fr-BE/help/profile-and-plan/revolut-junior/', 'Revolut Kids & Teens (<18) - Belgique, FR'),
+            ('https://help.revolut.com/nl-BE/help/profile-and-plan/revolut-junior/', 'Revolut Kids & Teens (<18) - Belgium, NL'),
+            ('https://www.revolut.com/en-BE/open-bank-account/', 'open a Revolut bank account in Belgium - plans comparison'),
+            ('https://www.revolut.com/nl-BE/legal/paid-plans/', 'Plus/Premium/Metal plans incl. Kids & Teens account limits - Belgium'),
+        ], 
 }
 
-
 def get_urls(bank: str) -> list[str]:
-    """Return just the URL strings for a bank, dropping the notes."""
-    return [url for url, _note in CANDIDATE_URLS.get(bank, [])]
+    """Return URL strings for a bank."""
+    return [
+        url
+        for url, _note in CANDIDATE_URLS.get(bank, [])
+    ]

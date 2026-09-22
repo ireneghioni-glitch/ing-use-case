@@ -54,42 +54,45 @@ CHECKERS = build_checkers(ROBOTS_TXT)
 
 BANK_INFO = {
     "ing":        {"display": "ING",                "bank_type": "traditional", "domains": ["ing.be"]},
-    "ing_adult":  {"display": "ING",                "bank_type": "traditional", "domains": ["ing.be"]},
     "bnp_fortis": {"display": "BNP Paribas Fortis",  "bank_type": "traditional", "domains": ["bnpparibasfortis.be"]},
-    "kbc":        {"display": "KBC",                "bank_type": "traditional", "domains": ["kbcbrussels.be", "kbc.be"]},
+    "kbc":        {"display": "KBC",                "bank_type": "traditional", "domains": ["kbc.be", "kbcbrussels.be"]},
     "belfius":    {"display": "Belfius",             "bank_type": "traditional", "domains": ["belfius.be"]},
     "revolut":    {"display": "Revolut",             "bank_type": "challenger",  "domains": ["revolut.com"]},
-    "hello_bank": {"display": "Hello bank!",         "bank_type": "challenger",  "domains": ["hellobank.be"]},
     "argenta":    {"display": "Argenta",             "bank_type": "traditional", "domains": ["argenta.be"]},
     "n26":        {"display": "N26",                 "bank_type": "challenger",  "domains": ["n26.com"]},
     "beobank":    {"display": "Beobank",              "bank_type": "traditional", "domains": ["beobank.be"]},
+    "bunq":       {"display": "bunq",                 "bank_type": "challenger", "domains": ["bunq.com"]},
 }
 
 # Default audience_label per bank. NOTE: several banks' candidate lists mix
 # youth-specific AND general/adult comparator pages under one key (see the
 # "[NAV] general ... — adult equivalent" notes in candidate_urls.py for
-# hello_bank, n26, beobank, kbc). This per-bank default is an approximation,
-# not a per-URL ground truth — flagged here rather than silently assumed
-# accurate. Only ing_adult is reliably "general_adult" end-to-end.
-DEFAULT_AUDIENCE_LABEL = {
-    "ing_adult": "general_adult",
-}
+# n26, beobank, kbc, bunq). This per-bank default is an approximation, not
+# a per-URL ground truth — flagged here rather than silently assumed
+# accurate.
+DEFAULT_AUDIENCE_LABEL = {}
 
 # Maps a URL's actual domain to the robots-checker key that has that
-# domain's robots.txt loaded (see robots_checker.py's ROBOTS_TXT dict,
-# still keyed by the original 5 banks). Domains not listed here have NO
-# robots.txt loaded — scraping them is refused rather than guessed at.
+# domain's robots.txt loaded (see robots_checker.py's ROBOTS_TXT dict).
+# Domains not listed here have NO robots.txt loaded — scraping them is
+# refused rather than guessed at.
 DOMAIN_TO_ROBOTS_KEY = {
     "ing.be": "ing",
     "bnpparibasfortis.be": "bnp_fortis",
-    "kbcbrussels.be": "kbc",
     "belfius.be": "belfius",
     "revolut.com": "revolut",
     "n26.com": "n26",
-    # NOT YET AVAILABLE — robots.txt content needed before these can be
-    # scraped: kbc.be, hellobank.be, argenta.be, n26.com, beobank.be.
-    # Paste each site's robots.txt (same as done for the first 5 banks)
-    # and add an entry to robots_checker.py's ROBOTS_TXT dict + here.
+    "argenta.be": "argenta",
+    "beobank.be": "beobank",
+    "bunq.com": "bunq",
+    # kbc.be is where every KBC URL in candidate_urls.py actually lives.
+    # ASSUMPTION: mapped to the "kbc" robots.txt entry, which was sourced
+    # for kbcbrussels.be — same banking group, but kbc.be is a distinct
+    # domain and MAY have its own, different robots.txt. Verify against
+    # https://www.kbc.be/robots.txt before relying on this for real
+    # scraping; swap in the real content + a separate key if it differs.
+    "kbc.be": "kbc",
+    "kbcbrussels.be": "kbc",
 }
 
 BANK_DOMAINS = {bank: info["domains"] for bank, info in BANK_INFO.items()}
