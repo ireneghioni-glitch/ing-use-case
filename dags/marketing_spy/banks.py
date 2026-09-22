@@ -7,4 +7,6 @@ BANKS = {
     "revolut": "https://www.revolut.com",
     "n26": "https://n26.com",
     "beobank": "https://www.beobank.be",
+    "crelan": "https://crelan.be",
+    "bunq": "https://bunq.com",
 }

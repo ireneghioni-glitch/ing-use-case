@@ -1,25 +1,30 @@
 from urllib.parse import urlparse
 
-# Strict age/segment matching anchors
-YOUTH_TARGET_GROUPS = {
+# Strict age/segment matching anchors for Gen Z (18-29)
+GEN_Z_TARGET_GROUPS = {
     "YOUTH_ACCOUNT": [
         "compte-jeune", "compte-jeunes", "comptejeune", "youth-account",
-        "youth", "jeunes", "jeune", "jongeren", "jong",
-        "hello4you", "beats-new", "18-25", "under-18"
+        "youth", "jeunes", "jeune", "jongeren", "jong", "young",
+        "hello4you", "beats-new", "18-25", "under-18", "18-30", "under-30"
     ],
     "STUDENT_ACCOUNT": [
         "student", "studenten", "etudiant", "étudiant", "etudiants", "étudiants"
+    ],
+    "YOUNG_PROFESSIONAL": [
+        "young-professional", "young-professionals", "starter", "starters", 
+        "first-job", "premier-emploi", "eerste-baan", "freelance", "side-hustle"
     ]
 }
 
 PRODUCT_CATEGORIES = {
-    "CURRENT_ACCOUNT": ["compte-a-vue", "compte-courant", "current-account", "bank-account"],
+    "CURRENT_ACCOUNT": ["compte-a-vue", "compte-courant", "current-account", "bank-account", "free-account"],
     "SAVINGS": ["epargne", "épargne", "savings", "saving", "spaar"],
-    "INVESTING": ["investir", "investissement", "investing", "placement", "actions", "etf"],
-    "DEBIT_CARD": ["carte-de-debit", "carte-debit", "debit-card"],
+    "INVESTING": ["investir", "investissement", "investing", "placement", "actions", "etf", "crypto"],
+    "DEBIT_CARD": ["carte-de-debit", "carte-debit", "debit-card", "apple-pay", "google-pay"],
     "CREDIT_CARD": ["carte-de-credit", "carte-credit", "credit-card"],
-    "REFERRAL": ["referral", "referrals", "parrainage", "inviter", "invite"],
-    "TRAVEL": ["travel", "voyage", "voyager", "etranger", "étranger", "abroad"],
+    "REFERRAL": ["referral", "referrals", "parrainage", "inviter", "invite", "promo", "cashback"],
+    "TRAVEL": ["travel", "voyage", "voyager", "etranger", "étranger", "abroad", "fx"],
+    "SUSTAINABILITY": ["eco", "green", "sustainable", "durable", "esg", "impact"],
     "FINANCIAL_EDUCATION": ["conseils", "conseil", "tips", "guide", "education", "apprendre"]
 }
 
@@ -29,8 +34,8 @@ def classify_url(url: str) -> list[str]:
     path = urlparse(url).path.lower()
     tags = []
 
-    # Check Core Youth/Student categories
-    for tag, keywords in YOUTH_TARGET_GROUPS.items():
+    # Check Gen Z categories
+    for tag, keywords in GEN_Z_TARGET_GROUPS.items():
         if any(keyword in path for keyword in keywords):
             tags.append(tag)
 
@@ -44,13 +49,13 @@ def classify_url(url: str) -> list[str]:
 
 def is_relevant(url: str) -> bool:
     """
-    Returns True only if the URL's path actually targets Youth/Students.
+    Returns True only if the URL's path actually targets Gen Z (18-29).
     """
     path = urlparse(url).path.lower()
 
     return any(
         keyword in path
-        for keywords in YOUTH_TARGET_GROUPS.values()
+        for keywords in GEN_Z_TARGET_GROUPS.values()
         for keyword in keywords
     )
 
