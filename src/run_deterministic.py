@@ -144,6 +144,7 @@ def main() -> None:
             "asset_id": asset["asset_id"],
             "bank": asset.get("bank"),
             "audience_label": asset.get("audience_label"),
+            "language": asset.get("language")
         })
     meta_df = pl.DataFrame(meta_rows)
 
