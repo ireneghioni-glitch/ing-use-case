@@ -1,0 +1,49 @@
+2026-09-22 10:17:13,465 | INFO | === Scraping ing (ING) — 16 pages ===
+2026-09-22 10:17:15,590 | INFO | [1/16] https://www.ing.be/fr/particuliers/epargner/compte-epargne-jeune
+2026-09-22 10:17:17,929 | INFO | No cookie banner matched/dismissed for https://www.ing.be/fr/particuliers/epargner/compte-epargne-jeune (may not have one, or uses an unlisted selector)
+2026-09-22 10:17:19,779 | INFO | Saved ing__compte-epargne-jeune (html: ing_compte-epargne-jeune.html, screenshot: ing_compte-epargne-jeune.png)
+2026-09-22 10:17:19,781 | INFO | [2/16] https://www.ing.be/fr/particuliers/epargner/comparatif-compte-epargne-jeune
+2026-09-22 10:17:21,695 | INFO | No cookie banner matched/dismissed for https://www.ing.be/fr/particuliers/epargner/comparatif-compte-epargne-jeune (may not have one, or uses an unlisted selector)
+2026-09-22 10:17:22,809 | INFO | Saved ing__comparatif-compte-epargne-jeune (html: ing_comparatif-compte-epargne-jeune.html, screenshot: ing_comparatif-compte-epargne-jeune.png)
+2026-09-22 10:17:22,811 | INFO | [3/16] https://www.ing.be/fr/particuliers/jeunes
+2026-09-22 10:17:24,834 | INFO | No cookie banner matched/dismissed for https://www.ing.be/fr/particuliers/jeunes (may not have one, or uses an unlisted selector)
+2026-09-22 10:17:26,044 | INFO | Saved ing__jeunes (html: ing_jeunes.html, screenshot: ing_jeunes.png)
+2026-09-22 10:17:26,044 | INFO | [4/16] https://www.ing.be/fr/particuliers/cartes-de-credit/carte-de-credit-jeunes
+2026-09-22 10:17:28,094 | INFO | No cookie banner matched/dismissed for https://www.ing.be/fr/particuliers/cartes-de-credit/carte-de-credit-jeunes (may not have one, or uses an unlisted selector)
+2026-09-22 10:17:29,874 | INFO | Saved ing__carte-de-credit-jeunes (html: ing_carte-de-credit-jeunes.html, screenshot: ing_carte-de-credit-jeunes.png)
+2026-09-22 10:17:29,874 | INFO | [5/16] https://www.ing.be/fr/particuliers/gerer-le-quotidien/turning18_forparents
+2026-09-22 10:17:31,854 | INFO | No cookie banner matched/dismissed for https://www.ing.be/fr/particuliers/gerer-le-quotidien/turning18_forparents (may not have one, or uses an unlisted selector)
+2026-09-22 10:17:33,281 | INFO | Saved ing__turning18-forparents (html: ing_turning18-forparents.html, screenshot: ing_turning18-forparents.png)
+2026-09-22 10:17:33,281 | INFO | [6/16] https://www.ing.be/fr/particuliers/epargner/compte-epargne-automatique-jeune
+2026-09-22 10:17:35,404 | INFO | No cookie banner matched/dismissed for https://www.ing.be/fr/particuliers/epargner/compte-epargne-automatique-jeune (may not have one, or uses an unlisted selector)
+2026-09-22 10:17:36,901 | INFO | Saved ing__compte-epargne-automatique-jeune (html: ing_compte-epargne-automatique-jeune.html, screenshot: ing_compte-epargne-automatique-jeune.png)
+2026-09-22 10:17:36,901 | INFO | [7/16] https://www.ing.be/fr/particuliers/comptes-bancaire-packs/pack-go
+2026-09-22 10:17:38,765 | INFO | No cookie banner matched/dismissed for https://www.ing.be/fr/particuliers/comptes-bancaire-packs/pack-go (may not have one, or uses an unlisted selector)
+2026-09-22 10:17:40,055 | INFO | Saved ing__pack-go (html: ing_pack-go.html, screenshot: ing_pack-go.png)
+2026-09-22 10:17:40,056 | INFO | [8/16] https://www.ing.be/fr/particuliers/comptes-bancaire-packs/pack-more-jeunes
+2026-09-22 10:17:42,040 | INFO | No cookie banner matched/dismissed for https://www.ing.be/fr/particuliers/comptes-bancaire-packs/pack-more-jeunes (may not have one, or uses an unlisted selector)
+2026-09-22 10:17:43,865 | INFO | Saved ing__pack-more-jeunes (html: ing_pack-more-jeunes.html, screenshot: ing_pack-more-jeunes.png)
+2026-09-22 10:17:43,865 | INFO | [9/16] https://www.ing.be/fr/particuliers/comptes-bancaire-packs/comparez-packs
+2026-09-22 10:17:45,822 | INFO | No cookie banner matched/dismissed for https://www.ing.be/fr/particuliers/comptes-bancaire-packs/comparez-packs (may not have one, or uses an unlisted selector)
+2026-09-22 10:17:47,756 | INFO | Saved ing__comparez-packs (html: ing_comparez-packs.html, screenshot: ing_comparez-packs.png)
+2026-09-22 10:17:47,756 | INFO | [10/16] https://www.ing.be/fr/particuliers/comptes-bancaire-packs/pack-more
+2026-09-22 10:17:49,739 | INFO | No cookie banner matched/dismissed for https://www.ing.be/fr/particuliers/comptes-bancaire-packs/pack-more (may not have one, or uses an unlisted selector)
+2026-09-22 10:17:52,108 | INFO | Saved ing__pack-more (html: ing_pack-more.html, screenshot: ing_pack-more.png)
+2026-09-22 10:17:52,108 | INFO | [11/16] https://www.ing.be/fr/particuliers/gerer-le-quotidien/ing-plus-deals
+2026-09-22 10:17:54,113 | INFO | No cookie banner matched/dismissed for https://www.ing.be/fr/particuliers/gerer-le-quotidien/ing-plus-deals (may not have one, or uses an unlisted selector)
+2026-09-22 10:17:55,749 | INFO | Saved ing__ing-plus-deals (html: ing_ing-plus-deals.html, screenshot: ing_ing-plus-deals.png)
+2026-09-22 10:17:55,749 | INFO | [12/16] https://www.ing.be/fr/particuliers/comptes-bancaire-packs/compte-jeune
+2026-09-22 10:17:57,659 | INFO | No cookie banner matched/dismissed for https://www.ing.be/fr/particuliers/comptes-bancaire-packs/compte-jeune (may not have one, or uses an unlisted selector)
+2026-09-22 10:17:59,280 | INFO | Saved ing__compte-jeune (html: ing_compte-jeune.html, screenshot: ing_compte-jeune.png)
+2026-09-22 10:17:59,280 | INFO | [13/16] https://www.ing.be/fr/particuliers/gerer-le-quotidien/carte-de-debit
+2026-09-22 10:18:01,241 | INFO | No cookie banner matched/dismissed for https://www.ing.be/fr/particuliers/gerer-le-quotidien/carte-de-debit (may not have one, or uses an unlisted selector)
+2026-09-22 10:18:02,865 | INFO | Saved ing__carte-de-debit (html: ing_carte-de-debit.html, screenshot: ing_carte-de-debit.png)
+2026-09-22 10:18:02,865 | INFO | [14/16] https://www.ing.be/fr/particuliers/comptes-bancaire-packs/ouvrir-un-compte-bancaire-en-ligne
+2026-09-22 10:18:04,834 | INFO | No cookie banner matched/dismissed for https://www.ing.be/fr/particuliers/comptes-bancaire-packs/ouvrir-un-compte-bancaire-en-ligne (may not have one, or uses an unlisted selector)
+2026-09-22 10:18:06,524 | INFO | Saved ing__ouvrir-un-compte-bancaire-en-ligne (html: ing_ouvrir-un-compte-bancaire-en-ligne.html, screenshot: ing_ouvrir-un-compte-bancaire-en-ligne.png)
+2026-09-22 10:18:06,524 | INFO | [15/16] https://www.ing.be/fr/particuliers/gerer-le-quotidien/mgm-inviter-ao
+2026-09-22 10:18:08,339 | INFO | No cookie banner matched/dismissed for https://www.ing.be/fr/particuliers/gerer-le-quotidien/mgm-inviter-ao (may not have one, or uses an unlisted selector)
+2026-09-22 10:18:10,277 | INFO | Saved ing__mgm-inviter-ao (html: ing_mgm-inviter-ao.html, screenshot: ing_mgm-inviter-ao.png)
+2026-09-22 10:18:10,278 | INFO | [16/16] https://www.ing.be/fr/particuliers/epargner/epargne-vers-propriete
+2026-09-22 10:18:12,323 | INFO | Dismissed cookie banner via 'ing-form ing-button' (frame: https://www.ing.be/fr/particuliers/epargner/epargne-vers-pro) on https://www.ing.be/fr/particuliers/epargner/epargne-vers-propriete
+2026-09-22 10:18:14,584 | INFO | Saved ing__epargne-vers-propriete (html: ing_epargne-vers-propriete.html, screenshot: ing_epargne-vers-propriete.png)
