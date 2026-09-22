@@ -1,0 +1,703 @@
+<!DOCTYPE html><html lang="fr" class="js ck-accepted wf-os-fullyLoaded wf-os-loaded focus-within"><head class="at-element-marker"><style type="text/css">.tippy-iOS{cursor:pointer!important}.tippy-notransition{transition:none!important}.tippy-popper{-webkit-perspective:700px;perspective:700px;z-index:9999;outline:0;transition-timing-function:cubic-bezier(.165,.84,.44,1);pointer-events:none;line-height:1.4;max-width:calc(100% - 10px)}.tippy-popper[x-placement^=top] .tippy-backdrop{border-radius:40% 40% 0 0}.tippy-popper[x-placement^=top] .tippy-roundarrow{bottom:-8px;-webkit-transform-origin:50% 0;transform-origin:50% 0}.tippy-popper[x-placement^=top] .tippy-roundarrow svg{position:absolute;left:0;-webkit-transform:rotate(180deg);transform:rotate(180deg)}.tippy-popper[x-placement^=top] .tippy-arrow{border-top:8px solid #333;border-right:8px solid transparent;border-left:8px solid transparent;bottom:-7px;margin:0 6px;-webkit-transform-origin:50% 0;transform-origin:50% 0}.tippy-popper[x-placement^=top] .tippy-backdrop{-webkit-transform-origin:0 25%;transform-origin:0 25%}.tippy-popper[x-placement^=top] .tippy-backdrop[data-state=visible]{-webkit-transform:scale(1) translate(-50%,-55%);transform:scale(1) translate(-50%,-55%)}.tippy-popper[x-placement^=top] .tippy-backdrop[data-state=hidden]{-webkit-transform:scale(.2) translate(-50%,-45%);transform:scale(.2) translate(-50%,-45%);opacity:0}.tippy-popper[x-placement^=top] [data-animation=shift-toward][data-state=visible]{-webkit-transform:translateY(-10px);transform:translateY(-10px)}.tippy-popper[x-placement^=top] [data-animation=shift-toward][data-state=hidden]{opacity:0;-webkit-transform:translateY(-20px);transform:translateY(-20px)}.tippy-popper[x-placement^=top] [data-animation=perspective]{-webkit-transform-origin:bottom;transform-origin:bottom}.tippy-popper[x-placement^=top] [data-animation=perspective][data-state=visible]{-webkit-transform:translateY(-10px) rotateX(0);transform:translateY(-10px) rotateX(0)}.tippy-popper[x-placement^=top] [data-animation=perspective][data-state=hidden]{opacity:0;-webkit-transform:translateY(0) rotateX(60deg);transform:translateY(0) rotateX(60deg)}.tippy-popper[x-placement^=top] [data-animation=fade][data-state=visible]{-webkit-transform:translateY(-10px);transform:translateY(-10px)}.tippy-popper[x-placement^=top] [data-animation=fade][data-state=hidden]{opacity:0;-webkit-transform:translateY(-10px);transform:translateY(-10px)}.tippy-popper[x-placement^=top] [data-animation=shift-away][data-state=visible]{-webkit-transform:translateY(-10px);transform:translateY(-10px)}.tippy-popper[x-placement^=top] [data-animation=shift-away][data-state=hidden]{opacity:0;-webkit-transform:translateY(0);transform:translateY(0)}.tippy-popper[x-placement^=top] [data-animation=scale][data-state=visible]{-webkit-transform:translateY(-10px) scale(1);transform:translateY(-10px) scale(1)}.tippy-popper[x-placement^=top] [data-animation=scale][data-state=hidden]{opacity:0;-webkit-transform:translateY(0) scale(.5);transform:translateY(0) scale(.5)}.tippy-popper[x-placement^=bottom] .tippy-backdrop{border-radius:0 0 30% 30%}.tippy-popper[x-placement^=bottom] .tippy-roundarrow{top:-8px;-webkit-transform-origin:50% 100%;transform-origin:50% 100%}.tippy-popper[x-placement^=bottom] .tippy-roundarrow svg{position:absolute;left:0;-webkit-transform:rotate(0);transform:rotate(0)}.tippy-popper[x-placement^=bottom] .tippy-arrow{border-bottom:8px solid #333;border-right:8px solid transparent;border-left:8px solid transparent;top:-7px;margin:0 6px;-webkit-transform-origin:50% 100%;transform-origin:50% 100%}.tippy-popper[x-placement^=bottom] .tippy-backdrop{-webkit-transform-origin:0 -50%;transform-origin:0 -50%}.tippy-popper[x-placement^=bottom] .tippy-backdrop[data-state=visible]{-webkit-transform:scale(1) translate(-50%,-45%);transform:scale(1) translate(-50%,-45%)}.tippy-popper[x-placement^=bottom] .tippy-backdrop[data-state=hidden]{-webkit-transform:scale(.2) translate(-50%);transform:scale(.2) translate(-50%);opacity:0}.tippy-popper[x-placement^=bottom] [data-animation=shift-toward][data-state=visible]{-webkit-transform:translateY(10px);transform:translateY(10px)}.tippy-popper[x-placement^=bottom] [data-animation=shift-toward][data-state=hidden]{opacity:0;-webkit-transform:translateY(20px);transform:translateY(20px)}.tippy-popper[x-placement^=bottom] [data-animation=perspective]{-webkit-transform-origin:top;transform-origin:top}.tippy-popper[x-placement^=bottom] [data-animation=perspective][data-state=visible]{-webkit-transform:translateY(10px) rotateX(0);transform:translateY(10px) rotateX(0)}.tippy-popper[x-placement^=bottom] [data-animation=perspective][data-state=hidden]{opacity:0;-webkit-transform:translateY(0) rotateX(-60deg);transform:translateY(0) rotateX(-60deg)}.tippy-popper[x-placement^=bottom] [data-animation=fade][data-state=visible]{-webkit-transform:translateY(10px);transform:translateY(10px)}.tippy-popper[x-placement^=bottom] [data-animation=fade][data-state=hidden]{opacity:0;-webkit-transform:translateY(10px);transform:translateY(10px)}.tippy-popper[x-placement^=bottom] [data-animation=shift-away][data-state=visible]{-webkit-transform:translateY(10px);transform:translateY(10px)}.tippy-popper[x-placement^=bottom] [data-animation=shift-away][data-state=hidden]{opacity:0;-webkit-transform:translateY(0);transform:translateY(0)}.tippy-popper[x-placement^=bottom] [data-animation=scale][data-state=visible]{-webkit-transform:translateY(10px) scale(1);transform:translateY(10px) scale(1)}.tippy-popper[x-placement^=bottom] [data-animation=scale][data-state=hidden]{opacity:0;-webkit-transform:translateY(0) scale(.5);transform:translateY(0) scale(.5)}.tippy-popper[x-placement^=left] .tippy-backdrop{border-radius:50% 0 0 50%}.tippy-popper[x-placement^=left] .tippy-roundarrow{right:-16px;-webkit-transform-origin:33.33333333% 50%;transform-origin:33.33333333% 50%}.tippy-popper[x-placement^=left] .tippy-roundarrow svg{position:absolute;left:0;-webkit-transform:rotate(90deg);transform:rotate(90deg)}.tippy-popper[x-placement^=left] .tippy-arrow{border-left:8px solid #333;border-top:8px solid transparent;border-bottom:8px solid transparent;right:-7px;margin:3px 0;-webkit-transform-origin:0 50%;transform-origin:0 50%}.tippy-popper[x-placement^=left] .tippy-backdrop{-webkit-transform-origin:50% 0;transform-origin:50% 0}.tippy-popper[x-placement^=left] .tippy-backdrop[data-state=visible]{-webkit-transform:scale(1) translate(-50%,-50%);transform:scale(1) translate(-50%,-50%)}.tippy-popper[x-placement^=left] .tippy-backdrop[data-state=hidden]{-webkit-transform:scale(.2) translate(-75%,-50%);transform:scale(.2) translate(-75%,-50%);opacity:0}.tippy-popper[x-placement^=left] [data-animation=shift-toward][data-state=visible]{-webkit-transform:translateX(-10px);transform:translateX(-10px)}.tippy-popper[x-placement^=left] [data-animation=shift-toward][data-state=hidden]{opacity:0;-webkit-transform:translateX(-20px);transform:translateX(-20px)}.tippy-popper[x-placement^=left] [data-animation=perspective]{-webkit-transform-origin:right;transform-origin:right}.tippy-popper[x-placement^=left] [data-animation=perspective][data-state=visible]{-webkit-transform:translateX(-10px) rotateY(0);transform:translateX(-10px) rotateY(0)}.tippy-popper[x-placement^=left] [data-animation=perspective][data-state=hidden]{opacity:0;-webkit-transform:translateX(0) rotateY(-60deg);transform:translateX(0) rotateY(-60deg)}.tippy-popper[x-placement^=left] [data-animation=fade][data-state=visible]{-webkit-transform:translateX(-10px);transform:translateX(-10px)}.tippy-popper[x-placement^=left] [data-animation=fade][data-state=hidden]{opacity:0;-webkit-transform:translateX(-10px);transform:translateX(-10px)}.tippy-popper[x-placement^=left] [data-animation=shift-away][data-state=visible]{-webkit-transform:translateX(-10px);transform:translateX(-10px)}.tippy-popper[x-placement^=left] [data-animation=shift-away][data-state=hidden]{opacity:0;-webkit-transform:translateX(0);transform:translateX(0)}.tippy-popper[x-placement^=left] [data-animation=scale][data-state=visible]{-webkit-transform:translateX(-10px) scale(1);transform:translateX(-10px) scale(1)}.tippy-popper[x-placement^=left] [data-animation=scale][data-state=hidden]{opacity:0;-webkit-transform:translateX(0) scale(.5);transform:translateX(0) scale(.5)}.tippy-popper[x-placement^=right] .tippy-backdrop{border-radius:0 50% 50% 0}.tippy-popper[x-placement^=right] .tippy-roundarrow{left:-16px;-webkit-transform-origin:66.66666666% 50%;transform-origin:66.66666666% 50%}.tippy-popper[x-placement^=right] .tippy-roundarrow svg{position:absolute;left:0;-webkit-transform:rotate(-90deg);transform:rotate(-90deg)}.tippy-popper[x-placement^=right] .tippy-arrow{border-right:8px solid #333;border-top:8px solid transparent;border-bottom:8px solid transparent;left:-7px;margin:3px 0;-webkit-transform-origin:100% 50%;transform-origin:100% 50%}.tippy-popper[x-placement^=right] .tippy-backdrop{-webkit-transform-origin:-50% 0;transform-origin:-50% 0}.tippy-popper[x-placement^=right] .tippy-backdrop[data-state=visible]{-webkit-transform:scale(1) translate(-50%,-50%);transform:scale(1) translate(-50%,-50%)}.tippy-popper[x-placement^=right] .tippy-backdrop[data-state=hidden]{-webkit-transform:scale(.2) translate(-25%,-50%);transform:scale(.2) translate(-25%,-50%);opacity:0}.tippy-popper[x-placement^=right] [data-animation=shift-toward][data-state=visible]{-webkit-transform:translateX(10px);transform:translateX(10px)}.tippy-popper[x-placement^=right] [data-animation=shift-toward][data-state=hidden]{opacity:0;-webkit-transform:translateX(20px);transform:translateX(20px)}.tippy-popper[x-placement^=right] [data-animation=perspective]{-webkit-transform-origin:left;transform-origin:left}.tippy-popper[x-placement^=right] [data-animation=perspective][data-state=visible]{-webkit-transform:translateX(10px) rotateY(0);transform:translateX(10px) rotateY(0)}.tippy-popper[x-placement^=right] [data-animation=perspective][data-state=hidden]{opacity:0;-webkit-transform:translateX(0) rotateY(60deg);transform:translateX(0) rotateY(60deg)}.tippy-popper[x-placement^=right] [data-animation=fade][data-state=visible]{-webkit-transform:translateX(10px);transform:translateX(10px)}.tippy-popper[x-placement^=right] [data-animation=fade][data-state=hidden]{opacity:0;-webkit-transform:translateX(10px);transform:translateX(10px)}.tippy-popper[x-placement^=right] [data-animation=shift-away][data-state=visible]{-webkit-transform:translateX(10px);transform:translateX(10px)}.tippy-popper[x-placement^=right] [data-animation=shift-away][data-state=hidden]{opacity:0;-webkit-transform:translateX(0);transform:translateX(0)}.tippy-popper[x-placement^=right] [data-animation=scale][data-state=visible]{-webkit-transform:translateX(10px) scale(1);transform:translateX(10px) scale(1)}.tippy-popper[x-placement^=right] [data-animation=scale][data-state=hidden]{opacity:0;-webkit-transform:translateX(0) scale(.5);transform:translateX(0) scale(.5)}.tippy-tooltip{position:relative;color:#fff;border-radius:4px;font-size:.9rem;padding:.3rem .6rem;max-width:350px;text-align:center;will-change:transform;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;background-color:#333}.tippy-tooltip[data-size=small]{padding:.2rem .4rem;font-size:.75rem}.tippy-tooltip[data-size=large]{padding:.4rem .8rem;font-size:1rem}.tippy-tooltip[data-animatefill]{overflow:hidden;background-color:transparent}.tippy-tooltip[data-interactive],.tippy-tooltip[data-interactive] path{pointer-events:auto}.tippy-tooltip[data-inertia][data-state=visible]{transition-timing-function:cubic-bezier(.54,1.5,.38,1.11)}.tippy-tooltip[data-inertia][data-state=hidden]{transition-timing-function:ease}.tippy-arrow,.tippy-roundarrow{position:absolute;width:0;height:0}.tippy-roundarrow{width:24px;height:8px;fill:#333;pointer-events:none}.tippy-backdrop{position:absolute;will-change:transform;background-color:#333;border-radius:50%;width:calc(110% + 2rem);left:50%;top:50%;z-index:-1;transition:all cubic-bezier(.46,.1,.52,.98);-webkit-backface-visibility:hidden;backface-visibility:hidden}.tippy-backdrop:after{content:"";float:left;padding-top:100%}.tippy-backdrop+.tippy-content{transition-property:opacity;will-change:opacity}.tippy-backdrop+.tippy-content[data-state=visible]{opacity:1}.tippy-backdrop+.tippy-content[data-state=hidden]{opacity:0}</style>
+  <title>Stage ou job étudiant | Argenta</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="content-page-ref" content="UmwUq4qpqxMEiysBKWXrImoLVdwxzgyGEHJ3m3FHWMqHvJx0yKIGYhq1zqtVYsFwmR7cUGEGUczyTj8LCdVhi_c14k82qahR27fvHG7UmnChWwaa0WTdNbNYxziF-WWR">
+<script src="https://connect.facebook.net/signals/config/432146050314601?v=2.9.406&amp;r=c2&amp;domain=www.argenta.be&amp;hme=8a9e6a9b82926b8f07fd0a2edd8b8f1ef075648059d1bb52ec651feab764c219&amp;ex_m=117%2C236%2C168%2C27%2C81%2C82%2C160%2C77%2C76%2C11%2C178%2C101%2C20%2C152%2C140%2C46%2C84%2C89%2C148%2C173%2C180%2C8%2C4%2C5%2C7%2C6%2C3%2C102%2C114%2C32%2C17%2C31%2C18%2C33%2C34%2C35%2C37%2C55%2C161%2C86%2C125%2C22%2C24%2C51%2C47%2C49%2C48%2C94%2C103%2C107%2C123%2C159%2C162%2C53%2C124%2C29%2C26%2C132%2C78%2C43%2C164%2C163%2C165%2C156%2C154%2C30%2C42%2C66%2C122%2C175%2C79%2C21%2C127%2C92%2C75%2C23%2C96%2C97%2C129%2C95%2C150%2C149%2C153%2C108%2C174%2C177%2C41%2C56%2C126%2C54%2C182%2C109%2C181%2C203%2C250%2C83%2C264%2C263%2C262%2C14%2C25%2C28%2C40%2C62%2C116%2C68%2C10%2C72%2C110%2C111%2C112%2C118%2C143%2C38%2C36%2C145%2C146%2C147%2C142%2C141%2C169%2C85%2C172%2C170%2C171%2C57%2C67%2C136%2C19%2C176%2C52%2C313%2C314%2C315%2C312%2C328%2C353%2C243%2C232%2C69%2C233%2C231%2C356%2C347%2C59%2C244%2C120%2C144%2C91%2C134%2C61%2C133%2C139%2C138%2C65%2C73%2C71%2C166%2C87%2C88%2C128%2C44%2C39%2C60%2C63%2C113%2C179%2C1%2C137%2C16%2C135%2C12%2C2%2C64%2C104%2C15%2C74%2C70%2C131%2C100%2C99%2C184%2C185%2C105%2C106%2C9%2C115%2C183%2C58%2C157%2C98%2C90%2C80%2C130%2C119%2C50%2C158%2C0%2C93%2C151%2C155%2C167%2C45%2C121%2C13%2C186" async=""></script><script async="" src="https://connect.facebook.net/en_US/fbevents.js"></script><script defer="defer" type="text/javascript" src="/.rum/@adobe/helix-rum-js@%5E2/dist/micro.js"></script>
+<link rel="alternate" hreflang="fr" href="https://www.argenta.be/fr/travailler-chez-argenta/stage-job-etudiant.html">
+  <link rel="alternate" hreflang="nl" href="https://www.argenta.be/nl/werken-bij-argenta/traineeship-stage-studentenjob.html">
+  <link rel="canonical" href="https://www.argenta.be/fr/travailler-chez-argenta/stage-job-etudiant.html">
+  <meta property="og:title" content="Stage ou job étudiant">
+  <meta property="og:description" content="Un traineeship chez Argenta nourrit votre talent. Pendant deux ans, vous suivrez un parcours sur mesure. Vous serez encadré(e) et nous adapterons votre parcours en fonction de vos besoins et de vos ambitions de développement. ">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.argenta.be/fr/travailler-chez-argenta/stage-job-etudiant.html">
+  <meta property="og:image" content="https://www.argenta.be/content/dam/argenta/foto/hoofdzetel/hoofdzetel-collegas-computers-1500x1000.jpg">
+  <meta property="og:locale" content="fr">
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:title" content="Stage ou job étudiant">
+  <meta property="twitter:description" content="Un traineeship chez Argenta nourrit votre talent. Pendant deux ans, vous suivrez un parcours sur mesure. Vous serez encadré(e) et nous adapterons votre parcours en fonction de vos besoins et de vos ambitions de développement. ">
+  <meta property="twitter:image" content="https://www.argenta.be/content/dam/argenta/foto/hoofdzetel/hoofdzetel-collegas-computers-1500x1000.jpg">
+  <meta name="keywords" content="jobs">
+  <meta name="template" content="campaign-site-template">
+  <meta name="google-site-verification" content="hmWDZVdzFREBmkLz-ktF456OQX8L_I8griLOrLMLTlU">
+  <meta name="apple-itunes-app" content="app-id=893585833">
+  <link rel="icon" type="image/png" sizes="32x32" href="/etc.clientlibs/argenta/clientlibs/clientlib-site/resources/img/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/etc.clientlibs/argenta/clientlibs/clientlib-site/resources/img/favicons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/etc.clientlibs/argenta/clientlibs/clientlib-site/resources/img/favicons/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="57x57" href="/etc.clientlibs/argenta/clientlibs/clientlib-site/resources/img/favicons//favicon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/etc.clientlibs/argenta/clientlibs/clientlib-site/resources/img/favicons/favicon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/etc.clientlibs/argenta/clientlibs/clientlib-site/resources/img/favicons/img/favicons/favicon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/etc.clientlibs/argenta/clientlibs/clientlib-site/resources/img/favicons/favicon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/etc.clientlibs/argenta/clientlibs/clientlib-site/resources/img/favicons/favicon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/etc.clientlibs/argenta/clientlibs/clientlib-site/resources/img/favicons/favicon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/etc.clientlibs/argenta/clientlibs/clientlib-site/resources/img/favicons/favicon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/etc.clientlibs/argenta/clientlibs/clientlib-site/resources/img/favicons/favicon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/etc.clientlibs/argenta/clientlibs/clientlib-site/resources/img/favicons/favicon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/etc.clientlibs/argenta/clientlibs/clientlib-site/resources/img/favicons//favicon-192x192.png">
+  <meta name="msapplication-TileColor" content="#00A160">
+  <meta name="msapplication-TileImage" content="/etc.clientlibs/argenta/clientlibs/clientlib-site/resources/img/favicons/favicon-144-144.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/etc.clientlibs/argenta/clientlibs/clientlib-base.lc-29b95d5f0fdc834ea7835e83a998bd3f-lc.min.css" type="text/css">
+  <meta name="description" content="Un traineeship chez Argenta nourrit votre talent. Pendant deux ans, vous suivrez un parcours sur mesure. Vous serez encadré(e) et nous adapterons votre parcours en fonction de vos besoins et de vos ambitions de développement. ">
+  <script src="/etc.clientlibs/clientlibs/granite/jquery.lc-7842899024219bcbdb5e72c946870b79-lc.min.js"></script>
+  <script src="/etc.clientlibs/argenta/clientlibs/clientlib-headlibs.lc-add91d8c5130031d4e6f28b88eb061ed-lc.min.js"></script>
+  <script>window.digitalData = {"version":"1.0","page":{"pageInfo":{"publisher":"Argenta","language":"fr","destinationURL":"https://www.argenta.be/fr/travailler-chez-argenta/stage-job-etudiant.html","sysEnv":"prd","issueDate":"2025-12-04T15:00:32+0000","effectiveDate":"2025-12-04T15:00:32+0000","pageID":"werken-bij-argenta/traineeship-stage-studentenjob","pageName":"werken-bij-argenta::traineeship-stage-studentenjob","breadcrumbs":["argenta","fr","werken-bij-argenta","traineeship-stage-studentenjob"]},"attributes":{"template":"campaign-site-template","tags":["jobs"],"tagIds":["producten:algemeen/jobs"],"pageUri":"/fr/werken-bij-argenta/traineeship-stage-studentenjob","pageContentType":"algemeen"},"category":{"primaryCategory":"Travailler chez Argenta","tag0":"jobs"}},"event":[]};</script>
+  <script>
+    var jsSupport = 'visibilityState' in document;
+    if (jsSupport) {
+        document.documentElement.classList.remove('no-js');
+        document.documentElement.classList.add('js');
+    }
+    (function () {
+        var cookieconsent = docCookies.getItem("acceptCookies");
+        if (cookieconsent === 'true') {
+            document.documentElement.className += " ck-accepted";
+        }
+        if (docCookies.hasItem('_technicalmessageclosed') && docCookies.getItem('_technicalmessageclosed') != null) {
+            document.documentElement.classList.add('notice--closed');
+        }
+    })();
+    var argentaJS = argentaJS || {};
+    argentaJS.clientlibResourcePath = "/etc.clientlibs/argenta/clientlibs/clientlib-site/resources";
+    argentaJS.acceptCookiesDomain = ".argenta.be";
+    argentaJS.exportLanguage = "fr";
+    argentaJS.officeFinderPath = "/content/argenta/fr/kantoorzoeker.html";
+    argentaJS.productContactFormPath = "https://www.argenta.be/fr/ContactForm.html";
+    argentaJS.productContactOfficeFinderPath = "/content/argenta/fr/product-flow-kantoorzoeker.html";
+    argentaJS.officeFinderChangeOfficePath = "/content/argenta/fr/modifier-votre-agence.html";
+    argentaJS.alternateLanguagePageUrl = "https://www.argenta.be/nl/werken-bij-argenta/traineeship-stage-studentenjob.html";
+    argentaJS.runMode = "publish";
+    argentaJS.cookiePolicyUpdatedDate = "1260279902";
+    argentaJS.cookieRedirectAfterSubmit = "https://homebank.argenta.be/webapp/fr/inscrire";
+    argentaJS.siteId = "argenta";
+
+    if (argentaJS.acceptCookiesDomain && argentaJS.acceptCookiesDomain.length > 0) {
+        if (!docCookies.hasItem('sat_track')) {
+            //docCookies.setItem('sat_track', 'true', 31536e3, "/", argentaJS.acceptCookiesDomain);
+        }
+    } else {
+        if (!docCookies.hasItem('sat_track')) {
+            //docCookies.setItem('sat_track', 'true', 31536e3, "/");
+        }
+    };
+
+    (function () {
+        "use strict";
+        if (sessionStorage.fontsLoadedCriticalFoftPreloadFallback) {
+            document.documentElement.className += " wf-os-fullyLoaded";
+            return;
+        } else if ("fonts" in document) {
+            document.fonts.load("1em open-sans").then(function () {
+                document.documentElement.className += " wf-os-loaded";
+                Promise.all([
+                    document.fonts.load("300 1em open-sans"),
+                    document.fonts.load("400 1em open-sans"),
+                    document.fonts.load("600 1em open-sans"),
+                    document.fonts.load("700 1em open-sans"),
+                    document.fonts.load("italic 1em open-sans"),
+                    document.fonts.load("400 1em RobotoSlab"),
+                    document.fonts.load("600 1em RobotoSlab")
+                ]).then(function () {
+                    document.documentElement.className += " wf-os-fullyLoaded";
+                    sessionStorage.fontsLoadedCriticalFoftPreloadFallback = true;
+                });
+            });
+        } else {
+            var ref = document.getElementsByTagName("script")[0];
+            var script = document.createElement("script");
+            script.src = "/etc.clientlibs/argenta/clientlibs/clientlib-site/js/font-loader.js";
+            script.async = true;
+            ref.parentNode.insertBefore(script, ref);
+        }
+    })();
+</script>
+  <script type="text/javascript" src="//assets.adobedtm.com/launch-EN1e9a9168323e464aa8d5c1e2eb78ceac.min.js"></script><script src="https://assets.adobedtm.com/extensions/EP31dbb9c60e404ba1aa6e746d49be6f29/AppMeasurement.min.js" async=""></script><script src="https://assets.adobedtm.com/extensions/EP31dbb9c60e404ba1aa6e746d49be6f29/AppMeasurement_Module_ActivityMap.min.js" async=""></script><style id="at-makers-style" class="at-flicker-control">
+.mboxDefault {visibility: hidden;}
+</style>
+ <script src="https://assets.adobedtm.com/44c3d46d97cf/ab323bad9348/7288dd4a148d/RCcfdf3120254549fda95d04bf06ec08f8-source.min.js" async=""></script><script type="text/javascript" async="" src="https://googleads.g.doubleclick.net/pagead/viewthroughconversion/991069717/?random=1790071043920&amp;cv=11&amp;fst=1790071043920&amp;bg=ffffff&amp;guid=ON&amp;async=1&amp;en=gtag.config&amp;gtm=45be69i2v9168567277za200zd9168567277xecxf1&amp;gcd=13t3t3t2t5l1&amp;dma_cps=a&amp;dma=1&amp;tag_exp=115616986~115938466~115938468~118131809~118897920~118897930~120213116~120385422~120469145~120469153~120847435&amp;u_w=1366&amp;u_h=900&amp;url=https%3A%2F%2Fwww.argenta.be%2Ffr%2Ftravailler-chez-argenta%2Fstage-job-etudiant.html&amp;rcb=14&amp;frm=0&amp;tiba=Stage%20ou%20job%20%C3%A9tudiant%20%7C%20Argenta&amp;hn=www.googleadservices.com&amp;npa=0&amp;pscdl=noapi&amp;auid=857417147.1790071016&amp;data=event%3Dgtag.config&amp;ept=9&amp;rfmt=3&amp;fmt=4"></script><script src="https://assets.adobedtm.com/44c3d46d97cf/ab323bad9348/7288dd4a148d/RC8f47b571070544bbbf9e800dfaa0b6d2-source.min.js" async=""></script><script src="https://assets.adobedtm.com/44c3d46d97cf/ab323bad9348/7288dd4a148d/RCd79c430cc90e48c6bc28298f342147f9-source.min.js" async=""></script><script src="https://assets.adobedtm.com/44c3d46d97cf/ab323bad9348/7288dd4a148d/RC18764039b0914aadbfd99fded29eb971-source.min.js" async=""></script><script src="https://ssttags.argenta.be/argentabe-web/prod/utag.1.js" async=""></script></head>
+ <body id="argenta-page" class="campaign-page page basicpage focus-within">
+  <!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+  <div id="dynamic_include_filter_div_5703"></div>
+  <a href="#site-content" class="skiplink">Aller au contenu principal</a>
+  <div class="xf-content-height">
+   <div class="root responsivegrid">
+    <div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+     <div class="responsivegrid aem-GridColumn--default--none aem-GridColumn aem-GridColumn--default--12 aem-GridColumn--offset--default--0">
+      <div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+       <div class="cookie-popup aem-GridColumn aem-GridColumn--default--12">
+        <div id="cookieConsentModal" class="cmp__modal cmp__modal--narrow" aria-hidden="true">
+         <div tabindex="-1" class="cmp__modal__overlay"></div>
+         <div class="cmp__modal__body" role="dialog">
+          <div class="cmp__modal__content">
+           <div class="cmp__modal__bd">
+            <header class="cmp-cookie__header">
+             <img src="/etc.clientlibs/argenta/clientlibs/clientlib-site/resources/img/argenta-logo.svg" alt="Argenta Banque d'Épargne" width="76" height="49">
+             <div class="c-langNav c-langNav--list">
+              <a data-analytics-type="Language Switch" href="/fr/travailler-chez-argenta/stage-job-etudiant.html" rel="alternate" hreflang="fr" lang="fr" class="is-active" aria-hidden="true">FR<span> - Français</span></a> <a data-analytics-type="Language Switch" href="/nl/werken-bij-argenta/traineeship-stage-studentenjob.html" rel="alternate" hreflang="nl" lang="nl">NL<span> - Nederlands</span></a>
+             </div>
+            </header>
+            <div class="cmp-cookie__section" id="cookieIntroSection">
+             <div class="title cmp-title--l cmp-title--mt0 cmp-cookie__sectionTitle u-title--NoHyphens">
+              <div class="cmp-title">
+               <h2 id="cookieIntroTitle" tabindex="1" class="cmp-title__text donthyphenate">La politique d’Argenta en matière de cookies</h2>
+              </div>
+             </div>
+             <div>
+              <div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+               <div class="text aem-GridColumn aem-GridColumn--default--12">
+                <div id="text-86da946291" class="cmp-text">
+                 <p>Argenta utilise différents types de cookies et de technologies connexes pour rendre votre visite du site web plus agréable. En acceptant ces cookies, vous nous permettez de mieux répondre à vos besoins et préférences. Vous avez toujours la possibilité de modifier les paramètres des cookies et de refuser les cookies personnalisés. Si vous souhaitez obtenir plus d'informations sur les différents types de cookies, cliquez sur «&nbsp;Gérer mes cookies&nbsp;».</p>
+                </div>
+               </div>
+              </div>
+             </div>
+             <div class="cmp-cookie__cta">
+              <button class="c-btn c-btn c-btn--primary" id="acceptAllCookiesBtn">Accepter tous les cookies</button>
+              <button class="c-btn c-btn c-btn--primary" id="rejectAllCookiesBtn">Refuser tous les cookies</button>
+              <button class="c-link js-setCookiePreference"><span>Gérer mes cookies</span></button>
+             </div>
+            </div>
+            <div class="cmp-cookie__section" id="cookiePreferencesSection" hidden="true">
+             <div class="title cmp-title--l cmp-title--mt0 cmp-cookie__sectionTitle">
+              <div class="cmp-title">
+               <h2 id="cookiePersonalisationTitle" tabindex="2" class="cmp-title__text">Personnalisez votre choix de cookies</h2>
+              </div>
+             </div>
+             <div class="title  cmp-title--m cmp-title--icon cmp-title--left">
+              <div class="cmp-title">
+               <h3 class="cmp-title__text">
+                <svg class="cmp-title__icon" focusable="false" aria-hidden="true" width="32" height="32">
+                 <use xlink:href="/etc.clientlibs/argenta/clientlibs/clientlib-site/resources/img/symbol-defs.svg#icon-Check"></use>
+                </svg>
+                Cookies fonctionnels (non modifiables)
+               </h3>
+              </div>
+             </div>
+             <div>
+              <div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+               <div class="text aem-GridColumn aem-GridColumn--default--12">
+                <div id="text-9b3c90c36c" class="cmp-text">
+                 <p>Ces cookies sont nécessaires au bon fonctionnement du site www.argenta.be et de la Banque par Internet.</p>
+                </div>
+               </div>
+               <div class="singlecollapsible aem-GridColumn aem-GridColumn--default--12">
+                <div class="cmp-collapsible">
+                 <button aria-controls="cmp-collapsible-894175227" aria-expanded="false" class="cmp-collapsible__trigger" data-behaviour="collapsible"><span>Plus d'informations sur les cookies fonctionnels</span>
+                  <svg aria-hidden="true" focusable="false" width="32" height="32" class="o-icon c-link__icon cmp-collapsible__trigger__icon">
+                   <use xlink:href="/etc.clientlibs/argenta/clientlibs/clientlib-site/resources/img/symbol-defs.svg#icon-chevron-circle-down"></use>
+                  </svg></button>
+                 <div class="cmp-collapsible__bd" aria-hidden="true" id="cmp-collapsible-894175227">
+                  <div class="text">
+                   <div class="cmp-text">
+                    <ul>
+                     <li>Votre choix linguistique sera sauvegardé.</li>
+                     <li>Votre agence sera enregistré.</li>
+                     <li>Votre session est sécurisée.</li>
+                     <li>Vous verrez la version standard de notre site web. Le contenu n'est pas adapté à vos préférences.</li>
+                    </ul>
+                   </div>
+                  </div>
+                 </div>
+                </div>
+               </div>
+              </div>
+             </div>
+             <h3><span class="c-toggle"> <input type="checkbox" name="personalisationCookies" id="personalisationCookies"> <label for="personalisationCookies">Cookies d'analyse et de personnalisation </label> </span></h3>
+             <div class="cmp-cookie__disclaimer cmp-cookie__disclaimer--unchecked hidden">
+              <p>Vous <b> ne consentez pas </b> à nos cookies.</p>
+             </div>
+             <div class="cmp-cookie__disclaimer cmp-cookie__disclaimer--checked">
+              <p>Vous <b> consentez </b> à nos cookies.</p>
+             </div>
+             <div>
+              <div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+               <div class="text aem-GridColumn aem-GridColumn--default--12">
+                <div id="text-f23e9e797f" class="cmp-text">
+                 <p>Ces cookies collectent et mesurent des données sur l'utilisation du site web et de la Banque par Internet et offrent une expérience plus personnelle et plus conviviale.</p>
+                </div>
+               </div>
+               <div class="singlecollapsible aem-GridColumn aem-GridColumn--default--12">
+                <div class="cmp-collapsible">
+                 <button aria-controls="cmp-collapsible-1270017507" aria-expanded="false" class="cmp-collapsible__trigger" data-behaviour="collapsible"><span>Plus d'informations sur les cookies d'analyse et de personnalisation</span>
+                  <svg aria-hidden="true" focusable="false" width="32" height="32" class="o-icon c-link__icon cmp-collapsible__trigger__icon">
+                   <use xlink:href="/etc.clientlibs/argenta/clientlibs/clientlib-site/resources/img/symbol-defs.svg#icon-chevron-circle-down"></use>
+                  </svg></button>
+                 <div class="cmp-collapsible__bd" aria-hidden="true" id="cmp-collapsible-1270017507">
+                  <div class="text">
+                   <div class="cmp-text">
+                    <ul>
+                     <li>Nous analysons les informations sur la manière dont notre site internet est utilisé , afin de le rendre plus convivial.</li>
+                     <li>Votre contenu personnalisé est affiché dans la bannière publicitaire sur www.argenta.be et/ou Argenta Banque par Internet. Par ailleurs, un autre contenu personnalisé peut être affiché sur www.argenta.be sur la base de votre comportement de navigation ou d’autres données personnelles telles que votre région.</li>
+                    </ul>
+                   </div>
+                  </div>
+                 </div>
+                </div>
+               </div>
+              </div>
+             </div>
+             <h3><span class="c-toggle"> <input type="checkbox" name="marketingCookies" id="marketingCookies"> <label for="marketingCookies">Cookies publicitaires et cookies de médias sociaux</label> </span></h3>
+             <div class="cmp-cookie__disclaimer cmp-cookie__disclaimer--unchecked hidden">
+              <p>Vous <b> ne consentez pas </b> à nos cookies.</p>
+             </div>
+             <div class="cmp-cookie__disclaimer cmp-cookie__disclaimer--checked">
+              <p>Vous <b> consentez </b> à nos cookies.</p>
+             </div>
+             <div>
+              <div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+               <div class="text aem-GridColumn aem-GridColumn--default--12">
+                <div id="text-0af964ab91" class="cmp-text">
+                 <p>Ces cookies sont placés par des sites externes (tels que les plateformes de médias sociaux et des publicitaires) avec pour objectif d’offrir des publicités et un contenu personnalisés. Ces cookies ne sont pas placés sur Argenta Banque par Internet mais uniquement sur www.argenta.be.</p>
+                </div>
+               </div>
+               <div class="singlecollapsible aem-GridColumn aem-GridColumn--default--12">
+                <div class="cmp-collapsible">
+                 <button aria-controls="cmp-collapsible-768038782" aria-expanded="false" class="cmp-collapsible__trigger" data-behaviour="collapsible"><span>Plus d'informations sur les publicités</span>
+                  <svg aria-hidden="true" focusable="false" width="32" height="32" class="o-icon c-link__icon cmp-collapsible__trigger__icon">
+                   <use xlink:href="/etc.clientlibs/argenta/clientlibs/clientlib-site/resources/img/symbol-defs.svg#icon-chevron-circle-down"></use>
+                  </svg></button>
+                 <div class="cmp-collapsible__bd" aria-hidden="true" id="cmp-collapsible-768038782">
+                  <div class="text">
+                   <div class="cmp-text">
+                    <ul>
+                     <li>Grâce à votre comportement de navigation, nous vous montrons des publicités pertinentes sur www.argenta.be, les médias sociaux et d'autres sites web.</li>
+                     <li>Si vous n'acceptez pas ces cookies, vous verrez quand même des publicités. Ils ne seront tout simplement pas adaptés à vos intérêts.</li>
+                    </ul>
+                   </div>
+                  </div>
+                 </div>
+                </div>
+               </div>
+              </div>
+             </div>
+             <div class="cmp-cookie__cta">
+              <button class="c-btn c-btn c-btn--primary" id="acceptCookiesBtn">Enregistrer mes préférences</button>
+              <button class="c-btn c-btn c-btn--primary" id="rejectCookiesBtn">Refuser tous les cookies</button>
+              <div>
+               <div class="cmp-link">
+                <a class="c-link" href="/fr/politique-cookies.html"> <span>En savoir plus sur notre politique de cookies </span> 
+                 <svg aria-hidden="true" width="16" height="16" focusable="false" class="o-icon c-link__icon c-link__icon--right">
+                  <use xlink:href="/etc.clientlibs/argenta/clientlibs/clientlib-site/resources/img/symbol-defs.svg#icon-chevron-circle-right"></use>
+                 </svg> </a>
+               </div>
+              </div>
+             </div>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+  <div class="campaign-header">
+   <header class="c-siteheader c-siteheader--campaign">
+    <div class="c-topbar">
+     <div>
+      <a href="/fr.html" class="c-logo"> <span class="sr-only">Argenta Homepage</span> 
+       <svg class="c-logo__svg c-logo__svg--mobile" aria-hidden="true" width="76" height="67" viewBox="0 0 76 67" focusable="false" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <title>Argenta</title> <defs></defs>
+        <g id="argenta-logo-small" fill="currentColor" fill-rule="nonzero">
+         <polygon id="logo-sm-1" points="14.62385 20.3450998 26.476569 20.3450998 0.4048503 41.0027891 0.4064898 31.6098005"></polygon> <polygon id="logo-sm-2" points="44.130229 66.3372447 32.278603 66.3372447 58.349776 45.6812494 58.348683 55.0715057"></polygon> <polygon id="logo-sm-3" points="44.131868 20.3450998 50.478202 25.3716712 6.700907 60.058293 0.4064898 55.0709592 0.4064898 43.4996803 29.629243 20.3450998"></polygon> <polygon id="logo-sm-4" points="52.054265 26.6209365 58.349776 31.6098005 58.349776 43.1810794 29.12429 66.337354 14.62385 66.337354 8.276971 61.3080501"></polygon> <polygon id="logo-sm-5" points="33.469941 17.3022698 48.00317 5.78563946 75.196823 5.78563946 60.66578 17.3022698"></polygon> <polygon id="logo-sm-6" points="30.316721 2.32310884 33.249707 0 33.249707 14.9786145 30.316721 17.3022698"></polygon>
+        </g>
+       </svg> 
+       <svg class="c-logo__svg" focusable="false" viewBox="0 0 241 114" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <title>Argenta</title> <defs></defs>
+        <g id="argenta-logo-name" fill="currentColor">
+         <path d="M58.9750499,95.7711048 L62.5326689,95.7711048 C64.6481134,95.7711048 72.3404399,95.6760163 72.3404399,88.7515016 C72.3404399,85.7480186 70.3211769,82.0685333 64.4557506,82.0685333 L58.9750499,82.0685333 L58.9750499,95.7711048 Z M70.8026304,113.108896 L59.0712313,96.5006626 L58.9750499,96.5006626 L58.9750499,113.108896 L53.782183,113.108896 L53.782183,77.2742181 L64.791839,77.2742181 C69.7921791,77.2742181 72.3885306,78.48359 74.2629751,80.2744222 C76.5232381,82.4548984 77.5325964,85.7480186 77.5325964,88.7515016 C77.5325964,98.2444971 69.647907,99.7424132 67.3400998,99.7424132 L77.2926893,113.108896 L70.8026304,113.108896 Z" id="Fill-1"></path> <path d="M106.233456,86.2796395 C104.743737,84.6336259 101.762113,81.3891429 96.5218662,81.3891429 C89.1186304,81.3891429 83.349932,87.7819274 83.349932,95.288449 C83.349932,103.182429 89.8399909,108.993753 96.5710499,108.993753 C97.5804082,108.993753 105.417553,108.898118 108.8309,100.082764 L92.2439796,100.082764 L92.2439796,95.288449 L114.743871,95.288449 C114.551508,107.299102 105.032281,113.786975 96.3786871,113.786975 C85.9943741,113.786975 78.157229,105.312628 78.157229,95.288449 C78.157229,84.9724467 86.0905556,76.5975601 96.3305964,76.5975601 C102.387293,76.5975601 108.8309,79.8420431 112.292338,86.2796395 L106.233456,86.2796395 Z" id="Fill-2"></path> <polygon id="Fill-3" points="116.52268 113.108678 116.52268 77.2739995 135.700488 77.2739995 135.700488 82.0683147 121.712104 82.0683147 121.712104 92.624224 135.700488 92.624224 135.700488 97.4201787 121.712104 97.4201787 121.712104 108.314909 135.700488 108.314909 135.700488 113.108678"></polygon> <polygon id="Fill-4" points="161.999544 113.108678 144.404905 85.4078862 144.307084 85.4078862 144.307084 113.108678 139.114381 113.108678 139.114381 77.2739995 144.789084 77.2739995 162.097365 104.538149 162.191907 104.538149 162.191907 77.2739995 167.38461 77.2739995 167.38461 113.108678"></polygon> <polygon id="Fill-5" points="175.269846 113.108678 175.269846 82.0683147 168.441512 82.0683147 168.441512 77.2739995 187.288696 77.2739995 187.288696 82.0683147 180.462002 82.0683147 180.462002 113.108678"></polygon> <path d="M194.726907,97.4292503 L194.726907,84.1879125 L211.73954,97.3620327 L194.726907,97.4292503 Z M194.720349,77.2142141 L189.101388,77.2142141 L189.101388,113.400829 L194.726907,113.400829 L194.726907,102.483146 L218.3848,102.507738 L232.449692,113.400829 L240.479746,113.400829 L194.720349,77.2142141 Z" id="Fill-6"></path> <path d="M45.7511995,97.4292503 L28.7418458,97.3620327 L45.7511995,84.1879125 L45.7511995,97.4292503 Z M45.7588503,77.2142141 L0,113.400829 L8.02896145,113.400829 L22.0949456,102.507738 L45.7511995,102.483146 L45.7511995,113.400829 L51.3778118,113.400829 L51.3778118,77.2142141 L45.7588503,77.2142141 Z" id="Fill-7"></path>
+        </g>
+        <g id="argenta-apple" fill="currentColor">
+         <polygon id="Fill-8" points="109.62385 20.3450998 121.476569 20.3450998 95.4048503 41.0027891 95.4064898 31.6098005"></polygon> <polygon id="Fill-9" points="139.130229 66.3372447 127.278603 66.3372447 153.349776 45.6812494 153.348683 55.0715057"></polygon> <polygon id="Fill-10" points="139.131868 20.3450998 145.478202 25.3716712 101.700907 60.058293 95.4064898 55.0709592 95.4064898 43.4996803 124.629243 20.3450998"></polygon> <polygon id="Fill-11" points="147.054265 26.6209365 153.349776 31.6098005 153.349776 43.1810794 124.12429 66.337354 109.62385 66.337354 103.276971 61.3080501"></polygon> <polygon id="Fill-12" points="128.469941 17.3022698 143.00317 5.78563946 170.196823 5.78563946 155.66578 17.3022698"></polygon> <polygon id="Fill-13" points="125.316721 2.32310884 128.249707 0 128.249707 14.9786145 125.316721 17.3022698"></polygon>
+        </g>
+       </svg> </a>
+     </div>
+     <div class="c-topbar__actions">
+      <div class="c-topbar__cta">
+       <a class="c-link" href="https://www.argenta.be/fr.html"> <span>vers argenta.be</span> 
+        <svg aria-hidden="true" width="16" height="16" focusable="false" class="o-icon c-link__icon c-link__icon--right">
+         <use xlink:href="/etc.clientlibs/argenta/clientlibs/clientlib-site/resources/img/symbol-defs.svg#icon-chevron-circle-right"></use>
+        </svg> </a>
+      </div>
+      <div class="c-langNav c-langNav--dropdown">
+       <button class="c-langNav__trigger" aria-label="Choisissez votre langue" aria-controls="lang-nav-dropdown" aria-expanded="false" data-scroll-ignore=""><span>FR</span>
+        <svg focusable="false" aria-hidden="true" width="16" height="16" class="o-icon c-langNav__trigger__icon">
+         <use xlink:href="/etc.clientlibs/argenta/clientlibs/clientlib-site/resources/img/symbol-defs.svg#icon-angle-right"></use>
+        </svg></button>
+       <div class="c-langNav__submenu" id="lang-nav-dropdown" aria-hidden="true" tabindex="-1">
+        <a data-analytics-type="Language Switch" href="/fr/travailler-chez-argenta/stage-job-etudiant.html" rel="alternate" hreflang="fr" lang="fr" class="is-active" aria-hidden="true">FR<span> - Français</span></a> <a data-analytics-type="Language Switch" href="/nl/werken-bij-argenta/traineeship-stage-studentenjob.html" rel="alternate" hreflang="nl" lang="nl">NL<span> - Nederlands</span></a>
+       </div>
+      </div>
+     </div>
+    </div>
+   </header>
+  </div>
+  <div class="rootLayoutContainer">
+   <main id="site-content">
+    <div>
+     <div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+      <div class="responsivegrid aem-Grid--pt0 aem-Grid--pbSmall aem-GridColumn aem-GridColumn--default--12">
+       <div class="aem-Grid aem-Grid--12 aem-Grid--default--12 aem-Grid--phone--12 ">
+        <div class="hero u-title--NoHyphensPhone aem-GridColumn aem-GridColumn--default--12">
+         <div class="cmp-hero   has-gradientOverlay" data-largebg="/content/dam/argenta/large-image-rendition/hoofdzetel/hoofdzetel-collegas-computers-2160x900.jpg/jcr:content/renditions/cq5dam.web.2160.900.jpeg" data-smallbg="/content/dam/argenta/foto/hoofdzetel/hoofdzetel-collegas-computers-1500x1000.jpg/jcr:content/renditions/cq5dam.web.744.484.jpeg" style="background-image: url(&quot;/content/dam/argenta/large-image-rendition/hoofdzetel/hoofdzetel-collegas-computers-2160x900.jpg/jcr:content/renditions/cq5dam.web.2160.900.jpeg&quot;);" id="hero-8wmy0MJ">
+          <div class="cmp-hero__wrapper">
+           <div class="cmp-hero__body">
+            <div class="cmp-hero__mobileBg" style="background-image: url('/content/dam/argenta/foto/hoofdzetel/hoofdzetel-collegas-computers-1500x1000.jpg/jcr:content/renditions/cq5dam.web.216.73.jpeg')"></div>
+            <div class="cmp-hero__body__inner">
+             <h1 class="cmp-hero__title">Stage ou job étudiant</h1>
+             <div>
+              <div class="hero-title-button button"></div>
+             </div>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+        <div class="responsivegrid aem-Grid--bleed aem-Grid--grey aem-Grid--pb0 aem-GridColumn aem-GridColumn--default--12">
+         <div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+          <div class="experiencefragment aem-GridColumn aem-GridColumn--default--12">
+           <div class="xf-content-height">
+            <div class="root responsivegrid">
+             <div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+              <div class="responsivegrid aem-GridColumn--default--none aem-GridColumn aem-GridColumn--default--12 aem-GridColumn--offset--default--0">
+               <div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+                <div class="text aem-GridColumn--default--none aem-GridColumn aem-GridColumn--default--12 aem-GridColumn--offset--default--0">
+                 <div id="text-bb5899c438" class="cmp-text">
+                  <p style="	text-align: center;
+"><a href="/fr/travailler-chez-argenta.html">Accueil&nbsp;</a> | <a href="/fr/travailler-chez-argenta/qui-sommes-nous.html">Qui sommes nous ?</a> | <a href="/fr/travailler-chez-argenta/pourquoi-travailler-chez-argenta.html">Pourquoi travailler chez Argenta ?</a> |&nbsp;<a href="/fr/travailler-chez-argenta/offres-emploi.html">Offres d'emploi</a>&nbsp; |&nbsp;<a href="/fr/travailler-chez-argenta/candidature-spontanee.html" target="_blank" rel="noopener noreferrer">Candidature spontanée</a>
+                   <br>
+                   &nbsp;</p>
+                 </div>
+                </div>
+               </div>
+              </div>
+             </div>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+        <div class="title aem-GridColumn aem-GridColumn--default--12">
+         <div class="cmp-title">
+          <h2 class="cmp-title__text">Stagiaire chez Argenta</h2>
+         </div>
+        </div>
+        <div class="text aem-GridColumn--default--none aem-GridColumn--phone--none aem-GridColumn--phone--12 aem-GridColumn aem-GridColumn--default--10 aem-GridColumn--offset--phone--0 aem-GridColumn--offset--default--1">
+         <div id="text-baabe22073" class="cmp-text">
+          <p>En tant que stagiaire chez Argenta, vous avez la possibilité de progresser rapidement et de développer vos compétences en 2 ans. Nous vous accompagnons tout au long d'un parcours intensif qui vous permettra de découvrir Argenta sous différents angles. Vous participez à des projets stratégiques et développez ainsi vos compétences professionnelles et personnelles.</p>
+          <p>Vous venez d'obtenir votre diplôme ? Ou vous avez déjà quelques années d'expérience professionnelle et vous êtes prêt(e) à franchir une nouvelle étape dans votre carrière ? Dans ce cas, un stage pourrait être le défi qu'il vous faut.&nbsp;</p>
+         </div>
+        </div>
+        <div class="equal-height-container responsivegrid aem-Grid--ptSmall aem-GridColumn aem-GridColumn--default--12">
+         <div class="aem-Grid aem-Grid--12 aem-Grid--default--12 aem-Grid--phone--12 has-equal-height-panels">
+          <div class="panel cmp-panel--a11y-light-green aem-GridColumn--default--none aem-GridColumn--phone--none aem-GridColumn--phone--12 aem-GridColumn aem-GridColumn--default--5 aem-GridColumn--offset--phone--0 aem-GridColumn--offset--default--1">
+           <div class="cmp-panel">
+            <div class="cmp-panel__bd">
+             <div>
+              <div class="aem-Grid aem-Grid--5 aem-Grid--default--5 ">
+               <div class="title cmp-title--m u-title--NoHyphens aem-GridColumn aem-GridColumn--default--5">
+                <div class="cmp-title">
+                 <h3 class="cmp-title__text">À quoi pouvez-vous vous attendre ?</h3>
+                </div>
+               </div>
+               <div class="text aem-GridColumn aem-GridColumn--default--5">
+                <div id="text-b39876e9c0" class="cmp-text">
+                 <ul>
+                  <li>Un parcours de croissance personnel adapté à vos ambitions</li>
+                  <li>Un accompagnement intensif par des mentors et des coachs</li>
+                  <li>Un mélange de formation, d'expérience pratique et de développement de réseau</li>
+                  <li>La possibilité d'avoir un impact dès le premier jour</li>
+                  <li>Après une année générale, vous vous spécialisez dans un domaine spécifique au cours de la 2<sup>e</sup> année</li>
+                 </ul>
+                </div>
+               </div>
+              </div>
+             </div>
+            </div>
+           </div>
+          </div>
+          <div class="panel aem-GridColumn--default--none aem-GridColumn aem-GridColumn--default--5 aem-GridColumn--offset--default--0">
+           <div class="cmp-panel">
+            <div class="cmp-panel__bd">
+             <div>
+              <div class="aem-Grid aem-Grid--5 aem-Grid--default--5 ">
+               <div class="title cmp-title--m aem-GridColumn aem-GridColumn--default--5">
+                <div class="cmp-title">
+                 <h3 class="cmp-title__text">Qu'attendons-nous de vous ?</h3>
+                </div>
+               </div>
+               <div class="text aem-GridColumn aem-GridColumn--default--5">
+                <div id="text-58b689e4fc" class="cmp-text">
+                 <ul>
+                  <li>Un diplôme de master est indispensable.</li>
+                  <li>Vous êtes curieux/se d'apprendre et vous saisissez toutes les opportunités qui se présentent.</li>
+                  <li>Vous êtes entreprenant(e) et vous placez la barre haut.</li>
+                  <li>Vous aimez faire la différence, vous faites bouger les autres et vous vous donnez à fond chaque jour.</li>
+                  <li><a href="/fr/travailler-chez-argenta/valeurs.html">Nos valeurs clés</a> vous vont droit au cœur.&nbsp;</li>
+                 </ul>
+                </div>
+               </div>
+              </div>
+             </div>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+        <div class="text aem-GridColumn--default--none aem-GridColumn--phone--none aem-GridColumn--phone--12 aem-GridColumn aem-GridColumn--default--10 aem-GridColumn--offset--phone--0 aem-GridColumn--offset--default--1">
+         <div id="text-80fd70f38f" class="cmp-text">
+          <p><b>Vous êtes convaincu(e) ?&nbsp;</b>Envoyez un e-mail à <a href="mailto:jobs@argenta.be">jobs@argenta.be</a>. Nous vous donnerons plus d'explications et vous expliquerons la procédure de candidature. Le processus de candidature commence en février afin que vous puissiez commencer votre stage début septembre.</p>
+         </div>
+        </div>
+        <div class="title aem-GridColumn aem-GridColumn--default--12">
+         <div class="cmp-title">
+          <h2 class="cmp-title__text">Un stage ou un job étudiant qui vous correspond</h2>
+         </div>
+        </div>
+        <div class="text aem-GridColumn--default--none aem-GridColumn--phone--none aem-GridColumn--phone--12 aem-GridColumn aem-GridColumn--default--10 aem-GridColumn--offset--phone--0 aem-GridColumn--offset--default--1">
+         <div id="text-473659ac9b" class="cmp-text">
+          <p>Quels sont vos talents ? Quel emploi vous convient ? Y a-t-il un Argentien en vous ? Vous le découvrirez lors d'un stage, d'un projet de thèse ou d'un job étudiant. Vous aurez également un aperçu des coulisses d'Argenta. Le tremplin idéal pour une carrière chez Argenta.</p>
+          <p><b>Des stages et des projets de thèse </b>sont possibles dans divers domaines.</p>
+          <ul>
+           <li>Vous travaillez sur une thèse consacrée aux assurances ?</li>
+           <li>Vous souhaitez travailler dans un service où vous pourrez approfondir vos connaissances en analyse de données ?</li>
+           <li>Ou vous voulez réfléchir à la manière dont nous pouvons encore mieux accompagner nos clients ?</li>
+          </ul>
+          <p>Faites-nous part de vos préférences en matière de thèmes ou de projets. Ensemble, nous trouverons un stage ou un projet de thèse qui vous correspond.</p>
+          <p>Vous êtes <b>étudiant </b>et vous souhaitez<b> gagner un peu d'argent</b> tout en apprenant ? Alors un job étudiant chez Argenta est fait pour vous. Vous travaillerez dans l'un de nos départements et apprendrez ainsi à mieux connaître Argenta. Il existe différentes possibilités, d'un poste dans le domaine des assurances à l'analyse de données en passant par le marketing.</p>
+          <p>Vous trouverez tous les jobs étudiants sur <a href="/fr/travailler-chez-argenta/offres-emploi.html">notre page d'offres d'emploi</a>. N'hésitez pas à nous contacter de manière proactive. Nous vous tiendrons alors informé(e) dès que de nouvelles offres d'emploi seront publiées.</p>
+         </div>
+        </div>
+        <div class="title cmp-title--l aem-GridColumn--default--none aem-GridColumn--phone--none aem-GridColumn--phone--12 aem-GridColumn aem-GridColumn--default--8 aem-GridColumn--offset--default--2 aem-GridColumn--offset--phone--0">
+         <div class="cmp-title">
+          <h2 class="cmp-title__text">Découvrez nos postes vacants</h2>
+         </div>
+        </div>
+        <div class="equal-height-container responsivegrid aem-Grid--pt0 aem-Grid--pb0 has-equal-height-panels--align-button-bottom aem-GridColumn aem-GridColumn--default--12">
+         <div class="aem-Grid aem-Grid--12 aem-Grid--default--12 aem-Grid--small-tablet--12 aem-Grid--phone--12 has-equal-height-panels">
+          <div class="panel aem-GridColumn--default--none aem-GridColumn--phone--none aem-GridColumn--phone--12 aem-GridColumn--offset--small-tablet--1 aem-GridColumn aem-GridColumn--offset--default--2 aem-GridColumn--small-tablet--none aem-GridColumn--offset--phone--0 aem-GridColumn--default--4 aem-GridColumn--small-tablet--5">
+           <div class="cmp-panel">
+            <div class="cmp-panel__bd">
+             <div>
+              <div class="aem-Grid aem-Grid--4 aem-Grid--default--4 ">
+               <div class="title cmp-title--m cmp-title--mb0 aem-GridColumn aem-GridColumn--default--4">
+                <div class="cmp-title">
+                 <h2 class="cmp-title__text">Postes vacants</h2>
+                </div>
+               </div>
+               <div class="text aem-GridColumn aem-GridColumn--default--4">
+                <div id="text-664eb67f70" class="cmp-text">
+                 <p>Découvrez nos postes vacants. Trouvez le job qui vous convient parfaitement. Nous attendons votre candidature avec impatience&nbsp;!</p>
+                </div>
+               </div>
+               <div class="button cmp-button--centered aem-GridColumn aem-GridColumn--default--4">
+                <div class="cmp-button" id="button-zAd9kr3">
+                 <div class="cmp-button-wrapper cmp-button-wrapper--small">
+                  <a class="c-btn c-btn--secundary c-btn--small " href="/fr/travailler-chez-argenta/offres-emploi.html" data-analytics-type="Button">Jetez un œil à nos postes vacants</a>
+                 </div>
+                </div>
+               </div>
+              </div>
+             </div>
+            </div>
+           </div>
+          </div>
+          <div class="panel aem-GridColumn--default--none aem-GridColumn--phone--none aem-GridColumn--phone--12 aem-GridColumn--offset--small-tablet--0 aem-GridColumn aem-GridColumn--small-tablet--none aem-GridColumn--offset--phone--0 aem-GridColumn--offset--default--0 aem-GridColumn--default--4 aem-GridColumn--small-tablet--5">
+           <div class="cmp-panel">
+            <div class="cmp-panel__bd">
+             <div>
+              <div class="aem-Grid aem-Grid--4 aem-Grid--default--4 ">
+               <div class="title cmp-title--m cmp-title--mb0 aem-GridColumn aem-GridColumn--default--4">
+                <div class="cmp-title">
+                 <h2 class="cmp-title__text">Candidature spontanée</h2>
+                </div>
+               </div>
+               <div class="text aem-GridColumn aem-GridColumn--default--4">
+                <div id="text-9fca0733af" class="cmp-text">
+                 <p>Vous voulez devenir Argentien, mais vous ne trouvez pas le poste qui vous convient&nbsp;? Faites-le-nous savoir. Nous attendons votre message avec impatience !</p>
+                </div>
+               </div>
+               <div class="button cmp-button--centered aem-GridColumn aem-GridColumn--default--4">
+                <div class="cmp-button" id="button-WjL4pNp">
+                 <div class="cmp-button-wrapper cmp-button-wrapper--small">
+                  <a class="c-btn c-btn--secundary c-btn--small " href="/fr/travailler-chez-argenta/candidature-spontanee.html" data-analytics-type="Button">Postulez spontanément</a>
+                 </div>
+                </div>
+               </div>
+              </div>
+             </div>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </main>
+  </div>
+  <div class="footer campaign-footer">
+   <footer class="c-sitefooter c-sitefooter--condensed">
+    <div class="c-sitefooter__bottom">
+     <div class="c-sitefooter__bottom__wrapper">
+      <span class="c-sitefooter__copyright">© 2026 Argenta</span>
+      <div class="c-sitefooter__links">
+       <div>
+        <div class="c-navlist c-navlist--horizontal">
+         <ul class="c-navlist__links">
+          <li><a href="/fr/informations-juridiques.html" target="_self"> <span>Informations juridiques</span> 
+            <svg focusable="false" aria-hidden="true" width="16" height="16" class="o-icon">
+             <use xlink:href="/etc.clientlibs/argenta/clientlibs/clientlib-site/resources/img/symbol-defs.svg#icon-angle-right"></use>
+            </svg> </a></li>
+          <li><a href="/fr/confidentialite/declaration-de-confidentialite.html" target="_self"> <span>Vie privée</span> 
+            <svg focusable="false" aria-hidden="true" width="16" height="16" class="o-icon">
+             <use xlink:href="/etc.clientlibs/argenta/clientlibs/clientlib-site/resources/img/symbol-defs.svg#icon-angle-right"></use>
+            </svg> </a></li>
+          <li><a href="/fr/politique-cookies.html" target="_self"> <span>Politique de Cookies</span> 
+            <svg focusable="false" aria-hidden="true" width="16" height="16" class="o-icon">
+             <use xlink:href="/etc.clientlibs/argenta/clientlibs/clientlib-site/resources/img/symbol-defs.svg#icon-angle-right"></use>
+            </svg> </a></li>
+          <li><a href="/fr/a-propos-d-argenta/la-directive-psd2.html" target="_self"> <span>PSD2</span> 
+            <svg focusable="false" aria-hidden="true" width="16" height="16" class="o-icon">
+             <use xlink:href="/etc.clientlibs/argenta/clientlibs/clientlib-site/resources/img/symbol-defs.svg#icon-angle-right"></use>
+            </svg> </a></li>
+          <li><a href="/fr/tarifs.html" target="_self"> <span>Tarifs</span> 
+            <svg focusable="false" aria-hidden="true" width="16" height="16" class="o-icon">
+             <use xlink:href="/etc.clientlibs/argenta/clientlibs/clientlib-site/resources/img/symbol-defs.svg#icon-angle-right"></use>
+            </svg> </a></li>
+          <li><a href="/fr/accessibilite.html" target="_self"> <span>Accessibilité</span> 
+            <svg focusable="false" aria-hidden="true" width="16" height="16" class="o-icon">
+             <use xlink:href="/etc.clientlibs/argenta/clientlibs/clientlib-site/resources/img/symbol-defs.svg#icon-angle-right"></use>
+            </svg> </a></li>
+         </ul>
+        </div>
+       </div>
+      </div>
+      <div class="c-langNav c-langNav--list">
+       <a data-analytics-type="Language Switch" href="/fr/travailler-chez-argenta/stage-job-etudiant.html" rel="alternate" hreflang="fr" lang="fr" class="is-active" aria-hidden="true">FR<span> - Français</span></a> <a data-analytics-type="Language Switch" href="/nl/werken-bij-argenta/traineeship-stage-studentenjob.html" rel="alternate" hreflang="nl" lang="nl">NL<span> - Nederlands</span></a>
+      </div>
+     </div>
+    </div>
+   </footer>
+  </div>
+  <!--<sly data-sly-resource="cloudservices"></sly>-->
+  <script src="/etc.clientlibs/clientlibs/granite/jquery/granite/csrf.lc-652a558c3774088b61b0530c184710d1-lc.min.js"></script>
+  <script src="/etc.clientlibs/core/wcm/components/commons/site/clientlibs/container.lc-0a6aff292f5cc42142779cde92054524-lc.min.js"></script>
+  <script src="/etc.clientlibs/argenta/clientlibs/clientlib-base.lc-f802c087eb087dd4cbd257d65586d83f-lc.min.js"></script>
+  <script type="text/javascript">_satellite.pageBottom();</script>
+ 
+<script>_satellite["_runScript1"](function(event, target, Promise) {
+if(!window.argentaTarget){
+    window.argentaTarget= {};
+}
+
+document.addEventListener(adobe.target.event.REQUEST_SUCCEEDED, function (e) {  
+  var tokens=e.detail.responseTokens; 
+
+  if (isEmpty(tokens)) { 
+    return; 
+  } 
+
+  var uniqueTokens = distinct(tokens);    
+  window.argentaTarget.responseTokens= uniqueTokens[0];
+}); 
+
+function isEmpty(val){ 
+  return (val === undefined || val == null || val.length <= 0) ? true : false; 
+} 
+
+function key(obj) { 
+ return Object.keys(obj) 
+ .map(function(k) { return k + "" + obj[k]; }) 
+ .join(""); 
+} 
+
+function distinct(arr) { 
+  var result = arr.reduce(function(acc, e) { 
+    acc[key(e)] = e; 
+    return acc; 
+  }, {}); 
+
+  return Object.keys(result) 
+  .map(function(k) { return result[k]; }); 
+}
+});</script><script src="//rum-static.pingdom.net/pa-5c4eeb06cea07b001600097b.js" async=""></script><script>
+  // Create a unique Event ID
+  function createEventID() {
+      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+          var r = Math.random() * 16 | 0,
+              v = c === 'x' ? r : (r & 0x3 | 0x8);
+          return v.toString(16);
+      }) + "_" + new Date().getTime();
+  }
+
+  const eventId = createEventID();
+  sessionStorage.setItem("RandomEventId", eventId);
+  
+  const externalids = Visitor.getInstance("130D1A795B10FD990A495EAF@AdobeOrg").getMarketingCloudVisitorID() || _satellite.getVisitorId().getMarketingCloudVisitorID();
+  
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '432146050314601', {external_id: externalids});
+  fbq('track', 'PageView', {}, {eventID: eventId});
+ 
+</script>
+<noscript></noscript><script>
+// Define dataLayer and the gtag function.
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+
+// Set default consent to 'denied' as a placeholder
+// Determine actual values based on your own requirements
+gtag('consent', 'default', {
+  'ad_storage': 'granted',
+  'ad_user_data': 'granted',
+  'ad_personalization': 'granted',
+  'analytics_storage': 'granted'
+});
+</script>
+<!-- Google tag (gtag.js) -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=AW-991069717"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-991069717');
+</script>
+<script>_satellite["_runScript2"](function(event, target, Promise) {
+function hasNewUTMs(){return!!(_satellite.getVar("CampaignSource")||_satellite.getVar("CampaignMedium")||_satellite.getVar("CampaignId"))}var finalValue,src=_satellite.getVar("CampaignSource")||"",med=_satellite.getVar("CampaignMedium")||"",id=_satellite.getVar("CampaignId")||"",cnt=_satellite.getVar("CampaignContent")||"",cloud=_satellite.getVar("CloudVisitorID")||"",arg=_satellite.getVar("CampaignArgentaID")||"",combined=[src,med,id,cnt,cloud,arg].join(":");if(""===combined.replace(/:/g,"")&&(combined=""),hasNewUTMs())sessionStorage.setItem("campagne_field_value",combined),finalValue=combined;else{var saved=sessionStorage.getItem("campagne_field_value");finalValue=null!=saved&&""!==saved?saved:combined}window.__lastTouchCampagneValue=finalValue;
+});</script><script>_satellite["_runScript3"](function(event, target, Promise) {
+!function(){var a=window.__lastTouchCampagneValue;if(a){var e='input[type="hidden"][name="campagne_data"]';document.querySelectorAll(e).forEach((function(e){if(e.value!==a){e.value=a;try{e.dispatchEvent(new Event("change",{bubbles:!0}))}catch(a){}}}))}}();
+});</script><script>_satellite["_runScript4"](function(event, target, Promise) {
+return new Promise((function(t){try{navigator.userAgentData.getHighEntropyValues(["architecture","model","wow64","bitness","platform","platformVersion","fullVersionList"]).then((a=>{digitalData.s=digitalData.s||{},digitalData.s.architecture=a.architecture;let i=[],s=[];a.brands.forEach((t=>{i.push(t.brand),s.push(t.version)})),digitalData.s.brands=i,digitalData.s.versions=s,digitalData.s.mobile=a.mobile,digitalData.s.platform=a.platform,digitalData.s.platformVersion=a.platformVersion,digitalData.s.wow64=a.wow64,digitalData.s.bitness=a.bitness,t()})).catch((a=>{console.error(a),t()}))}catch(a){console.log("getHighEntropyValues Not supported"),t()}}));
+});</script><script>_satellite["_runScript5"](function(event, target, Promise) {
+function padTo2Digits(t){return t.toString().padStart(2,"0")}function formatDate(t){var e=t.getFullYear(),i=("0"+(t.getMonth()+1)).slice(-2),n=("0"+t.getDate()).slice(-2),a=("0"+t.getHours()).slice(-2),r=("0"+t.getMinutes()).slice(-2),o=("0"+t.getSeconds()).slice(-2),s=-t.getTimezoneOffset(),l=s>=0?"+":"-";return s=Math.abs(s),`${e}-${i}-${n} ${a}:${r}:${o}${l}${("0"+Math.floor(s/60)).slice(-2)}:${("0"+s%60).slice(-2)}`}digitalData.s=digitalData.s||{},setTimeout((()=>{console.log("Add delay")}),3e3);for(const t in s)s[t]&&(t.match(new RegExp("eVar"))||t.match(new RegExp("prop"))||t.match(new RegExp("hier")))&&(digitalData.s[t]=s[t]);digitalData.s.contextData={};for(const t in s.contextData)digitalData.s.contextData[t]=s.contextData[t];var getLinkType=function(t,e){var i=t||"",n=void 0!==e?e:window.s&&window.s.linkInternalFilters?window.s.linkInternalFilters:"javascript:,argenta.be,",a=window.s&&window.s.linkDownloadFileTypes?window.s.linkDownloadFileTypes:"exe,zip,wav,mp3,mov,mpg,avi,wmv,pdf,doc,docx,xls,xlsx,ppt,pptx",r="e",o=(i.split("/").length>2&&i.split("/")[2].replace(/www\./,""),n.split(",")),s=a.split(","),l=t.split(/[?#]/)[0];return s.forEach((function(t){l.substr(-t.length)!==t||(r="d")})),"d"!==r&&o.forEach((function(t){new RegExp(t).test(l)&&(r="o")})),r},cookiePeriods=/\.argenta\.be/.test(window.location.hostname)?3:2,getLinkInternalFilters=function(t,e){var i=t.split(".");return"javascript:,argenta.be,"+i.slice(i.length-e,i.length).join(".")};let dimensionsMap={"Page Title":{attribute:"pageName",fn:function(){return window.s.pageName||digitalData.page.pageInfo.pageName}},"Page URL":{attribute:"pageURL",fn:function(){return window.s.pageURL||digitalData.page.pageInfo.destinationURL}},"Browser Window Height":{attribute:"browserHeight",fn:function(){return window.s.browserHeight||window.innerHeight}},"Browser Window Width":{attribute:"browserWidth",fn:function(){return window.s.browserWidth||window.innerWidth}},"Character Set":{attribute:"charSet",fn:function(){return window.s.charSet}},Server:{attribute:"server",fn:function(){return window.s.server}},"Color quality":{attribute:"colorDepth",fn:function(){return window.s.colorDepth||screen.colorDepth}},"Cookies Enabled":{attribute:"cookiesEnabled",fn:function(){return window.s.cookiesEnabled}},"Currency Code":{attribute:"currencyCode",fn:function(){return window.s.currencyCode}},"Experience Cloud Visitor ID":{attribute:"marketingCloudVisitorID",fn:function(){return Visitor.getInstance("130D1A795B10FD990A495EAF@AdobeOrg").getMarketingCloudVisitorID()||_satellite.getVisitorId().getMarketingCloudVisitorID()}},visitorID:{attribute:"visitorID",fn:function(){let t=_satellite.getVisitorId().getAnalyticsVisitorID();if(""!==t)return t}},fallbackVisitorID:{attribute:"fallbackVisitorID",fn:function(){if(_satellite.cookie.get("s_fid"))return _satellite.cookie.get("s_fid")}},Resolution:{attribute:"resolution",fn:function(){return window.s.resolution||screen.width+"x"+screen.height}},channel:{attribute:"channel",fn:function(){return window.s.channel}},campaign:{attribute:"campaign",fn:function(){return window.s.campaign}},javaEnabled:{attribute:"javaEnabled",fn:function(){return window.s.javaEnabled}},javascriptVersion:{attribute:"javascriptVersion",fn:function(){return window.s.javascriptVersion}},timestamp:{attribute:"timestamp",fn:function(){return Math.round((new Date).getTime()/1e3)}},referrer:{attribute:"referrer",fn:function(){return window.s.referrer||document.referrer}},language:{attribute:"language",fn:function(){return navigator.language||navigator.userLanguage}}};for(const t in dimensionsMap)digitalData.s[dimensionsMap[t].attribute]=dimensionsMap[t].fn();const externalids=[_satellite.getVisitorId().getMarketingCloudVisitorID(),s.eVar19];digitalData.s.ExternalIDArray=externalids,digitalData.s.Postbackid=_satellite.getVar("Postbackid"),digitalData.s.MicrosoftClickID=_satellite.getVar("MicrosoftClickID"),digitalData.s.ExternalID=_satellite.getVar("CloudVisitorID-Hashed"),digitalData.s.RandomEventId=sessionStorage.getItem("RandomEventId"),digitalData.s.now=formatDate(new Date);
+});</script></body></html>
