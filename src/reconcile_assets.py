@@ -227,6 +227,7 @@ def reconcile_record(record: dict) -> AssetMetadata:
         "collected_at": collected_at,
         "raw_html_path": make_project_relative(raw_html),
         "screenshot_path": screenshot_path,
+        "text": record.get("text")
     }
 
     return AssetMetadata.model_validate(reconciled)

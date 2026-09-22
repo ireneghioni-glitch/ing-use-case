@@ -1,0 +1,248 @@
+2026-09-22 10:20:27,479 | INFO | === Scraping ing (ING) — 16 pages ===
+2026-09-22 10:20:28,754 | INFO | [1/16] https://www.ing.be/fr/particuliers/epargner/compte-epargne-jeune
+2026-09-22 10:20:31,117 | INFO | No cookie banner matched/dismissed for https://www.ing.be/fr/particuliers/epargner/compte-epargne-jeune (may not have one, or uses an unlisted selector)
+2026-09-22 10:20:32,743 | INFO | Saved ing__compte-epargne-jeune (html: ing_compte-epargne-jeune.html, screenshot: ing_compte-epargne-jeune.png)
+2026-09-22 10:20:32,744 | INFO | [2/16] https://www.ing.be/fr/particuliers/epargner/comparatif-compte-epargne-jeune
+2026-09-22 10:20:34,674 | INFO | No cookie banner matched/dismissed for https://www.ing.be/fr/particuliers/epargner/comparatif-compte-epargne-jeune (may not have one, or uses an unlisted selector)
+2026-09-22 10:20:35,860 | INFO | Saved ing__comparatif-compte-epargne-jeune (html: ing_comparatif-compte-epargne-jeune.html, screenshot: ing_comparatif-compte-epargne-jeune.png)
+2026-09-22 10:20:35,860 | INFO | [3/16] https://www.ing.be/fr/particuliers/jeunes
+2026-09-22 10:20:37,796 | INFO | No cookie banner matched/dismissed for https://www.ing.be/fr/particuliers/jeunes (may not have one, or uses an unlisted selector)
+2026-09-22 10:20:39,041 | INFO | Saved ing__jeunes (html: ing_jeunes.html, screenshot: ing_jeunes.png)
+2026-09-22 10:20:39,042 | INFO | [4/16] https://www.ing.be/fr/particuliers/cartes-de-credit/carte-de-credit-jeunes
+2026-09-22 10:20:40,986 | INFO | No cookie banner matched/dismissed for https://www.ing.be/fr/particuliers/cartes-de-credit/carte-de-credit-jeunes (may not have one, or uses an unlisted selector)
+2026-09-22 10:20:43,112 | INFO | Saved ing__carte-de-credit-jeunes (html: ing_carte-de-credit-jeunes.html, screenshot: ing_carte-de-credit-jeunes.png)
+2026-09-22 10:20:43,114 | INFO | [5/16] https://www.ing.be/fr/particuliers/gerer-le-quotidien/turning18_forparents
+2026-09-22 10:20:45,016 | INFO | No cookie banner matched/dismissed for https://www.ing.be/fr/particuliers/gerer-le-quotidien/turning18_forparents (may not have one, or uses an unlisted selector)
+2026-09-22 10:20:46,762 | INFO | Saved ing__turning18-forparents (html: ing_turning18-forparents.html, screenshot: ing_turning18-forparents.png)
+2026-09-22 10:20:46,762 | INFO | [6/16] https://www.ing.be/fr/particuliers/epargner/compte-epargne-automatique-jeune
+2026-09-22 10:20:48,641 | INFO | No cookie banner matched/dismissed for https://www.ing.be/fr/particuliers/epargner/compte-epargne-automatique-jeune (may not have one, or uses an unlisted selector)
+2026-09-22 10:20:50,259 | INFO | Saved ing__compte-epargne-automatique-jeune (html: ing_compte-epargne-automatique-jeune.html, screenshot: ing_compte-epargne-automatique-jeune.png)
+2026-09-22 10:20:50,259 | INFO | [7/16] https://www.ing.be/fr/particuliers/comptes-bancaire-packs/pack-go
+2026-09-22 10:20:52,168 | INFO | No cookie banner matched/dismissed for https://www.ing.be/fr/particuliers/comptes-bancaire-packs/pack-go (may not have one, or uses an unlisted selector)
+2026-09-22 10:20:53,528 | INFO | Saved ing__pack-go (html: ing_pack-go.html, screenshot: ing_pack-go.png)
+2026-09-22 10:20:53,528 | INFO | [8/16] https://www.ing.be/fr/particuliers/comptes-bancaire-packs/pack-more-jeunes
+2026-09-22 10:20:55,436 | INFO | No cookie banner matched/dismissed for https://www.ing.be/fr/particuliers/comptes-bancaire-packs/pack-more-jeunes (may not have one, or uses an unlisted selector)
+2026-09-22 10:20:57,256 | INFO | Saved ing__pack-more-jeunes (html: ing_pack-more-jeunes.html, screenshot: ing_pack-more-jeunes.png)
+2026-09-22 10:20:57,257 | INFO | [9/16] https://www.ing.be/fr/particuliers/comptes-bancaire-packs/comparez-packs
+2026-09-22 10:20:59,201 | INFO | No cookie banner matched/dismissed for https://www.ing.be/fr/particuliers/comptes-bancaire-packs/comparez-packs (may not have one, or uses an unlisted selector)
+2026-09-22 10:21:00,999 | INFO | Saved ing__comparez-packs (html: ing_comparez-packs.html, screenshot: ing_comparez-packs.png)
+2026-09-22 10:21:00,999 | INFO | [10/16] https://www.ing.be/fr/particuliers/comptes-bancaire-packs/pack-more
+2026-09-22 10:21:02,921 | INFO | No cookie banner matched/dismissed for https://www.ing.be/fr/particuliers/comptes-bancaire-packs/pack-more (may not have one, or uses an unlisted selector)
+2026-09-22 10:21:04,804 | INFO | Saved ing__pack-more (html: ing_pack-more.html, screenshot: ing_pack-more.png)
+2026-09-22 10:21:04,804 | INFO | [11/16] https://www.ing.be/fr/particuliers/gerer-le-quotidien/ing-plus-deals
+2026-09-22 10:21:06,714 | INFO | No cookie banner matched/dismissed for https://www.ing.be/fr/particuliers/gerer-le-quotidien/ing-plus-deals (may not have one, or uses an unlisted selector)
+2026-09-22 10:21:08,405 | INFO | Saved ing__ing-plus-deals (html: ing_ing-plus-deals.html, screenshot: ing_ing-plus-deals.png)
+2026-09-22 10:21:08,405 | INFO | [12/16] https://www.ing.be/fr/particuliers/comptes-bancaire-packs/compte-jeune
+2026-09-22 10:21:10,381 | INFO | No cookie banner matched/dismissed for https://www.ing.be/fr/particuliers/comptes-bancaire-packs/compte-jeune (may not have one, or uses an unlisted selector)
+2026-09-22 10:21:11,799 | INFO | Saved ing__compte-jeune (html: ing_compte-jeune.html, screenshot: ing_compte-jeune.png)
+2026-09-22 10:21:11,800 | INFO | [13/16] https://www.ing.be/fr/particuliers/gerer-le-quotidien/carte-de-debit
+2026-09-22 10:21:13,704 | INFO | No cookie banner matched/dismissed for https://www.ing.be/fr/particuliers/gerer-le-quotidien/carte-de-debit (may not have one, or uses an unlisted selector)
+2026-09-22 10:21:15,051 | INFO | Saved ing__carte-de-debit (html: ing_carte-de-debit.html, screenshot: ing_carte-de-debit.png)
+2026-09-22 10:21:15,051 | INFO | [14/16] https://www.ing.be/fr/particuliers/comptes-bancaire-packs/ouvrir-un-compte-bancaire-en-ligne
+2026-09-22 10:21:16,968 | INFO | No cookie banner matched/dismissed for https://www.ing.be/fr/particuliers/comptes-bancaire-packs/ouvrir-un-compte-bancaire-en-ligne (may not have one, or uses an unlisted selector)
+2026-09-22 10:21:18,565 | INFO | Saved ing__ouvrir-un-compte-bancaire-en-ligne (html: ing_ouvrir-un-compte-bancaire-en-ligne.html, screenshot: ing_ouvrir-un-compte-bancaire-en-ligne.png)
+2026-09-22 10:21:18,565 | INFO | [15/16] https://www.ing.be/fr/particuliers/gerer-le-quotidien/mgm-inviter-ao
+2026-09-22 10:21:20,348 | INFO | No cookie banner matched/dismissed for https://www.ing.be/fr/particuliers/gerer-le-quotidien/mgm-inviter-ao (may not have one, or uses an unlisted selector)
+2026-09-22 10:21:22,324 | INFO | Saved ing__mgm-inviter-ao (html: ing_mgm-inviter-ao.html, screenshot: ing_mgm-inviter-ao.png)
+2026-09-22 10:21:22,326 | INFO | [16/16] https://www.ing.be/fr/particuliers/epargner/epargne-vers-propriete
+2026-09-22 10:21:24,307 | INFO | Dismissed cookie banner via 'ing-form ing-button' (frame: https://www.ing.be/fr/particuliers/epargner/epargne-vers-pro) on https://www.ing.be/fr/particuliers/epargner/epargne-vers-propriete
+2026-09-22 10:21:26,557 | INFO | Saved ing__epargne-vers-propriete (html: ing_epargne-vers-propriete.html, screenshot: ing_epargne-vers-propriete.png)
+2026-09-22 10:21:27,308 | INFO | === Scraping ing_adult (ING) — 6 pages ===
+2026-09-22 10:21:28,252 | INFO | [1/6] https://www.ing.be/fr/particuliers/epargner/compte-epargne-classique
+2026-09-22 10:21:30,462 | INFO | No cookie banner matched/dismissed for https://www.ing.be/fr/particuliers/epargner/compte-epargne-classique (may not have one, or uses an unlisted selector)
+2026-09-22 10:21:31,947 | INFO | Saved ing_adult__compte-epargne-classique (html: ing_adult_compte-epargne-classique.html, screenshot: ing_adult_compte-epargne-classique.png)
+2026-09-22 10:21:31,948 | INFO | [2/6] https://www.ing.be/fr/particuliers/epargner/compte-epargne-automatique
+2026-09-22 10:21:33,883 | INFO | No cookie banner matched/dismissed for https://www.ing.be/fr/particuliers/epargner/compte-epargne-automatique (may not have one, or uses an unlisted selector)
+2026-09-22 10:21:35,421 | INFO | Saved ing_adult__compte-epargne-automatique (html: ing_adult_compte-epargne-automatique.html, screenshot: ing_adult_compte-epargne-automatique.png)
+2026-09-22 10:21:35,421 | INFO | [3/6] https://www.ing.be/fr/particuliers/cartes-de-credit/carte-de-credit-visa
+2026-09-22 10:21:37,361 | INFO | No cookie banner matched/dismissed for https://www.ing.be/fr/particuliers/cartes-de-credit/carte-de-credit-visa (may not have one, or uses an unlisted selector)
+2026-09-22 10:21:39,294 | INFO | Saved ing_adult__carte-de-credit-visa (html: ing_adult_carte-de-credit-visa.html, screenshot: ing_adult_carte-de-credit-visa.png)
+2026-09-22 10:21:39,294 | INFO | [4/6] https://www.ing.be/fr/particuliers/cartes-de-credit/comparatif-cartes-de-credit
+2026-09-22 10:21:41,254 | INFO | No cookie banner matched/dismissed for https://www.ing.be/fr/particuliers/cartes-de-credit/comparatif-cartes-de-credit (may not have one, or uses an unlisted selector)
+2026-09-22 10:21:43,210 | INFO | Saved ing_adult__comparatif-cartes-de-credit (html: ing_adult_comparatif-cartes-de-credit.html, screenshot: ing_adult_comparatif-cartes-de-credit.png)
+2026-09-22 10:21:43,210 | INFO | [5/6] https://www.ing.be/fr/particuliers/epargner
+2026-09-22 10:21:45,154 | INFO | No cookie banner matched/dismissed for https://www.ing.be/fr/particuliers/epargner (may not have one, or uses an unlisted selector)
+2026-09-22 10:21:46,388 | INFO | Saved ing_adult__epargner (html: ing_adult_epargner.html, screenshot: ing_adult_epargner.png)
+2026-09-22 10:21:46,390 | INFO | [6/6] https://www.ing.be/fr/particuliers/investir/commencer-a-investir
+2026-09-22 10:21:48,274 | INFO | No cookie banner matched/dismissed for https://www.ing.be/fr/particuliers/investir/commencer-a-investir (may not have one, or uses an unlisted selector)
+2026-09-22 10:21:49,547 | INFO | Saved ing_adult__commencer-a-investir (html: ing_adult_commencer-a-investir.html, screenshot: ing_adult_commencer-a-investir.png)
+2026-09-22 10:21:50,284 | INFO | Skipping bnp_fortis — blocked by Akamai Bot Manager, collected manually.
+2026-09-22 10:21:50,301 | INFO | === Scraping kbc (KBC) — 11 pages ===
+2026-09-22 10:21:51,230 | INFO | [1/11] https://www.kbcbrussels.be/particuliers/fr/produits/paiements/comptes-a-vue/compte-jeunes.html
+2026-09-22 10:21:53,820 | INFO | Dismissed cookie banner via get_by_role(accepter) on https://www.kbcbrussels.be/particuliers/fr/produits/paiements/comptes-a-vue/compte-jeunes.html
+2026-09-22 10:21:56,136 | INFO | Saved kbc__compte-jeunes-html (html: kbc_compte-jeunes-html.html, screenshot: kbc_compte-jeunes-html.png)
+2026-09-22 10:21:56,137 | INFO | [2/11] https://www.kbcbrussels.be/particuliers/fr/jeunes/18-ans.html
+2026-09-22 10:21:58,566 | INFO | No cookie banner matched/dismissed for https://www.kbcbrussels.be/particuliers/fr/jeunes/18-ans.html (may not have one, or uses an unlisted selector)
+2026-09-22 10:21:59,736 | INFO | Saved kbc__18-ans-html (html: kbc_18-ans-html.html, screenshot: kbc_18-ans-html.png)
+2026-09-22 10:21:59,736 | INFO | [3/11] https://www.kbcbrussels.be/particuliers/fr/jeunes/18-ans/digitaal.htm
+2026-09-22 10:22:01,944 | INFO | No cookie banner matched/dismissed for https://www.kbcbrussels.be/particuliers/fr/jeunes/18-ans/digitaal.htm (may not have one, or uses an unlisted selector)
+2026-09-22 10:22:02,904 | INFO | Saved kbc__digitaal-htm (html: kbc_digitaal-htm.html, screenshot: kbc_digitaal-htm.png)
+2026-09-22 10:22:02,904 | INFO | [4/11] https://www.kbcbrussels.be/particuliers/fr/jeunes/etudier-a-l-etranger.html
+2026-09-22 10:22:05,171 | INFO | No cookie banner matched/dismissed for https://www.kbcbrussels.be/particuliers/fr/jeunes/etudier-a-l-etranger.html (may not have one, or uses an unlisted selector)
+2026-09-22 10:22:06,353 | INFO | Saved kbc__etudier-a-l-etranger-html (html: kbc_etudier-a-l-etranger-html.html, screenshot: kbc_etudier-a-l-etranger-html.png)
+2026-09-22 10:22:06,354 | INFO | [5/11] https://www.kbcbrussels.be/particuliers/fr/jeunes/changer-de-compte.html
+2026-09-22 10:22:08,778 | INFO | No cookie banner matched/dismissed for https://www.kbcbrussels.be/particuliers/fr/jeunes/changer-de-compte.html (may not have one, or uses an unlisted selector)
+2026-09-22 10:22:09,777 | INFO | Saved kbc__changer-de-compte-html (html: kbc_changer-de-compte-html.html, screenshot: kbc_changer-de-compte-html.png)
+2026-09-22 10:22:09,778 | INFO | [6/11] https://www.kbcbrussels.be/particuliers/fr/jeunes/conseils-recevoir-argent-de-poche.html
+2026-09-22 10:22:11,816 | INFO | No cookie banner matched/dismissed for https://www.kbcbrussels.be/particuliers/fr/jeunes/conseils-recevoir-argent-de-poche.html (may not have one, or uses an unlisted selector)
+2026-09-22 10:22:13,069 | INFO | Saved kbc__conseils-recevoir-argent-de-poche-html (html: kbc_conseils-recevoir-argent-de-poche-html.html, screenshot: kbc_conseils-recevoir-argent-de-poche-html.png)
+2026-09-22 10:22:13,069 | INFO | [7/11] https://www.kbcbrussels.be/particuliers/fr/placements/investir-pour-les-jeunes.html
+2026-09-22 10:22:15,214 | INFO | No cookie banner matched/dismissed for https://www.kbcbrussels.be/particuliers/fr/placements/investir-pour-les-jeunes.html (may not have one, or uses an unlisted selector)
+2026-09-22 10:22:16,163 | INFO | Saved kbc__investir-pour-les-jeunes-html (html: kbc_investir-pour-les-jeunes-html.html, screenshot: kbc_investir-pour-les-jeunes-html.png)
+2026-09-22 10:22:16,164 | INFO | [8/11] https://www.kbc.be/particuliers/fr/produits/paiements/comptes-a-vue/compte-jeunes.html
+2026-09-22 10:22:16,164 | WARNING | Skipped: No robots.txt loaded for domain 'www.kbc.be' — refusing to scrape rather than guessing. Add its robots.txt to robots_checker.py + DOMAIN_TO_ROBOTS_KEY first.
+2026-09-22 10:22:16,164 | INFO | [9/11] https://www.kbc.be/particuliers/fr/jeunes/18-ans.html
+2026-09-22 10:22:16,165 | WARNING | Skipped: No robots.txt loaded for domain 'www.kbc.be' — refusing to scrape rather than guessing. Add its robots.txt to robots_checker.py + DOMAIN_TO_ROBOTS_KEY first.
+2026-09-22 10:22:16,165 | INFO | [10/11] https://www.kbc.be/particuliers/fr/campagne/compte-jeunes-action.html
+2026-09-22 10:22:16,165 | WARNING | Skipped: No robots.txt loaded for domain 'www.kbc.be' — refusing to scrape rather than guessing. Add its robots.txt to robots_checker.py + DOMAIN_TO_ROBOTS_KEY first.
+2026-09-22 10:22:16,166 | INFO | [11/11] https://www.kbc.be/particuliers/fr/jeunes.html
+2026-09-22 10:22:16,166 | WARNING | Skipped: No robots.txt loaded for domain 'www.kbc.be' — refusing to scrape rather than guessing. Add its robots.txt to robots_checker.py + DOMAIN_TO_ROBOTS_KEY first.
+2026-09-22 10:22:16,900 | INFO | === Scraping belfius (Belfius) — 3 pages ===
+2026-09-22 10:22:17,822 | INFO | [1/3] https://www.belfius.be/site/retail/fr/produits/paiement/compte-bancaire-pour-jeunes
+2026-09-22 10:22:22,607 | INFO | Dismissed cookie banner via '#onetrust-accept-btn-handler' (frame: https://www.belfius.be/site/retail/fr/produits/paiement/comp) on https://www.belfius.be/site/retail/fr/produits/paiement/compte-bancaire-pour-jeunes
+2026-09-22 10:22:24,860 | INFO | Saved belfius__compte-bancaire-pour-jeunes (html: belfius_compte-bancaire-pour-jeunes.html, screenshot: belfius_compte-bancaire-pour-jeunes.png)
+2026-09-22 10:22:24,860 | INFO | [2/3] https://www.belfius.be/site/retail/fr/produits/paiement/compte-bancaire/beats-star
+2026-09-22 10:22:26,911 | INFO | No cookie banner matched/dismissed for https://www.belfius.be/site/retail/fr/produits/paiement/compte-bancaire/beats-star (may not have one, or uses an unlisted selector)
+2026-09-22 10:22:28,588 | INFO | Saved belfius__beats-star (html: belfius_beats-star.html, screenshot: belfius_beats-star.png)
+2026-09-22 10:22:28,589 | INFO | [3/3] https://www.belfius.be/site/retail/fr/produits/paiement/carte-de-credit-et-prepayee/mastercard-star
+2026-09-22 10:22:31,347 | INFO | No cookie banner matched/dismissed for https://www.belfius.be/site/retail/fr/produits/paiement/carte-de-credit-et-prepayee/mastercard-star (may not have one, or uses an unlisted selector)
+2026-09-22 10:22:32,905 | INFO | Saved belfius__mastercard-star (html: belfius_mastercard-star.html, screenshot: belfius_mastercard-star.png)
+2026-09-22 10:22:33,630 | INFO | === Scraping revolut (Revolut) — 13 pages ===
+2026-09-22 10:22:34,564 | INFO | [1/13] https://www.revolut.com/revolut-kids-teens/
+2026-09-22 10:22:37,811 | INFO | No cookie banner matched/dismissed for https://www.revolut.com/revolut-kids-teens/ (may not have one, or uses an unlisted selector)
+2026-09-22 10:22:39,700 | INFO | Saved revolut__revolut-kids-teens (html: revolut_revolut-kids-teens.html, screenshot: revolut_revolut-kids-teens.png)
+2026-09-22 10:22:39,700 | INFO | [2/13] https://www.revolut.com/revolut-kids-and-teens-parent-and-guardians/
+2026-09-22 10:22:42,258 | INFO | No cookie banner matched/dismissed for https://www.revolut.com/revolut-kids-and-teens-parent-and-guardians/ (may not have one, or uses an unlisted selector)
+2026-09-22 10:22:44,086 | INFO | Saved revolut__revolut-kids-and-teens-parent-and-guardians (html: revolut_revolut-kids-and-teens-parent-and-guardians.html, screenshot: revolut_revolut-kids-and-teens-parent-and-guardians.png)
+2026-09-22 10:22:44,086 | INFO | [3/13] https://www.revolut.com/revolut-for-ages-16-17/
+2026-09-22 10:22:46,828 | INFO | No cookie banner matched/dismissed for https://www.revolut.com/revolut-for-ages-16-17/ (may not have one, or uses an unlisted selector)
+2026-09-22 10:22:48,654 | INFO | Saved revolut__revolut-for-ages-16-17 (html: revolut_revolut-for-ages-16-17.html, screenshot: revolut_revolut-for-ages-16-17.png)
+2026-09-22 10:22:48,656 | INFO | [4/13] https://www.revolut.com/kids-teens/referrals/
+2026-09-22 10:22:50,644 | INFO | No cookie banner matched/dismissed for https://www.revolut.com/kids-teens/referrals/ (may not have one, or uses an unlisted selector)
+2026-09-22 10:23:06,673 | WARNING | Content wait timed out (both attempts) for https://www.revolut.com/kids-teens/referrals/
+2026-09-22 10:23:07,269 | INFO | Saved revolut__referrals (html: revolut_referrals.html, screenshot: revolut_referrals.png)
+2026-09-22 10:23:07,269 | INFO | [5/13] https://www.revolut.com/fr-BE/
+2026-09-22 10:23:10,852 | INFO | Dismissed cookie banner via get_by_role(accepter) on https://www.revolut.com/fr-BE/
+2026-09-22 10:23:13,898 | INFO | Saved revolut__fr-be (html: revolut_fr-be.html, screenshot: revolut_fr-be.png)
+2026-09-22 10:23:13,898 | INFO | [6/13] https://www.revolut.com/en-BE/revolut-kids-and-teens-benefits/
+2026-09-22 10:23:17,260 | INFO | No cookie banner matched/dismissed for https://www.revolut.com/en-BE/revolut-kids-and-teens-benefits/ (may not have one, or uses an unlisted selector)
+2026-09-22 10:23:19,174 | INFO | Saved revolut__revolut-kids-and-teens-benefits (html: revolut_revolut-kids-and-teens-benefits.html, screenshot: revolut_revolut-kids-and-teens-benefits.png)
+2026-09-22 10:23:19,174 | INFO | [7/13] https://www.revolut.com/fr-BE/revolut-kids-and-teens-benefits/
+2026-09-22 10:23:22,337 | INFO | No cookie banner matched/dismissed for https://www.revolut.com/fr-BE/revolut-kids-and-teens-benefits/ (may not have one, or uses an unlisted selector)
+2026-09-22 10:23:24,244 | INFO | Saved revolut__revolut-kids-and-teens-benefits (html: revolut_revolut-kids-and-teens-benefits.html, screenshot: revolut_revolut-kids-and-teens-benefits.png)
+2026-09-22 10:23:24,244 | INFO | [8/13] https://www.revolut.com/fr-BE/kids-and-teens/kids-savings-account/
+2026-09-22 10:23:26,110 | INFO | No cookie banner matched/dismissed for https://www.revolut.com/fr-BE/kids-and-teens/kids-savings-account/ (may not have one, or uses an unlisted selector)
+2026-09-22 10:23:42,139 | WARNING | Content wait timed out (both attempts) for https://www.revolut.com/fr-BE/kids-and-teens/kids-savings-account/
+2026-09-22 10:23:42,732 | INFO | Saved revolut__kids-savings-account (html: revolut_kids-savings-account.html, screenshot: revolut_kids-savings-account.png)
+2026-09-22 10:23:42,735 | INFO | [9/13] https://www.revolut.com/fr-BE/u18-activation/
+2026-09-22 10:23:46,547 | INFO | No cookie banner matched/dismissed for https://www.revolut.com/fr-BE/u18-activation/ (may not have one, or uses an unlisted selector)
+2026-09-22 10:23:48,364 | INFO | Saved revolut__u18-activation (html: revolut_u18-activation.html, screenshot: revolut_u18-activation.png)
+2026-09-22 10:23:48,364 | INFO | [10/13] https://www.revolut.com/revolut-under-18-benefits-parents-and-guardians/
+2026-09-22 10:23:49,529 | WARNING | URL mismatch after goto (https://www.revolut.com/revolut-kids-and-teens-parent-and-guardians/) — retrying once for https://www.revolut.com/revolut-under-18-benefits-parents-and-guardians/
+2026-09-22 10:23:52,380 | INFO | No cookie banner matched/dismissed for https://www.revolut.com/revolut-under-18-benefits-parents-and-guardians/ (may not have one, or uses an unlisted selector)
+2026-09-22 10:23:54,096 | INFO | Saved revolut__revolut-under-18-benefits-parents-and-guardians (html: revolut_revolut-under-18-benefits-parents-and-guardians.html, screenshot: revolut_revolut-under-18-benefits-parents-and-guardians.png)
+2026-09-22 10:23:54,096 | INFO | [11/13] https://www.revolut.com/get-revolut-under-18
+2026-09-22 10:23:54,422 | WARNING | URL mismatch after goto (https://www.revolut.com/getrevolutunder18/) — retrying once for https://www.revolut.com/get-revolut-under-18
+2026-09-22 10:23:56,478 | INFO | No cookie banner matched/dismissed for https://www.revolut.com/get-revolut-under-18 (may not have one, or uses an unlisted selector)
+2026-09-22 10:23:57,141 | INFO | Saved revolut__get-revolut-under-18 (html: revolut_get-revolut-under-18.html, screenshot: revolut_get-revolut-under-18.png)
+2026-09-22 10:23:57,141 | INFO | [12/13] https://www.revolut.com/fr-BE/legal/revolut-under18/
+2026-09-22 10:23:59,754 | INFO | No cookie banner matched/dismissed for https://www.revolut.com/fr-BE/legal/revolut-under18/ (may not have one, or uses an unlisted selector)
+2026-09-22 10:24:03,158 | INFO | Saved revolut__revolut-under18 (html: revolut_revolut-under18.html, screenshot: revolut_revolut-under18.png)
+2026-09-22 10:24:03,158 | INFO | [13/13] https://www.revolut.com/blog/post/revolut-under-18-the-account-built-for-teens/
+2026-09-22 10:24:06,042 | INFO | No cookie banner matched/dismissed for https://www.revolut.com/blog/post/revolut-under-18-the-account-built-for-teens/ (may not have one, or uses an unlisted selector)
+2026-09-22 10:24:07,373 | INFO | Saved revolut__revolut-under-18-the-account-built-for-teens (html: revolut_revolut-under-18-the-account-built-for-teens.html, screenshot: revolut_revolut-under-18-the-account-built-for-teens.png)
+2026-09-22 10:24:08,141 | INFO | === Scraping hello_bank (Hello bank!) — 8 pages ===
+2026-09-22 10:24:09,074 | INFO | [1/8] https://www.hellobank.be/fr/notre-offre/comptes-et-cartes/compte-courant-27y
+2026-09-22 10:24:09,074 | WARNING | Skipped: No robots.txt loaded for domain 'www.hellobank.be' — refusing to scrape rather than guessing. Add its robots.txt to robots_checker.py + DOMAIN_TO_ROBOTS_KEY first.
+2026-09-22 10:24:09,081 | INFO | [2/8] https://www.hellobank.be/fr/notre-offre/comptes-et-cartes/compte-all-in-gratuit
+2026-09-22 10:24:09,082 | WARNING | Skipped: No robots.txt loaded for domain 'www.hellobank.be' — refusing to scrape rather than guessing. Add its robots.txt to robots_checker.py + DOMAIN_TO_ROBOTS_KEY first.
+2026-09-22 10:24:09,082 | INFO | [3/8] https://www.hellobank.be/fr/notre-offre/comptes-et-cartes/carte-de-credit
+2026-09-22 10:24:09,083 | WARNING | Skipped: No robots.txt loaded for domain 'www.hellobank.be' — refusing to scrape rather than guessing. Add its robots.txt to robots_checker.py + DOMAIN_TO_ROBOTS_KEY first.
+2026-09-22 10:24:09,083 | INFO | [4/8] https://www.hellobank.be/fr/notre-offre/comptes-et-cartes/application-hello-bank
+2026-09-22 10:24:09,084 | WARNING | Skipped: No robots.txt loaded for domain 'www.hellobank.be' — refusing to scrape rather than guessing. Add its robots.txt to robots_checker.py + DOMAIN_TO_ROBOTS_KEY first.
+2026-09-22 10:24:09,084 | INFO | [5/8] https://www.hellobank.be/fr/notre-offre/epargner-et-placer/compte-epargne-boost
+2026-09-22 10:24:09,084 | WARNING | Skipped: No robots.txt loaded for domain 'www.hellobank.be' — refusing to scrape rather than guessing. Add its robots.txt to robots_checker.py + DOMAIN_TO_ROBOTS_KEY first.
+2026-09-22 10:24:09,084 | INFO | [6/8] https://www.hellobank.be/fr/notre-offre/epargner-et-placer/commencer-a-investir
+2026-09-22 10:24:09,085 | WARNING | Skipped: No robots.txt loaded for domain 'www.hellobank.be' — refusing to scrape rather than guessing. Add its robots.txt to robots_checker.py + DOMAIN_TO_ROBOTS_KEY first.
+2026-09-22 10:24:09,085 | INFO | [7/8] https://www.hellobank.be/fr/devenir-hello
+2026-09-22 10:24:09,085 | WARNING | Skipped: No robots.txt loaded for domain 'www.hellobank.be' — refusing to scrape rather than guessing. Add its robots.txt to robots_checker.py + DOMAIN_TO_ROBOTS_KEY first.
+2026-09-22 10:24:09,085 | INFO | [8/8] https://www.hellobank.be/fr/infos-conseils
+2026-09-22 10:24:09,086 | WARNING | Skipped: No robots.txt loaded for domain 'www.hellobank.be' — refusing to scrape rather than guessing. Add its robots.txt to robots_checker.py + DOMAIN_TO_ROBOTS_KEY first.
+2026-09-22 10:24:09,477 | INFO | === Scraping argenta (Argenta) — 11 pages ===
+2026-09-22 10:24:10,730 | INFO | [1/11] https://www.argenta.be/fr/thema/les-jeunes.html
+2026-09-22 10:24:10,730 | WARNING | Skipped: No robots.txt loaded for domain 'www.argenta.be' — refusing to scrape rather than guessing. Add its robots.txt to robots_checker.py + DOMAIN_TO_ROBOTS_KEY first.
+2026-09-22 10:24:10,730 | INFO | [2/11] https://www.argenta.be/fr/thema/les-jeunes/les-parents/affaires-bancaires-au-quotidien-pour-votre-ado.html
+2026-09-22 10:24:10,730 | WARNING | Skipped: No robots.txt loaded for domain 'www.argenta.be' — refusing to scrape rather than guessing. Add its robots.txt to robots_checker.py + DOMAIN_TO_ROBOTS_KEY first.
+2026-09-22 10:24:10,730 | INFO | [3/11] https://www.argenta.be/fr/formules/green.html
+2026-09-22 10:24:10,730 | WARNING | Skipped: No robots.txt loaded for domain 'www.argenta.be' — refusing to scrape rather than guessing. Add its robots.txt to robots_checker.py + DOMAIN_TO_ROBOTS_KEY first.
+2026-09-22 10:24:10,730 | INFO | [4/11] https://www.argenta.be/fr/argenta-vous-informe/j-ai-18-ans-et-maintenant.html
+2026-09-22 10:24:10,730 | WARNING | Skipped: No robots.txt loaded for domain 'www.argenta.be' — refusing to scrape rather than guessing. Add its robots.txt to robots_checker.py + DOMAIN_TO_ROBOTS_KEY first.
+2026-09-22 10:24:10,730 | INFO | [5/11] https://www.argenta.be/fr/argenta-vous-informe/que-devez-vous-savoir-en-tant-qu-etudiant-jobiste.html
+2026-09-22 10:24:10,734 | WARNING | Skipped: No robots.txt loaded for domain 'www.argenta.be' — refusing to scrape rather than guessing. Add its robots.txt to robots_checker.py + DOMAIN_TO_ROBOTS_KEY first.
+2026-09-22 10:24:10,734 | INFO | [6/11] https://www.argenta.be/fr/argenta-vous-informe/10-conseils-destines-aux-jeunes-pour-economiser-de-l-argent.html
+2026-09-22 10:24:10,734 | WARNING | Skipped: No robots.txt loaded for domain 'www.argenta.be' — refusing to scrape rather than guessing. Add its robots.txt to robots_checker.py + DOMAIN_TO_ROBOTS_KEY first.
+2026-09-22 10:24:10,734 | INFO | [7/11] https://www.argenta.be/fr/argenta-vous-informe/une-carte-bancaire-personnelle-pour-votre-enfant-a-partir-de-quel-age.html
+2026-09-22 10:24:10,734 | WARNING | Skipped: No robots.txt loaded for domain 'www.argenta.be' — refusing to scrape rather than guessing. Add its robots.txt to robots_checker.py + DOMAIN_TO_ROBOTS_KEY first.
+2026-09-22 10:24:10,734 | INFO | [8/11] https://www.argenta.be/fr/argenta-vous-informe/7-conseils-pour-apprendre-a-votre-enfant-a-epargner.html
+2026-09-22 10:24:10,736 | WARNING | Skipped: No robots.txt loaded for domain 'www.argenta.be' — refusing to scrape rather than guessing. Add its robots.txt to robots_checker.py + DOMAIN_TO_ROBOTS_KEY first.
+2026-09-22 10:24:10,737 | INFO | [9/11] https://www.argenta.be/fr/thema/votre-famille-et-vous/que-devez-vous-regler-lors-d-une-naissance/ouvrir-un-compte-pour-votre-enfant.html
+2026-09-22 10:24:10,738 | WARNING | Skipped: No robots.txt loaded for domain 'www.argenta.be' — refusing to scrape rather than guessing. Add its robots.txt to robots_checker.py + DOMAIN_TO_ROBOTS_KEY first.
+2026-09-22 10:24:10,738 | INFO | [10/11] https://www.argenta.be/fr/payer/banque-par-internet.html
+2026-09-22 10:24:10,738 | WARNING | Skipped: No robots.txt loaded for domain 'www.argenta.be' — refusing to scrape rather than guessing. Add its robots.txt to robots_checker.py + DOMAIN_TO_ROBOTS_KEY first.
+2026-09-22 10:24:10,738 | INFO | [11/11] https://www.argenta.be/nl/thema/jongeren.html
+2026-09-22 10:24:10,739 | WARNING | Skipped: No robots.txt loaded for domain 'www.argenta.be' — refusing to scrape rather than guessing. Add its robots.txt to robots_checker.py + DOMAIN_TO_ROBOTS_KEY first.
+2026-09-22 10:24:10,869 | INFO | === Scraping n26 (N26) — 13 pages ===
+2026-09-22 10:24:11,838 | INFO | [1/13] https://n26.com/fr-be/moins-de-18-ans
+2026-09-22 10:24:14,403 | INFO | Dismissed cookie banner via get_by_role(accepter) on https://n26.com/fr-be/moins-de-18-ans
+2026-09-22 10:24:17,344 | INFO | Saved n26__moins-de-18-ans (html: n26_moins-de-18-ans.html, screenshot: n26_moins-de-18-ans.png)
+2026-09-22 10:24:17,344 | INFO | [2/13] https://n26.com/fr-be/compte-bancaire-gratuit
+2026-09-22 10:24:20,415 | INFO | No cookie banner matched/dismissed for https://n26.com/fr-be/compte-bancaire-gratuit (may not have one, or uses an unlisted selector)
+2026-09-22 10:24:21,858 | INFO | Saved n26__compte-bancaire-gratuit (html: n26_compte-bancaire-gratuit.html, screenshot: n26_compte-bancaire-gratuit.png)
+2026-09-22 10:24:21,859 | INFO | [3/13] https://n26.com/fr-be/compte-bancaire
+2026-09-22 10:24:26,734 | INFO | No cookie banner matched/dismissed for https://n26.com/fr-be/compte-bancaire (may not have one, or uses an unlisted selector)
+2026-09-22 10:24:28,198 | INFO | Saved n26__compte-bancaire (html: n26_compte-bancaire.html, screenshot: n26_compte-bancaire.png)
+2026-09-22 10:24:28,198 | INFO | [4/13] https://n26.com/fr-be/tarifs
+2026-09-22 10:24:30,514 | INFO | No cookie banner matched/dismissed for https://n26.com/fr-be/tarifs (may not have one, or uses an unlisted selector)
+2026-09-22 10:24:32,150 | INFO | Saved n26__tarifs (html: n26_tarifs.html, screenshot: n26_tarifs.png)
+2026-09-22 10:24:32,152 | INFO | [5/13] https://n26.com/fr-be/compte-epargne
+2026-09-22 10:24:34,536 | INFO | No cookie banner matched/dismissed for https://n26.com/fr-be/compte-epargne (may not have one, or uses an unlisted selector)
+2026-09-22 10:24:35,938 | INFO | Saved n26__compte-epargne (html: n26_compte-epargne.html, screenshot: n26_compte-epargne.png)
+2026-09-22 10:24:35,938 | INFO | [6/13] https://n26.com/fr-be/actions-et-etfs
+2026-09-22 10:24:39,365 | INFO | No cookie banner matched/dismissed for https://n26.com/fr-be/actions-et-etfs (may not have one, or uses an unlisted selector)
+2026-09-22 10:24:41,054 | INFO | Saved n26__actions-et-etfs (html: n26_actions-et-etfs.html, screenshot: n26_actions-et-etfs.png)
+2026-09-22 10:24:41,054 | INFO | [7/13] https://n26.com/fr-be/sitemap
+2026-09-22 10:24:43,161 | INFO | No cookie banner matched/dismissed for https://n26.com/fr-be/sitemap (may not have one, or uses an unlisted selector)
+2026-09-22 10:24:43,869 | INFO | Saved n26__sitemap (html: n26_sitemap.html, screenshot: n26_sitemap.png)
+2026-09-22 10:24:43,870 | INFO | [8/13] https://n26.com/fr-fr/compte-bancaire-etudiant
+2026-09-22 10:24:46,193 | INFO | Dismissed cookie banner via get_by_role(accepter) on https://n26.com/fr-fr/compte-bancaire-etudiant
+2026-09-22 10:24:49,004 | INFO | Saved n26__compte-bancaire-etudiant (html: n26_compte-bancaire-etudiant.html, screenshot: n26_compte-bancaire-etudiant.png)
+2026-09-22 10:24:49,004 | INFO | [9/13] https://n26.com/fr-fr/indice-du-cout-des-etudes
+2026-09-22 10:24:53,114 | INFO | No cookie banner matched/dismissed for https://n26.com/fr-fr/indice-du-cout-des-etudes (may not have one, or uses an unlisted selector)
+2026-09-22 10:24:54,764 | INFO | Saved n26__indice-du-cout-des-etudes (html: n26_indice-du-cout-des-etudes.html, screenshot: n26_indice-du-cout-des-etudes.png)
+2026-09-22 10:24:54,764 | INFO | [10/13] https://n26.com/de-de/taschengeld-und-finanzielle-bildung
+2026-09-22 10:24:57,543 | INFO | Dismissed cookie banner via 'button[data-testid*='accept' i]' (frame: https://n26.com/de-de/taschengeld-und-finanzielle-bildung) on https://n26.com/de-de/taschengeld-und-finanzielle-bildung
+2026-09-22 10:25:00,724 | INFO | Saved n26__taschengeld-und-finanzielle-bildung (html: n26_taschengeld-und-finanzielle-bildung.html, screenshot: n26_taschengeld-und-finanzielle-bildung.png)
+2026-09-22 10:25:00,724 | INFO | [11/13] https://n26.com/en-fr/blog/how-to-open-a-bank-account-in-luxembourg
+2026-09-22 10:25:03,796 | INFO | No cookie banner matched/dismissed for https://n26.com/en-fr/blog/how-to-open-a-bank-account-in-luxembourg (may not have one, or uses an unlisted selector)
+2026-09-22 10:25:05,502 | INFO | Saved n26__how-to-open-a-bank-account-in-luxembourg (html: n26_how-to-open-a-bank-account-in-luxembourg.html, screenshot: n26_how-to-open-a-bank-account-in-luxembourg.png)
+2026-09-22 10:25:05,503 | INFO | [12/13] https://n26.com/en-eu/iban-number
+2026-09-22 10:25:08,493 | INFO | Dismissed cookie banner via 'button[data-testid*='accept' i]' (frame: https://n26.com/en-eu/iban-number) on https://n26.com/en-eu/iban-number
+2026-09-22 10:25:11,076 | INFO | Saved n26__iban-number (html: n26_iban-number.html, screenshot: n26_iban-number.png)
+2026-09-22 10:25:11,076 | INFO | [13/13] https://n26.com/en-fr/blog/guide-to-eu-banking-acronyms
+2026-09-22 10:25:14,543 | INFO | No cookie banner matched/dismissed for https://n26.com/en-fr/blog/guide-to-eu-banking-acronyms (may not have one, or uses an unlisted selector)
+2026-09-22 10:25:16,067 | INFO | Saved n26__guide-to-eu-banking-acronyms (html: n26_guide-to-eu-banking-acronyms.html, screenshot: n26_guide-to-eu-banking-acronyms.png)
+2026-09-22 10:25:16,806 | INFO | === Scraping beobank (Beobank) — 7 pages ===
+2026-09-22 10:25:17,683 | INFO | [1/7] https://www.beobank.be/fr/payer/comptes-courants/compte-jeunes.html
+2026-09-22 10:25:17,683 | WARNING | Skipped: No robots.txt loaded for domain 'www.beobank.be' — refusing to scrape rather than guessing. Add its robots.txt to robots_checker.py + DOMAIN_TO_ROBOTS_KEY first.
+2026-09-22 10:25:17,683 | INFO | [2/7] https://www.beobank.be/fr/payer/cartes-de-credit/young-mastercard.html
+2026-09-22 10:25:17,684 | WARNING | Skipped: No robots.txt loaded for domain 'www.beobank.be' — refusing to scrape rather than guessing. Add its robots.txt to robots_checker.py + DOMAIN_TO_ROBOTS_KEY first.
+2026-09-22 10:25:17,684 | INFO | [3/7] https://www.beobank.be/fr/payer/comptes-courants.html
+2026-09-22 10:25:17,684 | WARNING | Skipped: No robots.txt loaded for domain 'www.beobank.be' — refusing to scrape rather than guessing. Add its robots.txt to robots_checker.py + DOMAIN_TO_ROBOTS_KEY first.
+2026-09-22 10:25:17,684 | INFO | [4/7] https://www.beobank.be/fr/payer/cartes-de-credit.html
+2026-09-22 10:25:17,684 | WARNING | Skipped: No robots.txt loaded for domain 'www.beobank.be' — refusing to scrape rather than guessing. Add its robots.txt to robots_checker.py + DOMAIN_TO_ROBOTS_KEY first.
+2026-09-22 10:25:17,684 | INFO | [5/7] https://www.beobank.be/fr/epargner.html
+2026-09-22 10:25:17,684 | WARNING | Skipped: No robots.txt loaded for domain 'www.beobank.be' — refusing to scrape rather than guessing. Add its robots.txt to robots_checker.py + DOMAIN_TO_ROBOTS_KEY first.
+2026-09-22 10:25:17,684 | INFO | [6/7] https://www.beobank.be/fr/investir.html
+2026-09-22 10:25:17,684 | WARNING | Skipped: No robots.txt loaded for domain 'www.beobank.be' — refusing to scrape rather than guessing. Add its robots.txt to robots_checker.py + DOMAIN_TO_ROBOTS_KEY first.
+2026-09-22 10:25:17,684 | INFO | [7/7] https://www.beobank.be/fr/actualites.html
+2026-09-22 10:25:17,684 | WARNING | Skipped: No robots.txt loaded for domain 'www.beobank.be' — refusing to scrape rather than guessing. Add its robots.txt to robots_checker.py + DOMAIN_TO_ROBOTS_KEY first.
