@@ -30,7 +30,7 @@ from src.scope import MVP_BANKS, TARGET_YOUTH_PER_BANK
 # --- Paths ---
 
 INPUT_PATH = FEATURES_DIR / "deterministic.parquet"
-OUTPUT_PATH = FEATURES_DIR / "analysis_set.parquet"
+OUTPUT_PATH = FEATURES_DIR / "analysis_set_deterministic.parquet"
 REPORT_PATH = DOCS_DIR / "analysis_set_report.md"
 
 
