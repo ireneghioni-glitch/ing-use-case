@@ -36,10 +36,7 @@ OUTPUT_PATH = FEATURES_DIR / "deterministic.parquet"
 CODEBOOK_VERSION = "v1.0"
 METHOD = "deterministic"
 
-MVP_BANKS = {"ING", "KBC", "Belfius", "Revolut", "N26"}
-BACKUP_TRAD = {"BNP Paribas Fortis"}
-BACKUP_NEO = {"bunq"}
-ALL_BACKUPS = BACKUP_TRAD | BACKUP_NEO
+from src.scope import MVP_BANKS, BACKUP_TRAD, BACKUP_NEO, ALL_BACKUPS
 
 
 # --- Functions ---
