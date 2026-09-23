@@ -7,7 +7,7 @@ INPUT_PATH = (
     PROJECT_ROOT
     / "data"
     / "features"
-    / "analysis_set.parquet"
+    / "analysis_set_deterministic.parquet"
 )
 
 OUTPUT_PATH = (

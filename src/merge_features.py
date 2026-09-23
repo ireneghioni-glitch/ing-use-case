@@ -19,7 +19,7 @@ from pathlib import Path
 
 import polars as pl
 
-from src.config import FEATURES_DIR, DOCS_DIR
+from src.config import FEATURES_DIR, DOCS_DIR, PROCESSED_DIR
 
 
 # --- Paths ---
@@ -29,6 +29,7 @@ LLM_PATH = FEATURES_DIR / "llm_claude.parquet"
 VISUAL_PATH = FEATURES_DIR / "visual_manual.csv"
 OUTPUT_PATH = FEATURES_DIR / "all_features.parquet"
 REPORT_PATH = DOCS_DIR / "merge_report.md"
+CLEANED_PATH = PROCESSED_DIR / "cleaned_assets.jsonl"
 
 
 # --- Constants ---
@@ -209,6 +210,12 @@ def main() -> None:
 
     det_filtered = det.filter(pl.col("asset_id").is_in(list(analysis_ids)))
 
+    # --- Load cleaned metadata (text + screenshot_path) for the analysis set ---
+    cleaned = pl.read_ndjson(CLEANED_PATH).select([
+        "asset_id", "text", "screenshot_path"
+    ]).filter(pl.col("asset_id").is_in(list(analysis_ids)))
+    print(f"       cleaned metadata loaded: {len(cleaned)} assets")
+
     sources = {
         "deterministic": normalize_long(det_filtered, "deterministic"),
     }
@@ -236,6 +243,7 @@ def main() -> None:
 
     # --- Join metadata onto the wide table ---
     final = wide.join(meta, on="asset_id", how="left")
+    final = final.join(cleaned, on="asset_id", how="left")
 
     # --- Save ---
     OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)

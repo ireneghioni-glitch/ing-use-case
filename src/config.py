@@ -14,6 +14,7 @@ RAW_DIR = DATA_DIR / "raw"
 PROCESSED_DIR = DATA_DIR / "processed"
 FEATURES_DIR = DATA_DIR / "features"
 SCREENSHOTS_DIR = RAW_DIR / "screenshots"
+VALIDATION_DIR = DATA_DIR / "validation"
 # initial scraped data from Victor
 ASSETS_PATH = RAW_DIR / "campaign_asset.jsonl"
 
