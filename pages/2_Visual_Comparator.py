@@ -2,9 +2,10 @@ import streamlit as st
 
 from utils.config import MVP_BANKS, BANK_TYPE
 from utils.data_loader import load_features
+from utils.style import inject_css 
 
 st.set_page_config(page_title="Visual Comparator", page_icon="🖼️", layout="wide")
-
+inject_css() 
 st.title("Visual Comparator")
 st.caption("Pick 2–3 banks and compare their youth-oriented pages side by side.")
 
