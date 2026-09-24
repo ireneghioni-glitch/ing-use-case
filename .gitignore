@@ -3,3 +3,4 @@
 *.py[cod]
 *.db
 ing-venv/
+.streamlit/secrets.toml
