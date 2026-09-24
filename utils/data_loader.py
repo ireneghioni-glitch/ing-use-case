@@ -215,9 +215,83 @@ def load_features() -> tuple[pd.DataFrame, bool]:
             det_wide = det_wide.drop(columns=overlap)
             df = df.merge(det_wide, on="asset_id", how="left")
 
+        df = _drop_404_pages(df)
+
         return df, False
 
     return _demo_dataframe(), True
+
+
+def _is_404_topics(topics) -> bool:
+    """Flags a page whose LLM-extracted topics indicate it's actually a 404 /
+    error page rather than real content — confirmed in this corpus: several
+    pages (16 for Belfius, 5 for N26, 1 each for KBC/BNP) were scraped as
+    generic error pages, which also explains why some pages showed identical
+    word_count/jargon_density/sentence_length values despite different URLs."""
+    if hasattr(topics, "tolist"):
+        topics = topics.tolist()
+    if not topics:
+        return False
+    markers = ("404", "error page", "page not found")
+    return any(any(m in str(t).lower() for m in markers) for t in topics)
+
+
+# "Back to homepage" CTA text in the languages this corpus uses — catches 404
+# pages whose topics list came back empty (so _is_404_topics alone misses them),
+# e.g. belfius__index__nl__a46cceef97 (studentenkrediet-lening).
+_HOMEPAGE_CTA_MARKERS = (
+    "terug naar de homepagina", "retourner à la page d'accueil",
+    "retour à l'accueil", "back to homepage", "go to homepage",
+)
+
+
+def _is_404_cta(topics, cta_text) -> bool:
+    has_topics = bool(topics.tolist() if hasattr(topics, "tolist") else topics)
+    if has_topics:
+        return False  # only use this signal when topics came back empty
+    cta = str(cta_text or "").strip().lower()
+    return any(m in cta for m in _HOMEPAGE_CTA_MARKERS)
+
+
+# Known cases our automatic heuristics can't catch generically — each is a
+# confirmed content-integrity issue found by manually inspecting the scraped
+# text, not just a guess. Document the reason so this list stays auditable.
+MANUALLY_EXCLUDED_ASSET_IDS = {
+    "belfius__index__nl__edea673d2c": (
+        "URL is the 'Blue' account page, but the scraped text is actually the "
+        "'Beats New' account page (mentions 'Beats New' 7x, 'blue' 0x) — a "
+        "content/URL mismatch, likely the same SPA client-side-routing issue "
+        "scraper.py's own comments already flagged as a known risk (confirmed "
+        "happening for KBC)."
+    ),
+    "belfius__index__nl__82d24d183c": (
+        "https://www.belfius.be/retail/nl/producten/betalen/zichtrekeningen/"
+        "beats-new/index.aspx — confirmed bad by direct user check. Not caught "
+        "by the automatic heuristics: the extracted text/topics/CTA looked "
+        "internally coherent (real 'Beats New' content, no 404 markers), so "
+        "whatever's wrong with this page isn't visible in the LLM-extracted "
+        "fields alone."
+    ),
+}
+
+
+def _drop_404_pages(df: pd.DataFrame) -> pd.DataFrame:
+    if "topics" not in df.columns:
+        return df
+
+    is_topics_404 = df["topics"].apply(_is_404_topics)
+    is_cta_404 = df.apply(lambda r: _is_404_cta(r.get("topics"), r.get("cta_text")), axis=1) \
+        if "cta_text" in df.columns else False
+    is_manual = df["asset_id"].isin(MANUALLY_EXCLUDED_ASSET_IDS)
+
+    drop_mask = is_topics_404 | is_cta_404 | is_manual
+    n_dropped = int(drop_mask.sum())
+    if n_dropped:
+        print(f"[data_loader] Dropped {n_dropped} page(s): "
+              f"{int(is_topics_404.sum())} via topics, "
+              f"{int((is_cta_404 & ~is_topics_404).sum()) if hasattr(is_cta_404, 'sum') else 0} via empty-topics+homepage-CTA, "
+              f"{int(is_manual.sum())} manually confirmed content mismatches.")
+    return df[~drop_mask].reset_index(drop=True)
 
 
 @st.cache_data

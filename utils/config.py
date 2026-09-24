@@ -17,10 +17,10 @@ BANK_TYPE = {
     "ING": "traditional",
     "KBC": "traditional",
     "Belfius": "traditional",
-    "Revolut": "digital challenger",
-    "N26": "digital challenger",
+    "Revolut": "challenger",
+    "N26": "challenger",
     "BNP Paribas Fortis": "traditional",
-    "bunq": "digital challenger",
+    "bunq": "challenger",
     # Out-of-scope banks present in the corpus from an earlier scraping iteration.
     "Argenta": "traditional",
     "Beobank": "traditional",
@@ -28,7 +28,7 @@ BANK_TYPE = {
 
 BANK_TYPE_LABEL = {
     "traditional": "Traditional bank",
-    "digital challenger": "Digital challenger",
+    "challenger": "Digital challenger",
 }
 
 SUBJECT_BANK = "ING"
