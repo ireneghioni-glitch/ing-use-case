@@ -3,9 +3,10 @@ import streamlit as st
 
 from utils.config import MVP_BANKS, BANK_TYPE, SUBJECT_BANK
 from utils.data_loader import load_features
+from utils.style import inject_css 
 
 st.set_page_config(page_title="Visual Comparator", page_icon="🖼️", layout="wide")
-
+inject_css() 
 st.title("Visual Comparator")
 st.caption("Pick specific pages across banks and see exactly where they differ.")
 

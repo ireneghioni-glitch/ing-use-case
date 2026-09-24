@@ -1,9 +1,10 @@
 import streamlit as st
 
 from utils.config import SUBJECT_BANK
+from utils.style import inject_css
 
 st.set_page_config(page_title="Recommendations", page_icon="✅", layout="wide")
-
+inject_css() 
 st.title("Recommendations")
 st.caption(f"Concrete next steps for {SUBJECT_BANK}, each tied to an observation and its grounding.")
 

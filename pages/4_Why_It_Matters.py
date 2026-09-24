@@ -4,12 +4,12 @@ import re
 
 import pandas as pd
 import streamlit as st
-
-from utils.config import SUBJECT_BANK, BANK_TYPE_LABEL
+from utils.style import inject_css
+from utils.config import SUBJECT_BANK, BANK_TYPE_LABEL, BANK_TYPE
 from utils.data_loader import load_features, filter_mvp
-
+from utils.style import inject_css
 st.set_page_config(page_title="Why It Matters", page_icon="📚", layout="wide")
-
+inject_css() 
 st.title("Why It Matters")
 st.caption(
     "Academic grounding for the patterns actually observed across the 5 MVP banks — "
