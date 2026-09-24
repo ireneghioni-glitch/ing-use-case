@@ -1,0 +1,21 @@
+feature,bank,category,asset_count,bank_total,percentage,kappa,validation_decision,analysis_note
+visual_type,Belfius,abstract,0,5,0.0,0.841,keep,Final quantitative analysis uses validated visual_type. Deterministic text features are audited for source quality and excluded from cross-bank conclusions.
+visual_type,Belfius,none,3,5,60.0,0.841,keep,Final quantitative analysis uses validated visual_type. Deterministic text features are audited for source quality and excluded from cross-bank conclusions.
+visual_type,Belfius,product-shot,0,5,0.0,0.841,keep,Final quantitative analysis uses validated visual_type. Deterministic text features are audited for source quality and excluded from cross-bank conclusions.
+visual_type,Belfius,real-people,2,5,40.0,0.841,keep,Final quantitative analysis uses validated visual_type. Deterministic text features are audited for source quality and excluded from cross-bank conclusions.
+visual_type,ING,abstract,0,10,0.0,0.841,keep,Final quantitative analysis uses validated visual_type. Deterministic text features are audited for source quality and excluded from cross-bank conclusions.
+visual_type,ING,none,2,10,20.0,0.841,keep,Final quantitative analysis uses validated visual_type. Deterministic text features are audited for source quality and excluded from cross-bank conclusions.
+visual_type,ING,product-shot,0,10,0.0,0.841,keep,Final quantitative analysis uses validated visual_type. Deterministic text features are audited for source quality and excluded from cross-bank conclusions.
+visual_type,ING,real-people,8,10,80.0,0.841,keep,Final quantitative analysis uses validated visual_type. Deterministic text features are audited for source quality and excluded from cross-bank conclusions.
+visual_type,KBC,abstract,0,10,0.0,0.841,keep,Final quantitative analysis uses validated visual_type. Deterministic text features are audited for source quality and excluded from cross-bank conclusions.
+visual_type,KBC,none,0,10,0.0,0.841,keep,Final quantitative analysis uses validated visual_type. Deterministic text features are audited for source quality and excluded from cross-bank conclusions.
+visual_type,KBC,product-shot,1,10,10.0,0.841,keep,Final quantitative analysis uses validated visual_type. Deterministic text features are audited for source quality and excluded from cross-bank conclusions.
+visual_type,KBC,real-people,9,10,90.0,0.841,keep,Final quantitative analysis uses validated visual_type. Deterministic text features are audited for source quality and excluded from cross-bank conclusions.
+visual_type,N26,abstract,0,5,0.0,0.841,keep,Final quantitative analysis uses validated visual_type. Deterministic text features are audited for source quality and excluded from cross-bank conclusions.
+visual_type,N26,none,0,5,0.0,0.841,keep,Final quantitative analysis uses validated visual_type. Deterministic text features are audited for source quality and excluded from cross-bank conclusions.
+visual_type,N26,product-shot,3,5,60.0,0.841,keep,Final quantitative analysis uses validated visual_type. Deterministic text features are audited for source quality and excluded from cross-bank conclusions.
+visual_type,N26,real-people,2,5,40.0,0.841,keep,Final quantitative analysis uses validated visual_type. Deterministic text features are audited for source quality and excluded from cross-bank conclusions.
+visual_type,Revolut,abstract,1,5,20.0,0.841,keep,Final quantitative analysis uses validated visual_type. Deterministic text features are audited for source quality and excluded from cross-bank conclusions.
+visual_type,Revolut,none,4,5,80.0,0.841,keep,Final quantitative analysis uses validated visual_type. Deterministic text features are audited for source quality and excluded from cross-bank conclusions.
+visual_type,Revolut,product-shot,0,5,0.0,0.841,keep,Final quantitative analysis uses validated visual_type. Deterministic text features are audited for source quality and excluded from cross-bank conclusions.
+visual_type,Revolut,real-people,0,5,0.0,0.841,keep,Final quantitative analysis uses validated visual_type. Deterministic text features are audited for source quality and excluded from cross-bank conclusions.
