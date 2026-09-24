@@ -247,6 +247,7 @@ def main() -> None:
     selected_ids: list[str] = []
     per_bank: dict[str, dict] = {}
 
+
     for bank in sorted(MVP_BANKS):
         bank_rows = mvp_youth.filter(pl.col("bank") == bank)
         candidates = bank_rows.select(["asset_id", "language"]).to_dicts()
