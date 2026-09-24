@@ -37,6 +37,7 @@ from utils.config import (
     AUDIENCE_LABEL,
     TARGET_RECORDS_PER_BANK,
     MIN_VIABLE_RECORDS_PER_BANK,
+    SUBJECT_BANK,
 )
 
 FEATURE_COLUMNS = [
@@ -65,6 +66,23 @@ def _demo_dataframe() -> pd.DataFrame:
     verbosity = ["low", "medium", "high"]
     yes_no = ["yes", "no"]
     trust_options = ["security_badge", "deposit_guarantee", "testimonials", "customer_numbers", "none"]
+    topic_pool = [
+        "student account", "savings", "youth", "budgeting", "gamification",
+        "mobile banking", "investing", "eligibility", "free account",
+    ]
+    # Guarantee at least one shared topic between ING and another bank, on
+    # each bank's first page — otherwise random sampling could produce a
+    # demo where no two banks ever share a topic, making the "Product /
+    # topic" filter on the Visual Comparator look broken even when it isn't.
+    SHARED_TOPIC = "student account"
+    SHARED_TOPIC_PARTNER = next((b for b in MVP_BANKS if b != SUBJECT_BANK), None)
+
+    def pick_topics(bank: str, page_index: int) -> list[str]:
+        sampled = random.sample(topic_pool, k=random.randint(2, 3))
+        must_share = page_index == 0 and bank in (SUBJECT_BANK, SHARED_TOPIC_PARTNER)
+        if must_share and SHARED_TOPIC not in sampled:
+            sampled = [SHARED_TOPIC] + sampled[:2]
+        return sampled
 
     rows = []
     for bank in MVP_BANKS:
@@ -108,6 +126,7 @@ def _demo_dataframe() -> pd.DataFrame:
                 "word_count": random.randint(80, 900),
                 "jargon_density": round(random.uniform(0.5, 6.0), 2),
                 "mean_sentence_length": round(random.uniform(8, 35), 1),
+                "topics": pick_topics(bank, i),
                 "screenshot_path": None,
                 "text": "[Demo placeholder — real cleaned page text will appear here once the pipeline output is loaded.]",
                 "_is_demo_data": True,
@@ -178,7 +197,9 @@ def load_features() -> tuple[pd.DataFrame, bool]:
         if CLEANED_ASSETS_PATH.exists():
             with CLEANED_ASSETS_PATH.open(encoding="utf-8") as f:
                 cleaned = [json.loads(line) for line in f]
-            cleaned_df = pd.DataFrame(cleaned)[["asset_id", "text", "screenshot_path"]]
+            cleaned_df = pd.DataFrame(cleaned)
+            keep_cols = [c for c in ["asset_id", "text", "screenshot_path", "title"] if c in cleaned_df.columns]
+            cleaned_df = cleaned_df[keep_cols]
             df = df.merge(cleaned_df, on="asset_id", how="left")
 
         det_wide = _load_deterministic_wide()
