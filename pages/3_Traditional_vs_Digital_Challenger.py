@@ -4,9 +4,9 @@ import streamlit as st
 
 from utils.config import BANK_TYPE_LABEL
 from utils.data_loader import load_features, filter_mvp, load_manual_annotations
-
+from utils.style import inject_css
 st.set_page_config(page_title="Traditional vs Digital Challenger", page_icon="📊", layout="wide")
-
+inject_css() 
 st.title("Traditional Banks vs Digital Challengers")
 st.caption("Aggregate patterns across all youth-oriented pages, MVP banks only.")
 

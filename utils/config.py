@@ -6,7 +6,7 @@ Reflects the confirmed scope (scope.md, 2026-09-21).
 from pathlib import Path
 
 # --- Scope: the 5 MVP banks + their configured backups ---
-MVP_BANKS = ["ING", "KBC", "Belfius", "Revolut", "N26"]
+MVP_BANKS = ["ING", "N26","KBC","Revolut", "Belfius" ]
 
 BACKUP_BANKS = {
     "traditional": {"bank": "BNP Paribas Fortis", "activates_if": ["KBC", "Belfius"]},

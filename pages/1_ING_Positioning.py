@@ -4,9 +4,10 @@ import streamlit as st
 
 from utils.config import SUBJECT_BANK, MVP_BANKS, BANK_TYPE
 from utils.data_loader import load_features, filter_mvp
+from utils.style import inject_css  
 
 st.set_page_config(page_title="ING's Positioning", page_icon="📍", layout="wide")
-
+inject_css()  
 st.title("Where ING stands")
 st.caption("Cross-bank comparison on youth-oriented pages — the 5 MVP banks only.")
 

@@ -270,8 +270,7 @@ def compute_coverage(df: pd.DataFrame) -> pd.DataFrame:
             "Bank": bank,
             "Type": BANK_TYPE.get(bank, "—").title(),
             "Youth records": n,
-            "Status": status,
-            "Backup bank if needed": backup or "—",
+            "Status": status,            
         })
     return pd.DataFrame(rows)
 
