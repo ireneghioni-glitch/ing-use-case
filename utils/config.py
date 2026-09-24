@@ -45,6 +45,9 @@ FEATURES_PATH = DATA_DIR / "features" / "llm_claude.parquet"
 DETERMINISTIC_FEATURES_PATH = DATA_DIR / "features" / "deterministic.parquet"
 CLEANED_ASSETS_PATH = DATA_DIR / "processed" / "cleaned_assets.jsonl"
 MANUAL_ANNOTATIONS_PATH = DATA_DIR / "features" / "visual_manual.csv"
+# Consolidated file (LLM + deterministic + cleaned text, already joined) —
+# used by the combined Positioning page. The files above stay in use elsewhere.
+ALL_FEATURES_PATH = DATA_DIR / "features" / "all_features.parquet"
 
 # --- Out of scope (shown on the Scope & Methodology page so it's never ambiguous) ---
 OUT_OF_SCOPE = [

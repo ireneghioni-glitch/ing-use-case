@@ -31,6 +31,7 @@ from utils.config import (
     DETERMINISTIC_FEATURES_PATH,
     CLEANED_ASSETS_PATH,
     MANUAL_ANNOTATIONS_PATH,
+    ALL_FEATURES_PATH,
     MVP_BANKS,
     BACKUP_BANKS,
     BANK_TYPE,
@@ -92,7 +93,7 @@ def _demo_dataframe() -> pd.DataFrame:
         # something realistic to flag even in demo mode.
         n = 5 if bank == "Revolut" else 10
         for i in range(n):
-            is_challenger = bank_type == "digital challenger"
+            is_challenger = bank_type == "challenger"
             rows.append({
                 "asset_id": f"{bank.lower().replace(' ', '-')}__demo-{i}",
                 "bank": bank,
@@ -220,6 +221,48 @@ def load_features() -> tuple[pd.DataFrame, bool]:
         return df, False
 
     return _demo_dataframe(), True
+
+
+# Columns stored as numbers-as-strings / pipe-separated lists in all_features.parquet.
+_ALL_FEATURES_NUMERIC = ["word_count", "jargon_density", "mean_sentence_length"]
+_ALL_FEATURES_LIST = ["topics", "trust_signals"]
+
+
+def _split_pipe(value) -> list[str]:
+    if value is None or (isinstance(value, float) and pd.isna(value)):
+        return []
+    if hasattr(value, "tolist"):
+        return [str(v) for v in value.tolist()]
+    if isinstance(value, list):
+        return value
+    return [part.strip() for part in str(value).split("|") if part.strip()]
+
+
+@st.cache_data
+def load_all_features() -> tuple[pd.DataFrame, bool]:
+    """Returns (dataframe, is_demo_data) from the consolidated
+    all_features.parquet. Independent of load_features(): the other parquet
+    files are left untouched and still used by the other pages."""
+    if not ALL_FEATURES_PATH.exists():
+        return _demo_dataframe(), True
+
+    df = pd.read_parquet(ALL_FEATURES_PATH)
+    df["_is_demo_data"] = False
+
+    for col in _ALL_FEATURES_NUMERIC:
+        if col in df.columns:
+            df[col] = pd.to_numeric(df[col], errors="coerce")
+
+    for col in _ALL_FEATURES_LIST:
+        if col in df.columns:
+            df[col] = df[col].apply(_split_pipe)
+
+    # bank_type isn't stored in the file — derive it from the config mapping.
+    if "bank_type" not in df.columns:
+        df["bank_type"] = df["bank"].map(BANK_TYPE)
+
+    df = _drop_404_pages(df)
+    return df, False
 
 
 def _is_404_topics(topics) -> bool:
