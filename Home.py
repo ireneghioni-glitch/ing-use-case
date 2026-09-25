@@ -2,14 +2,11 @@ import re
 from pathlib import Path
 
 import pandas as pd
+import plotly.express as px
 import streamlit as st
 
-from utils.config import (
-    MVP_BANKS, SUBJECT_BANK, TARGET_RECORDS_PER_BANK, MIN_VIABLE_RECORDS_PER_BANK, BANK_TYPE,
-)
-from utils.data_loader import (
-    load_features, filter_mvp, compute_coverage, scope_breakdown, deterministic_review_summary,
-)
+from utils.config import SUBJECT_BANK, BANK_TYPE, BANK_TYPE_LABEL
+from utils.data_loader import load_features
 from utils.style import inject_css, section
 
 st.set_page_config(page_title="Scope & Methodology", page_icon="🧡", layout="wide")
@@ -18,10 +15,18 @@ inject_css()
 # ---- Easy settings ----------------------------------------------------------
 # Extra columns to show next to each URL in the bank page list.
 # Add real column names from your data (names missing from the data are skipped).
-EXTRA_URL_COLUMNS = ["eligibility_stated"]
+EXTRA_URL_COLUMNS = ["language", "eligibility_stated"]
 # Set to True once to list all column names of your dataset at the bottom of the page.
 SHOW_COLUMN_DEBUG = False
 # -----------------------------------------------------------------------------
+
+ING_COLOR = "#FF6200"
+LANG_LABEL = {"fr": "FR", "nl": "NL", "en": "EN", "de": "DE"}
+# LLM-judged fields the analysis pages rely on: a page is "fully analysed" when all are filled.
+LLM_CORE_FIELDS = [
+    "tone", "value_proposition_clarity", "cta_clarity", "audience_explicit",
+    "primary_cta_visibility", "price_in_initial_viewport", "eligibility_stated",
+]
 
 # Make tertiary buttons look like orange links (used for bank names in Coverage)
 st.markdown(
@@ -49,8 +54,8 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# ---------------- Data status ----------------
-df, is_demo = load_features()
+# ---------------- Data ----------------
+df_all, is_demo = load_features()
 if is_demo:
     st.warning(
         "Showing **demo data** — the real pipeline output wasn't found yet. "
@@ -58,13 +63,31 @@ if is_demo:
         icon="⚠️",
     )
 
+# The whole web app uses every scraped page that survived cleaning (404 /
+# mismatched pages are removed by the loader). Pages scraped as adult
+# comparators are left out: the study is about youth communication.
+if "audience_label" in df_all.columns:
+    is_adult = df_all["audience_label"].eq("general_adult")
+else:
+    is_adult = pd.Series(False, index=df_all.index)
+df = df_all[~is_adult].copy()
+n_adult_excluded = int(is_adult.sum())
+
+config_type = df["bank"].map(BANK_TYPE)
+bank_type = df["bank_type"].fillna(config_type) if "bank_type" in df.columns else config_type
+df["Bank type"] = bank_type.map(BANK_TYPE_LABEL).fillna(bank_type).fillna("Unknown")
+
 # ---------------- KPIs ----------------
+n_banks = df["bank"].nunique()
+n_ing = int((df["bank"] == SUBJECT_BANK).sum())
+n_langs = df["language"].dropna().nunique() if "language" in df.columns else None
+
 k1, k2, k3, k4 = st.columns(4)
 for col, value, label in [
-    (k1, SUBJECT_BANK, "Subject bank"),
-    (k2, len(MVP_BANKS), "Banks in the MVP"),
-    (k3, TARGET_RECORDS_PER_BANK, "Target pages per bank"),
-    (k4, MIN_VIABLE_RECORDS_PER_BANK, "Minimum viable pages"),
+    (k1, len(df), "Pages analysed"),
+    (k2, n_banks, "Banks compared"),
+    (k3, n_ing, f"{SUBJECT_BANK} pages"),
+    (k4, n_langs if n_langs is not None else "—", "Languages"),
 ]:
     col.markdown(
         f'<div class="kpi"><div class="v">{value}</div><div class="l">{label}</div></div>',
@@ -74,32 +97,58 @@ for col, value, label in [
 st.write("")
 
 # ---------------- Coverage ----------------
-section(
-    "Coverage",
-    f"Target: {TARGET_RECORDS_PER_BANK} youth-oriented pages per bank. Minimum viable: "
-    f"{MIN_VIABLE_RECORDS_PER_BANK} — below that, patterns are considered anecdotal "
-    "and a backup bank is activated instead. Click a bank name to see its pages.",
+section("Coverage", "All pages kept after cleaning. Click a bank to see its URLs.")
+
+llm_fields = [c for c in LLM_CORE_FIELDS if c in df.columns]
+SHORT_TYPE = {"Traditional bank": "Traditional", "Digital challenger": "Challenger"}
+
+bank_order = [SUBJECT_BANK] + sorted(b for b in df["bank"].unique() if b != SUBJECT_BANK)
+rows = []
+for bank in bank_order:
+    g = df[df["bank"] == bank]
+    if g.empty:
+        continue
+    row = {"Bank": bank, "Type": SHORT_TYPE.get(g["Bank type"].iloc[0], g["Bank type"].iloc[0]),
+           "Pages": len(g)}
+    if "language" in g.columns:
+        lang = g["language"].astype(str).str.lower()
+        for code in ["fr", "nl", "en"]:
+            row[LANG_LABEL[code]] = int(lang.eq(code).sum())
+    if llm_fields:
+        row["Analysed"] = f"{g[llm_fields].notna().all(axis=1).mean() * 100:.0f}%"
+    rows.append(row)
+coverage_df = pd.DataFrame(rows)
+
+# Chart: one bar per bank, ING highlighted, nothing else on it.
+chart = coverage_df.sort_values("Pages", ascending=False)
+fig = px.bar(chart, x="Pages", y="Bank", orientation="h", text="Pages")
+fig.update_traces(
+    marker_color=[ING_COLOR if b == SUBJECT_BANK else "#B8BDC7" for b in chart["Bank"]],
+    marker_cornerradius=4, textposition="outside", cliponaxis=False,
+    textfont=dict(color="#5B5F68", size=13),
+    hovertemplate="%{y}: %{x} pages<extra></extra>",
 )
+fig.update_xaxes(visible=False)
+fig.update_yaxes(title=None, autorange="reversed", showgrid=False, ticks="",
+                 tickfont=dict(size=14, color="#2B2D33"))
+fig.update_layout(height=28 + 34 * len(chart), bargap=0.35, showlegend=False,
+                  margin=dict(l=0, r=40, t=0, b=0),
+                  plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)")
+st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
 
-coverage_df = compute_coverage(df)
-coverage_df = coverage_df.drop(columns=[c for c in coverage_df.columns if "backup" in c.lower()])
-columns = list(coverage_df.columns)
-bank_col = "Bank" if "Bank" in columns else columns[0]
-
+# Table: bank names are clickable and open the list of URLs below.
 if "coverage_bank" not in st.session_state:
     st.session_state["coverage_bank"] = None
 
-# Header row
-widths = [2] + [1.5] * (len(columns) - 1)
+columns = list(coverage_df.columns)
+widths = [2, 1.6] + [1] * (len(columns) - 2)
 header = st.columns(widths)
-ordered = [bank_col] + [c for c in columns if c != bank_col]
-for h, name in zip(header, ordered):
+for h, name in zip(header, columns):
     h.markdown(f"**{name}**")
 st.markdown('<hr style="margin:.2rem 0 .4rem 0">', unsafe_allow_html=True)
 
-# Data rows — bank name is a clickable link-style button
 for _, row in coverage_df.iterrows():
-    bank = row[bank_col]
+    bank = row["Bank"]
     cells = st.columns(widths)
     try:
         clicked = cells[0].button(str(bank), key=f"cov_{bank}", type="tertiary")
@@ -110,17 +159,13 @@ for _, row in coverage_df.iterrows():
         st.session_state["coverage_bank"] = (
             None if st.session_state["coverage_bank"] == bank else bank
         )
-    for cell, name in zip(cells[1:], ordered[1:]):
-        cell.write(row[name])
+    for cell, name in zip(cells[1:], columns[1:]):
+        cell.markdown(str(row[name]))  # plain text: st.write renders numpy ints as code chips
 
-at_minimum = coverage_df[coverage_df["Status"] == "⚠ at minimum, below target"]
-if not at_minimum.empty:
-    names = ", ".join(at_minimum["Bank"].tolist())
-    st.caption(
-        f"⚠ **{names}** meets the minimum-viable threshold but not the "
-        f"{TARGET_RECORDS_PER_BANK}-page target — patterns for this bank rest on a "
-        "smaller sample than the others."
-    )
+note = "Analysed = share of pages with every LLM feature filled. 404 and mismatched pages removed"
+if n_adult_excluded:
+    note += f"; {n_adult_excluded} adult-audience pages excluded"
+st.caption(note + ".")
 
 # ---------------- Selected bank: URL list ----------------
 selected = st.session_state["coverage_bank"]
@@ -142,58 +187,6 @@ if selected:
     if st.button("Close list"):
         st.session_state["coverage_bank"] = None
         st.rerun()
-
-with st.expander("Comprehensive corpus breakdown including pipeline and future potential banks"):
-    st.dataframe(scope_breakdown(df), use_container_width=True, hide_index=True)
-    st.caption(
-        "'Backup' banks (BNP Paribas Fortis, bunq) are scraped and ready but only "
-        "promoted into the comparison if an MVP bank falls short. 'Out of scope' "
-        "banks (Argenta, Beobank) were collected in an earlier iteration and are "
-        "excluded from this MVP entirely."
-    )
-
-# ---------------- Key findings (computed live from the data) ----------------
-def key_findings():
-    d = filter_mvp(df)
-    tests = {
-        "CTA visible without scrolling": lambda x: x["primary_cta_visibility"].eq("yes"),
-        "Price visible without scrolling": lambda x: x["price_in_initial_viewport"].eq("yes"),
-        "Clear, specific value proposition": lambda x: x["value_proposition_clarity"].eq("clear-specific"),
-        "Names its youth audience": lambda x: x["audience_explicit"].eq("yes"),
-        "Eligibility clearly stated": lambda x: x["eligibility_stated"].eq("yes"),
-        "Gain-framed persuasion": lambda x: x["persuasive_framing"].eq("gain"),
-        "Real people in imagery": lambda x: x["visual_type"].eq("real-people"),
-    }
-    rates = {}
-    for bank, sub in d.groupby("bank"):
-        rates[bank] = {}
-        for k, fn in tests.items():
-            try:
-                rates[bank][k] = fn(sub).mean() * 100
-            except KeyError:
-                pass
-    r = pd.DataFrame(rates).T
-    gap = (r.loc[SUBJECT_BANK] - r.drop(SUBJECT_BANK).mean()).dropna().sort_values()
-    cards = [
-        (f"{gap.iloc[-1]:+.0f} pp", f"<b>{gap.index[-1]}</b><br>{SUBJECT_BANK}'s biggest lead over peers"),
-        (f"{gap.iloc[0]:+.0f} pp", f"<b>{gap.index[0]}</b><br>{SUBJECT_BANK}'s biggest gap to peers"),
-    ]
-    types = d["bank"].map(BANK_TYPE)
-    trad = next((t for t in types.dropna().unique() if str(t).lower().startswith("trad")), None)
-    if trad is not None and types.nunique() > 1:
-        tg = {}
-        for k, fn in tests.items():
-            try:
-                m = fn(d).groupby(types).mean() * 100
-                tg[k] = m.drop(trad).mean() - m[trad]
-            except KeyError:
-                pass
-        tg = pd.Series(tg).dropna()
-        k = tg.abs().idxmax()
-        who = "digital challengers" if tg[k] > 0 else "traditional banks"
-        cards.append((f"{abs(tg[k]):.0f} pp", f"<b>{k}</b><br>biggest gap between bank types ({who} ahead)"))
-    return cards
-
 
 # ---------------- Explore the analysis (auto-discovers your pages) ----------------
 PAGE_BLURBS = {
@@ -224,10 +217,12 @@ for row_start in range(0, len(pages), 3):
 
 with st.expander("How this was built"):
     st.markdown(
-        f"Public pages of each MVP bank are scraped, filtered to youth-oriented pages "
-        f"(target {TARGET_RECORDS_PER_BANK} per bank, minimum {MIN_VIABLE_RECORDS_PER_BANK}), "
-        "described with LLM-judged and Python-computed features, and reviewed by the team. "
-        "Banks below the minimum are replaced by a backup bank."
+        "Public youth-oriented pages of each bank are scraped (robots.txt respected), cleaned "
+        "(404 / error pages and content mismatches removed), then described with LLM-judged "
+        "features (tone, clarity, CTA, trust signals…) and Python-computed features (word count, "
+        "jargon density, sentence length). Every page that survives cleaning is used across the "
+        "whole web app. When a bank is compared with its peers, banks with very few pages are "
+        "still shown but kept out of the peer average, because their rates are too unstable."
     )
 
 st.divider()
