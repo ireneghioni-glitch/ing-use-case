@@ -312,9 +312,22 @@ for col, key in zip(cols, HEADLINE_KEYS):
     if row.empty:
         continue
     r = row.iloc[0]
-    col.metric(r["label"], f"{r['ing']:.0f}%",
-               delta=f"{r['gap']:+.0f} pts vs peer median", delta_color="off")
-    col.caption(f"{r['ing_k']}/{r['ing_n']} ING pages · ranks {r['rank']}/{r['n_banks']}")
+    # Custom card instead of st.metric: st.metric truncates long labels ("Clear, specific
+    # value propo…"), this one wraps the title onto as many lines as it needs.
+    col.markdown(
+        f"""
+<div style="border:1px solid rgba(128,128,128,.25); border-radius:10px; padding:14px 16px; height:100%;">
+  <div style="font-size:.95rem; line-height:1.3; font-weight:600; min-height:2.6em;">{r['label']}</div>
+  <div style="font-size:2rem; font-weight:700; line-height:1.2; margin-top:6px; color:{ING_COLOR};">{r['ing']:.0f}%</div>
+  <div style="font-size:.85rem; opacity:.75;">{r['gap']:+.0f} pts vs peer median</div>
+  <div style="font-size:.8rem; opacity:.6; margin-top:6px;">
+    {r['ing_k']}/{r['ing_n']} ING pages · ranks {r['rank']}/{r['n_banks']}
+  </div>
+</div>
+""",
+        unsafe_allow_html=True,
+    )
+st.write("")
 st.caption(
     f"Peer median = median of the {others_df['bank'].nunique()} other banks' rates "
     "(each bank counts once, whatever its number of pages)."

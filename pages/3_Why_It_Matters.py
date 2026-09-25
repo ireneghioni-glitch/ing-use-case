@@ -7,14 +7,10 @@ import streamlit as st
 from utils.style import inject_css
 from utils.config import SUBJECT_BANK, BANK_TYPE_LABEL, BANK_TYPE
 from utils.data_loader import load_features, filter_mvp
-from utils.style import inject_css
+
 st.set_page_config(page_title="Why It Matters", page_icon="📚", layout="wide")
-inject_css() 
+inject_css()
 st.title("Why It Matters")
-st.caption(
-    "Academic grounding for the patterns actually observed across the 5 MVP banks — "
-    "combines the RAG's market research with your own measured data."
-)
 
 df, is_demo = load_features()
 if is_demo:
@@ -87,8 +83,7 @@ MAX_CHUNKS_PER_SOURCE = 3
 MAX_WORDS_PER_CHUNK = 250  # each chunk can be up to 400 words — trimming cuts
 # prompt size substantially (this is what pushed a request over Groq's
 # free-tier TPM limit once) while keeping the key evidence, which is
-# typically front-loaded in these chunks. Shared with the ungrounded-name
-# check below, so that check validates against exactly what the LLM saw.
+# typically front-loaded in these chunks.
 
 
 def _trim(text: str, max_words: int = MAX_WORDS_PER_CHUNK) -> str:
@@ -240,44 +235,6 @@ def market_snapshot(_df: pd.DataFrame) -> dict:
     return snapshot
 
 
-
-
-
-def _find_ungrounded_names(answer: dict, source_text: str) -> list[str]:
-    """Safety net against a specific failure mode we've seen: naming a
-    real-sounding brand/company not actually in the retrieved passages.
-    Extracts capitalized words that appear MID-SENTENCE (not sentence-initial
-    — any English word is capitalized there by grammar convention, which is
-    why a growing blocklist of common words was never going to keep up) and
-    flags any that don't appear in the source text actually sent to the LLM."""
-    text = " ".join(answer.get(k, "") for k in ("observation", "why_it_matters", "implication_for_ing"))
-
-    # App/domain terms that are legitimately capitalized and would otherwise
-    # false-positive even under the mid-sentence check (they're expected
-    # vocabulary, not brand names drawn from outside the sources).
-    KNOWN_TERMS = {
-        "ING", "Gen", "Belfius", "KBC", "N26", "Revolut", "BNP", "Traditional",
-        "Digital", "Challenger", "Xaalys", "Osper", "Vybe", "Greenlight", "MVP",
-    }
-
-    sentences = re.split(r"(?<=[.!?])\s+", text)
-    candidates = set()
-    for sentence in sentences:
-        words = sentence.split()
-        for word in words[1:]:  # skip the sentence-initial word
-            no_possessive = re.sub(r"[’']s$", "", word)  # "Vybe's" -> "Vybe",
-            # not "Vybes" — strip the possessive suffix before stripping the
-            # apostrophe itself, or the two merge into a word that matches
-            # neither the known term nor the source text.
-            cleaned = re.sub(r"[^a-zA-Z]", "", no_possessive)
-            if re.match(r"^[A-Z][a-zA-Z]{2,}$", cleaned):
-                candidates.add(cleaned)
-
-    candidates -= KNOWN_TERMS
-    source_lower = source_text.lower()
-    return sorted(c for c in candidates if c.lower() not in source_lower)
-
-
 def _get_response_text(message) -> str:
     """Find the text content block, skipping any thinking/redacted_thinking
     blocks — content[0] isn't reliably the text block once thinking is
@@ -401,10 +358,11 @@ Output raw JSON only, no markdown code fences, no text before or after."""
 
 
 SUGGESTED_QUESTIONS = [
-    "Why do digital challengers use a more playful tone with young audiences?",
-    "Why does showing the price above the fold matter for youth acquisition?",
-    "Why is gamification effective for engaging Gen Z with financial products?",
-    "How important is naming the target audience explicitly in youth-oriented banking pages?",
+    "Does ING provide enough trust signals to reassure young customers compared to competitors?",
+    "How clearly do banks state eligibility requirements on their youth account pages?",
+    "What support channels do young customers expect, and how well do the banks studied cover them?",
+    "Is independence and control a more effective message for young customers than financial rewards?",
+    "Why does a clear, specific value proposition matter more for digital challengers than traditional banks?",
 ]
 
 question = st.selectbox(
@@ -456,16 +414,6 @@ if st.button("Get answer", type="primary", disabled=not question):
                 answer = None
 
             if answer:
-                source_text = " ".join(_trim(text) for text, *_ in results)
-                ungrounded = _find_ungrounded_names(answer, source_text)
-                if ungrounded:
-                    st.warning(
-                        f"⚠️ This answer names {', '.join(ungrounded)}, which "
-                        f"doesn't appear in the retrieved sources below — it may "
-                        f"be drawn from the model's general knowledge rather than "
-                        f"this study's corpus. Verify before using."
-                    )
-
                 st.subheader(answer.get("headline", ""))
                 st.markdown("**What we found**")
                 st.write(answer.get("observation", ""))
