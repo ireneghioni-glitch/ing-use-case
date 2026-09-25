@@ -17,10 +17,10 @@ BANK_TYPE = {
     "ING": "traditional",
     "KBC": "traditional",
     "Belfius": "traditional",
-    "Revolut": "challenger",
-    "N26": "challenger",
+    "Revolut": "digital challenger",
+    "N26": "digital challenger",
     "BNP Paribas Fortis": "traditional",
-    "bunq": "challenger",
+    "bunq": "digital challenger",
     # Out-of-scope banks present in the corpus from an earlier scraping iteration.
     "Argenta": "traditional",
     "Beobank": "traditional",
@@ -28,7 +28,7 @@ BANK_TYPE = {
 
 BANK_TYPE_LABEL = {
     "traditional": "Traditional bank",
-    "challenger": "Digital challenger",
+    "digital challenger": "Digital challenger",
 }
 
 SUBJECT_BANK = "ING"
@@ -45,12 +45,9 @@ FEATURES_PATH = DATA_DIR / "features" / "llm_claude.parquet"
 DETERMINISTIC_FEATURES_PATH = DATA_DIR / "features" / "deterministic.parquet"
 CLEANED_ASSETS_PATH = DATA_DIR / "processed" / "cleaned_assets.jsonl"
 MANUAL_ANNOTATIONS_PATH = DATA_DIR / "features" / "visual_manual.csv"
-# Consolidated file (LLM + deterministic + cleaned text, already joined) —
-# used by the combined Positioning page. The files above stay in use elsewhere.
-ALL_FEATURES_PATH = DATA_DIR / "features" / "all_features.parquet"
 
 # --- Out of scope (shown on the Scope & Methodology page so it's never ambiguous) ---
-OUT_OF_SCOPE = [
+OUT_OF_SCOPE = [ 
     "Within-bank youth vs adult comparison (excluded from the MVP by team decision, 2026-09-21).",
     "Conversion, ROI, or sales impact measurement — no internal performance data available.",
     "Ad-platform analysis — this MVP covers bank websites only.",
