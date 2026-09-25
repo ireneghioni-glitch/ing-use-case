@@ -417,25 +417,6 @@ with right:
 
 st.divider()
 
-# ---------------------------------------------------------------------
-# 5. Opportunities
-# ---------------------------------------------------------------------
-st.header("What should ING do next?")
-
-weakest = gaps.sort_values("gap").head(3)
-opp_cols = st.columns(len(weakest))
-for i, (col, r) in enumerate(zip(opp_cols, weakest.itertuples()), start=1):
-    with col:
-        st.markdown(f"**{i}. {r.label}**")
-        st.markdown(CRITERIA[r.key]["action"])
-        status = "gap" if r.gap < 0 else "smallest lead"
-        st.caption(f"ING {r.ing:.0f}% vs peer median {r.peer_median:.0f}% ({r.gap:+.0f} pts, {status})")
-st.caption(
-    "Suggestions are driven by ING's three weakest criteria versus peers. They are directional "
-    "hypotheses to test, not proven levers — no conversion data is available in this study."
-)
-
-st.divider()
 
 # ---------------------------------------------------------------------
 # Technical appendix

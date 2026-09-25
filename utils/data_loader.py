@@ -31,14 +31,12 @@ from utils.config import (
     DETERMINISTIC_FEATURES_PATH,
     CLEANED_ASSETS_PATH,
     MANUAL_ANNOTATIONS_PATH,
-    ALL_FEATURES_PATH,
     MVP_BANKS,
     BACKUP_BANKS,
     BANK_TYPE,
     AUDIENCE_LABEL,
     TARGET_RECORDS_PER_BANK,
     MIN_VIABLE_RECORDS_PER_BANK,
-    SUBJECT_BANK,
 )
 
 FEATURE_COLUMNS = [
@@ -67,23 +65,6 @@ def _demo_dataframe() -> pd.DataFrame:
     verbosity = ["low", "medium", "high"]
     yes_no = ["yes", "no"]
     trust_options = ["security_badge", "deposit_guarantee", "testimonials", "customer_numbers", "none"]
-    topic_pool = [
-        "student account", "savings", "youth", "budgeting", "gamification",
-        "mobile banking", "investing", "eligibility", "free account",
-    ]
-    # Guarantee at least one shared topic between ING and another bank, on
-    # each bank's first page — otherwise random sampling could produce a
-    # demo where no two banks ever share a topic, making the "Product /
-    # topic" filter on the Visual Comparator look broken even when it isn't.
-    SHARED_TOPIC = "student account"
-    SHARED_TOPIC_PARTNER = next((b for b in MVP_BANKS if b != SUBJECT_BANK), None)
-
-    def pick_topics(bank: str, page_index: int) -> list[str]:
-        sampled = random.sample(topic_pool, k=random.randint(2, 3))
-        must_share = page_index == 0 and bank in (SUBJECT_BANK, SHARED_TOPIC_PARTNER)
-        if must_share and SHARED_TOPIC not in sampled:
-            sampled = [SHARED_TOPIC] + sampled[:2]
-        return sampled
 
     rows = []
     for bank in MVP_BANKS:
@@ -93,7 +74,7 @@ def _demo_dataframe() -> pd.DataFrame:
         # something realistic to flag even in demo mode.
         n = 5 if bank == "Revolut" else 10
         for i in range(n):
-            is_challenger = bank_type == "challenger"
+            is_challenger = bank_type == "digital challenger"
             rows.append({
                 "asset_id": f"{bank.lower().replace(' ', '-')}__demo-{i}",
                 "bank": bank,
@@ -127,7 +108,6 @@ def _demo_dataframe() -> pd.DataFrame:
                 "word_count": random.randint(80, 900),
                 "jargon_density": round(random.uniform(0.5, 6.0), 2),
                 "mean_sentence_length": round(random.uniform(8, 35), 1),
-                "topics": pick_topics(bank, i),
                 "screenshot_path": None,
                 "text": "[Demo placeholder — real cleaned page text will appear here once the pipeline output is loaded.]",
                 "_is_demo_data": True,
@@ -198,9 +178,7 @@ def load_features() -> tuple[pd.DataFrame, bool]:
         if CLEANED_ASSETS_PATH.exists():
             with CLEANED_ASSETS_PATH.open(encoding="utf-8") as f:
                 cleaned = [json.loads(line) for line in f]
-            cleaned_df = pd.DataFrame(cleaned)
-            keep_cols = [c for c in ["asset_id", "text", "screenshot_path", "title"] if c in cleaned_df.columns]
-            cleaned_df = cleaned_df[keep_cols]
+            cleaned_df = pd.DataFrame(cleaned)[["asset_id", "text", "screenshot_path"]]
             df = df.merge(cleaned_df, on="asset_id", how="left")
 
         det_wide = _load_deterministic_wide()
@@ -216,127 +194,11 @@ def load_features() -> tuple[pd.DataFrame, bool]:
             det_wide = det_wide.drop(columns=overlap)
             df = df.merge(det_wide, on="asset_id", how="left")
 
-        df = _drop_404_pages(df)
-
         return df, False
 
     return _demo_dataframe(), True
 
-
-# Columns stored as numbers-as-strings / pipe-separated lists in all_features.parquet.
-_ALL_FEATURES_NUMERIC = ["word_count", "jargon_density", "mean_sentence_length"]
-_ALL_FEATURES_LIST = ["topics", "trust_signals"]
-
-
-def _split_pipe(value) -> list[str]:
-    if value is None or (isinstance(value, float) and pd.isna(value)):
-        return []
-    if hasattr(value, "tolist"):
-        return [str(v) for v in value.tolist()]
-    if isinstance(value, list):
-        return value
-    return [part.strip() for part in str(value).split("|") if part.strip()]
-
-
-@st.cache_data
-def load_all_features() -> tuple[pd.DataFrame, bool]:
-    """Returns (dataframe, is_demo_data) from the consolidated
-    all_features.parquet. Independent of load_features(): the other parquet
-    files are left untouched and still used by the other pages."""
-    if not ALL_FEATURES_PATH.exists():
-        return _demo_dataframe(), True
-
-    df = pd.read_parquet(ALL_FEATURES_PATH)
-    df["_is_demo_data"] = False
-
-    for col in _ALL_FEATURES_NUMERIC:
-        if col in df.columns:
-            df[col] = pd.to_numeric(df[col], errors="coerce")
-
-    for col in _ALL_FEATURES_LIST:
-        if col in df.columns:
-            df[col] = df[col].apply(_split_pipe)
-
-    # bank_type isn't stored in the file — derive it from the config mapping.
-    if "bank_type" not in df.columns:
-        df["bank_type"] = df["bank"].map(BANK_TYPE)
-
-    df = _drop_404_pages(df)
-    return df, False
-
-
-def _is_404_topics(topics) -> bool:
-    """Flags a page whose LLM-extracted topics indicate it's actually a 404 /
-    error page rather than real content — confirmed in this corpus: several
-    pages (16 for Belfius, 5 for N26, 1 each for KBC/BNP) were scraped as
-    generic error pages, which also explains why some pages showed identical
-    word_count/jargon_density/sentence_length values despite different URLs."""
-    if hasattr(topics, "tolist"):
-        topics = topics.tolist()
-    if not topics:
-        return False
-    markers = ("404", "error page", "page not found")
-    return any(any(m in str(t).lower() for m in markers) for t in topics)
-
-
-# "Back to homepage" CTA text in the languages this corpus uses — catches 404
-# pages whose topics list came back empty (so _is_404_topics alone misses them),
-# e.g. belfius__index__nl__a46cceef97 (studentenkrediet-lening).
-_HOMEPAGE_CTA_MARKERS = (
-    "terug naar de homepagina", "retourner à la page d'accueil",
-    "retour à l'accueil", "back to homepage", "go to homepage",
-)
-
-
-def _is_404_cta(topics, cta_text) -> bool:
-    has_topics = bool(topics.tolist() if hasattr(topics, "tolist") else topics)
-    if has_topics:
-        return False  # only use this signal when topics came back empty
-    cta = str(cta_text or "").strip().lower()
-    return any(m in cta for m in _HOMEPAGE_CTA_MARKERS)
-
-
-# Known cases our automatic heuristics can't catch generically — each is a
-# confirmed content-integrity issue found by manually inspecting the scraped
-# text, not just a guess. Document the reason so this list stays auditable.
-MANUALLY_EXCLUDED_ASSET_IDS = {
-    "belfius__index__nl__edea673d2c": (
-        "URL is the 'Blue' account page, but the scraped text is actually the "
-        "'Beats New' account page (mentions 'Beats New' 7x, 'blue' 0x) — a "
-        "content/URL mismatch, likely the same SPA client-side-routing issue "
-        "scraper.py's own comments already flagged as a known risk (confirmed "
-        "happening for KBC)."
-    ),
-    "belfius__index__nl__82d24d183c": (
-        "https://www.belfius.be/retail/nl/producten/betalen/zichtrekeningen/"
-        "beats-new/index.aspx — confirmed bad by direct user check. Not caught "
-        "by the automatic heuristics: the extracted text/topics/CTA looked "
-        "internally coherent (real 'Beats New' content, no 404 markers), so "
-        "whatever's wrong with this page isn't visible in the LLM-extracted "
-        "fields alone."
-    ),
-}
-
-
-def _drop_404_pages(df: pd.DataFrame) -> pd.DataFrame:
-    if "topics" not in df.columns:
-        return df
-
-    is_topics_404 = df["topics"].apply(_is_404_topics)
-    is_cta_404 = df.apply(lambda r: _is_404_cta(r.get("topics"), r.get("cta_text")), axis=1) \
-        if "cta_text" in df.columns else False
-    is_manual = df["asset_id"].isin(MANUALLY_EXCLUDED_ASSET_IDS)
-
-    drop_mask = is_topics_404 | is_cta_404 | is_manual
-    n_dropped = int(drop_mask.sum())
-    if n_dropped:
-        print(f"[data_loader] Dropped {n_dropped} page(s): "
-              f"{int(is_topics_404.sum())} via topics, "
-              f"{int((is_cta_404 & ~is_topics_404).sum()) if hasattr(is_cta_404, 'sum') else 0} via empty-topics+homepage-CTA, "
-              f"{int(is_manual.sum())} manually confirmed content mismatches.")
-    return df[~drop_mask].reset_index(drop=True)
-
-
+ 
 @st.cache_data
 def load_manual_annotations() -> tuple[pd.DataFrame, bool]:
     if MANUAL_ANNOTATIONS_PATH.exists():

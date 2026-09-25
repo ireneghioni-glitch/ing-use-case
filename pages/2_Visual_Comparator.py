@@ -74,11 +74,26 @@ if not available_banks:
     st.stop()
 
 with f3:
-    # ING first, then other banks with a page matching the current filters
-    # (MVP banks preferred, but not required — a backup bank sharing the
-    # topic with ING should still show up).
-    ordered_candidates = [SUBJECT_BANK] + MVP_BANKS + available_banks
-    default_banks = [b for b in dict.fromkeys(ordered_candidates) if b in available_banks][:3]
+    # Fixed default: ING, KBC, Revolut — one MVP traditional peer plus one
+    # digital challenger alongside ING, so the page always opens on a
+    # meaningful three-way contrast instead of an arbitrary pick.
+    PREFERRED_DEFAULT = ["ING", "KBC", "Revolut"]
+
+    def _pick_default(available: list[str]) -> list[str]:
+        picks = [b for b in PREFERRED_DEFAULT if b in available]
+        if len(picks) >= 3:
+            return picks[:3]
+        # Fall back to other MVP banks, then any available bank, in order,
+        # filling remaining slots without duplicates.
+        for bank in [*MVP_BANKS, *available]:
+            if len(picks) >= 3:
+                break
+            if bank in picks or bank not in available:
+                continue
+            picks.append(bank)
+        return picks[:3]
+
+    default_banks = _pick_default(available_banks)
     # Reset the widget whenever the filters change, instead of Streamlit
     # silently keeping a stale selection from before the filter changed
     # (st.multiselect only applies `default` on a widget's very first run).

@@ -1,5 +1,7 @@
 """Shared ING Belgium look & feel. Call inject_css() at the top of EVERY page
 (Home.py AND every file in pages/), right after st.set_page_config()."""
+from pathlib import Path
+
 import streamlit as st
 
 ING_ORANGE = "#FF6200"
@@ -94,6 +96,37 @@ hr {{ border-color: {ING_ORANGE}33; }}
 """,
         unsafe_allow_html=True,
     )
+    _sidebar_image()
+
+
+SIDEBAR_IMAGE = Path(__file__).resolve().parent.parent / "assets" / "sidebar.png"  # your own image (optional)
+
+_DEFAULT_SVG = """
+<svg viewBox="0 0 240 190" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Youth communication">
+  <rect x="4" y="4" width="232" height="182" rx="18" fill="#fff" fill-opacity=".14"/>
+  <rect x="24" y="26" width="120" height="44" rx="14" fill="#fff"/>
+  <path d="M44 70 L38 86 L64 70 Z" fill="#fff"/>
+  <rect x="38" y="40" width="72" height="7" rx="3.5" fill="#FF6200"/>
+  <rect x="38" y="53" width="48" height="7" rx="3.5" fill="#FFB27A"/>
+  <rect x="96" y="96" width="120" height="44" rx="14" fill="#2B2D33"/>
+  <path d="M196 140 L202 156 L176 140 Z" fill="#2B2D33"/>
+  <rect x="110" y="110" width="72" height="7" rx="3.5" fill="#fff"/>
+  <rect x="110" y="123" width="48" height="7" rx="3.5" fill="#FFB27A"/>
+  <circle cx="34" cy="150" r="6" fill="#fff"/><circle cx="54" cy="150" r="6" fill="#fff" fill-opacity=".7"/>
+  <circle cx="74" cy="150" r="6" fill="#fff" fill-opacity=".4"/>
+</svg>
+"""
+
+
+def _sidebar_image() -> None:
+    """Shown in the sidebar directly below the page menu."""
+    with st.sidebar:
+        st.write("")
+        if SIDEBAR_IMAGE.exists():
+            st.image(str(SIDEBAR_IMAGE), use_container_width=True)
+        else:
+            st.markdown(_DEFAULT_SVG, unsafe_allow_html=True)
+        st.caption("Youth communication, compared.")
 
 
 def section(title: str, subtitle: str = "") -> None:

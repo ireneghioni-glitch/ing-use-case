@@ -1,10 +1,14 @@
+import re
+from pathlib import Path
+
+import pandas as pd
 import streamlit as st
 
 from utils.config import (
-    MVP_BANKS, SUBJECT_BANK, TARGET_RECORDS_PER_BANK, MIN_VIABLE_RECORDS_PER_BANK,
+    MVP_BANKS, SUBJECT_BANK, TARGET_RECORDS_PER_BANK, MIN_VIABLE_RECORDS_PER_BANK, BANK_TYPE,
 )
 from utils.data_loader import (
-    load_features, compute_coverage, scope_breakdown, deterministic_review_summary,
+    load_features, filter_mvp, compute_coverage, scope_breakdown, deterministic_review_summary,
 )
 from utils.style import inject_css, section
 
@@ -54,16 +58,6 @@ if is_demo:
         icon="⚠️",
     )
 
-review = deterministic_review_summary()
-if review and review["reviewed_share_pct"] < 100:
-    st.info(
-        f"**Data quality note:** the Python-computed features (word count, "
-        f"jargon density, sentence length) are still **pending team review** "
-        f"({review['reviewed_share_pct']:.0f}% reviewed so far, "
-        f"{review['total_values']} values total). Treat related figures as provisional.",
-        icon="🔍",
-    )
-
 # ---------------- KPIs ----------------
 k1, k2, k3, k4 = st.columns(4)
 for col, value, label in [
@@ -88,7 +82,7 @@ section(
 )
 
 coverage_df = compute_coverage(df)
-
+coverage_df = coverage_df.drop(columns=[c for c in coverage_df.columns if "backup" in c.lower()])
 columns = list(coverage_df.columns)
 bank_col = "Bank" if "Bank" in columns else columns[0]
 
@@ -158,19 +152,82 @@ with st.expander("Comprehensive corpus breakdown including pipeline and future p
         "excluded from this MVP entirely."
     )
 
-# ---------------- Methodology ----------------
-section("Methodology", "How the numbers on the following pages are produced.")
-steps = [
-    ("Collect", "Public web pages of each MVP bank are scraped into a single corpus."),
-    ("Select", f"Only youth-oriented pages are kept, aiming for {TARGET_RECORDS_PER_BANK} per bank."),
-    ("Measure", "Python computes objective features: word count, jargon density, sentence length."),
-    ("Review", "The team reviews computed values; figures stay provisional until fully reviewed."),
-    ("Compare", f"ING is benchmarked against peers. Banks under {MIN_VIABLE_RECORDS_PER_BANK} pages are replaced by a backup bank."),
-]
-for col, (i, (title, text)) in zip(st.columns(len(steps)), enumerate(steps, 1)):
-    col.markdown(
-        f'<div class="step"><div class="num">{i}</div><h4>{title}</h4><p>{text}</p></div>',
-        unsafe_allow_html=True,
+# ---------------- Key findings (computed live from the data) ----------------
+def key_findings():
+    d = filter_mvp(df)
+    tests = {
+        "CTA visible without scrolling": lambda x: x["primary_cta_visibility"].eq("yes"),
+        "Price visible without scrolling": lambda x: x["price_in_initial_viewport"].eq("yes"),
+        "Clear, specific value proposition": lambda x: x["value_proposition_clarity"].eq("clear-specific"),
+        "Names its youth audience": lambda x: x["audience_explicit"].eq("yes"),
+        "Eligibility clearly stated": lambda x: x["eligibility_stated"].eq("yes"),
+        "Gain-framed persuasion": lambda x: x["persuasive_framing"].eq("gain"),
+        "Real people in imagery": lambda x: x["visual_type"].eq("real-people"),
+    }
+    rates = {}
+    for bank, sub in d.groupby("bank"):
+        rates[bank] = {}
+        for k, fn in tests.items():
+            try:
+                rates[bank][k] = fn(sub).mean() * 100
+            except KeyError:
+                pass
+    r = pd.DataFrame(rates).T
+    gap = (r.loc[SUBJECT_BANK] - r.drop(SUBJECT_BANK).mean()).dropna().sort_values()
+    cards = [
+        (f"{gap.iloc[-1]:+.0f} pp", f"<b>{gap.index[-1]}</b><br>{SUBJECT_BANK}'s biggest lead over peers"),
+        (f"{gap.iloc[0]:+.0f} pp", f"<b>{gap.index[0]}</b><br>{SUBJECT_BANK}'s biggest gap to peers"),
+    ]
+    types = d["bank"].map(BANK_TYPE)
+    trad = next((t for t in types.dropna().unique() if str(t).lower().startswith("trad")), None)
+    if trad is not None and types.nunique() > 1:
+        tg = {}
+        for k, fn in tests.items():
+            try:
+                m = fn(d).groupby(types).mean() * 100
+                tg[k] = m.drop(trad).mean() - m[trad]
+            except KeyError:
+                pass
+        tg = pd.Series(tg).dropna()
+        k = tg.abs().idxmax()
+        who = "digital challengers" if tg[k] > 0 else "traditional banks"
+        cards.append((f"{abs(tg[k]):.0f} pp", f"<b>{k}</b><br>biggest gap between bank types ({who} ahead)"))
+    return cards
+
+
+# ---------------- Explore the analysis (auto-discovers your pages) ----------------
+PAGE_BLURBS = {
+    "market positioning": "Where ING stands against the market, and how traditional banks differ from digital challengers.",
+    "ing positioning": "Where ING stands against every other bank, trait by trait.",
+    "visual comparator": "Put 2 to 3 banks side by side and compare their actual pages.",
+    "traditional vs digital challenger": "How traditional banks and digital challengers speak to young people.",
+    "why it matters": "What these differences mean for youth acquisition.",
+    "recommendations": "Concrete next steps for ING's youth communication.",
+}
+pages = sorted((Path(__file__).parent / "pages").glob("*.py"))
+section("Explore the analysis", f"{len(pages)} views, from the big picture to concrete actions.")
+for row_start in range(0, len(pages), 3):
+    for col, page in zip(st.columns(3), pages[row_start:row_start + 3]):
+        idx = pages.index(page) + 1
+        title = re.sub(r"^\d+[_\- ]*", "", page.stem).replace("_", " ")
+        blurb = PAGE_BLURBS.get(title.lower(), "")
+        with col:
+            st.markdown(
+                f'<div class="step"><div class="num">{idx}</div><h4>{title}</h4><p>{blurb}</p></div>',
+                unsafe_allow_html=True,
+            )
+            try:
+                st.page_link(f"pages/{page.name}", label="Open", icon="➡️")
+            except Exception:
+                pass
+    st.write("")
+
+with st.expander("How this was built"):
+    st.markdown(
+        f"Public pages of each MVP bank are scraped, filtered to youth-oriented pages "
+        f"(target {TARGET_RECORDS_PER_BANK} per bank, minimum {MIN_VIABLE_RECORDS_PER_BANK}), "
+        "described with LLM-judged and Python-computed features, and reviewed by the team. "
+        "Banks below the minimum are replaced by a backup bank."
     )
 
 st.divider()
