@@ -1,0 +1,11 @@
+feature,bank,dominant_categories,dominant_count,bank_total,dominance_percentage,is_tie,validation_status,analysis_note
+main_benefit,Belfius,independence-control,2,5,40.0,false,rejected_after_validation,Historical preliminary result from LLM labels. Validation later rejected tone and main_benefit for quantitative analysis.
+main_benefit,ING,independence-control,6,10,60.0,false,rejected_after_validation,Historical preliminary result from LLM labels. Validation later rejected tone and main_benefit for quantitative analysis.
+main_benefit,KBC,independence-control,4,10,40.0,false,rejected_after_validation,Historical preliminary result from LLM labels. Validation later rejected tone and main_benefit for quantitative analysis.
+main_benefit,N26,convenience | independence-control,2,5,40.0,true,rejected_after_validation,Historical preliminary result from LLM labels. Validation later rejected tone and main_benefit for quantitative analysis.
+main_benefit,Revolut,convenience | independence-control | other | security-support | unknown,1,5,20.0,true,rejected_after_validation,Historical preliminary result from LLM labels. Validation later rejected tone and main_benefit for quantitative analysis.
+tone,Belfius,persuasive,3,5,60.0,false,rejected_after_validation,Historical preliminary result from LLM labels. Validation later rejected tone and main_benefit for quantitative analysis.
+tone,ING,simple,5,10,50.0,false,rejected_after_validation,Historical preliminary result from LLM labels. Validation later rejected tone and main_benefit for quantitative analysis.
+tone,KBC,formal,5,10,50.0,false,rejected_after_validation,Historical preliminary result from LLM labels. Validation later rejected tone and main_benefit for quantitative analysis.
+tone,N26,persuasive | simple,2,5,40.0,true,rejected_after_validation,Historical preliminary result from LLM labels. Validation later rejected tone and main_benefit for quantitative analysis.
+tone,Revolut,formal,3,5,60.0,false,rejected_after_validation,Historical preliminary result from LLM labels. Validation later rejected tone and main_benefit for quantitative analysis.
