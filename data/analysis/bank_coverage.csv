@@ -1,0 +1,6 @@
+bank,asset_count,recorded_languages,dataset_percentage
+ING,10,"en, fr, nl",28.6
+KBC,10,"en, fr, nl",28.6
+Belfius,5,"fr, nl",14.3
+N26,5,"en, fr",14.3
+Revolut,5,"en, fr, nl",14.3

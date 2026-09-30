@@ -7,6 +7,18 @@ ANALYSIS_DIR = DATA_DIR / "analysis"
 FIGURES_DIR = PROJ_ROOT / "reports" / "figures"
 
 ALL_FEATURES_PATH = FEATURES_DIR / "all_features.parquet"
+
+# Historical pre-validation outputs. These tables preserve the exploratory
+# tone and main-benefit analysis but are not valid for quantitative claims.
+PRELIMINARY_BANK_COVERAGE_PATH = ANALYSIS_DIR / "bank_coverage.csv"
+PRELIMINARY_DISTRIBUTIONS_PATH = (
+    ANALYSIS_DIR / "categorical_distributions.csv"
+)
+PRELIMINARY_CONSISTENCY_PATH = (
+    ANALYSIS_DIR / "consistency_by_bank.csv"
+)
+PRELIMINARY_ING_GAP_PATH = ANALYSIS_DIR / "ing_gap_table.csv"
+
 FINAL_SOURCE_QUALITY_PATH = ANALYSIS_DIR / "final_source_quality.csv"
 FINAL_VISUAL_DISTRIBUTION_PATH = (
     ANALYSIS_DIR / "final_visual_type_distribution.csv"
@@ -18,6 +30,28 @@ FINAL_DETERMINISTIC_FEATURES = [
     "mean_sentence_length",
     "word_count",
 ]
+
+PRELIMINARY_ANALYSIS_FEATURES = ["tone", "main_benefit"]
+
+PRELIMINARY_CATEGORY_ORDER = {
+    "tone": ["formal", "simple", "persuasive", "playful"],
+    "main_benefit": [
+        "affordability",
+        "convenience",
+        "independence-control",
+        "security-support",
+        "lifestyle-rewards",
+        "mixed",
+        "other",
+        "unknown",
+    ],
+}
+
+PRELIMINARY_COMPARISON_GROUPS = {
+    "traditional_competitors": ["KBC", "Belfius"],
+    "digital_competitors": ["N26", "Revolut"],
+    "all_competitors": ["KBC", "Belfius", "N26", "Revolut"],
+}
 
 VALIDATION_RESULTS = {
     "visual_type": {
@@ -60,4 +94,9 @@ FINAL_VALIDATION_NOTE = (
     "Final quantitative analysis uses validated visual_type. "
     "Deterministic text features are audited for source quality and excluded "
     "from cross-bank conclusions."
+)
+
+PRELIMINARY_ANALYSIS_NOTE = (
+    "Historical preliminary result from LLM labels. Validation later "
+    "rejected tone and main_benefit for quantitative analysis."
 )
